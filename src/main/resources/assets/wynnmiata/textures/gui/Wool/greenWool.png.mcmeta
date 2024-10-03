@@ -1,0 +1,10 @@
+{
+  "blur":false,
+
+  "clamp": true,
+  "gui": {
+
+  "scaling": {
+" type": "stretch"}
+  }
+}
