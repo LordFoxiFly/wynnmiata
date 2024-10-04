@@ -32,6 +32,9 @@ public class MiscScreen extends Screen {
         addDrawableChild(Buttons.NOL);
         addDrawableChild(Buttons.MISC);
         addDrawableChild(CheckBoxs.HeadRendering);
+        addDrawableChild(CheckBoxs.FireEntityRendering);
+        addDrawableChild(CheckBoxs.FireHudRendering);
+        addDrawableChild(CheckBoxs.ArmorRendering);
     }
 
     @Override
