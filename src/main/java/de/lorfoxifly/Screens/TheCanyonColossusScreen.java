@@ -1,23 +1,24 @@
 package de.lorfoxifly.Screens;
 
 import de.lorfoxifly.Screens.Widgets.Buttons;
+import de.lorfoxifly.Screens.Widgets.CheckBoxs;
 import de.lorfoxifly.WynnMiata;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class SettingScreen extends Screen {
+public class TheCanyonColossusScreen extends Screen {
 
-    private static final  Text TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.SettingScreen");
+    private static final Text TCC_TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC");
     private static final Identifier BACKGROUND_IMAGE = Identifier.of("wynnmiata", "textures/gui/background_texture.png");
+
     private  int leftpos, toppos;
     private final int imagewidth,imageheight;
-
-    public SettingScreen() {
-        super(TITLE);
-        this.imagewidth = 256;
-        this.imageheight= 256;
+    public TheCanyonColossusScreen() {
+        super(TCC_TITLE);
+        imageheight = 256;
+        imagewidth = 256;
     }
 
     @Override
@@ -31,18 +32,18 @@ public class SettingScreen extends Screen {
         addDrawableChild(Buttons.TCC);
         addDrawableChild(Buttons.NOL);
         addDrawableChild(Buttons.MISC);
+        addDrawableChild(CheckBoxs.HighlightLava);
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context, mouseX, mouseY, delta);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
         context.drawTexture(BACKGROUND_IMAGE,  leftpos, toppos + 15,0,0, 256,220, 256, 220);
-
-
     }
 }
+

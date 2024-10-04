@@ -18,5 +18,8 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("key.category.wynnmiata", "WynnMiata");
         translationBuilder.add("gui.wynnmiata.settings.TCC.Button.Open", "TCC");
         translationBuilder.add("gui.wynnmiata.settings.NOL.Button.Open", "NOL");
+        translationBuilder.add("gui.wynnmiata.settings.MISC.Button.Open", "MISC");
+        translationBuilder.add("gui.wynnmiata.settings.TCC.Checkbox.HighlightLava", "Lava Highlight");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.HeadRendering", "Head Rendering");
     }
 }
