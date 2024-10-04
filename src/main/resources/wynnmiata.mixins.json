@@ -3,8 +3,10 @@
 	"package": "de.lorfoxifly.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin",
-		"HeadNotRenderMixin"
+		"HeadNotRenderMixin",
+		"HideFireMixin",
+		"IGHudMixin",
+		"ArmorFeatureRenderMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -21,5 +21,8 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.settings.MISC.Button.Open", "MISC");
         translationBuilder.add("gui.wynnmiata.settings.TCC.Checkbox.HighlightLava", "Lava Highlight");
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.HeadRendering", "Head Rendering");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.FireEntityRendering", "FireEntity Rendering");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.FireHudRendering", "Fire Hud Rendering");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering", "Armor Hud Rendering");
     }
 }
