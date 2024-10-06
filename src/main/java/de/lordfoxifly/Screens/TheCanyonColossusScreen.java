@@ -1,8 +1,8 @@
-package de.lorfoxifly.Screens;
+package de.lordfoxifly.Screens;
 
-import de.lorfoxifly.Screens.Widgets.Buttons;
-import de.lorfoxifly.Screens.Widgets.CheckBoxs;
-import de.lorfoxifly.WynnMiata;
+import de.lordfoxifly.Screens.Widgets.Buttons;
+import de.lordfoxifly.Screens.Widgets.CheckBoxs;
+import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
@@ -27,11 +27,10 @@ public class TheCanyonColossusScreen extends Screen {
         leftpos = (this.width - this.imagewidth ) / 2;
         toppos = (this.height - this.imageheight) / 2;
 
-        Buttons.leftpos = leftpos;
-        Buttons.toppos = toppos;
         addDrawableChild(Buttons.TCC);
         addDrawableChild(Buttons.NOL);
         addDrawableChild(Buttons.MISC);
+        addDrawableChild(Buttons.RAIDS);
         addDrawableChild(CheckBoxs.HighlightLava);
     }
 

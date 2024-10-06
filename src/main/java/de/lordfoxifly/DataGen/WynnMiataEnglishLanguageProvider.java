@@ -1,6 +1,5 @@
-package de.lorfoxifly.DataGen;
+package de.lordfoxifly.DataGen;
 
-import de.lorfoxifly.Client.Keybinds;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -19,10 +18,12 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.settings.TCC.Button.Open", "TCC");
         translationBuilder.add("gui.wynnmiata.settings.NOL.Button.Open", "NOL");
         translationBuilder.add("gui.wynnmiata.settings.MISC.Button.Open", "MISC");
+        translationBuilder.add("gui.wynnmiata.settings.RAIDS.Button.Open", "RAIDS");
         translationBuilder.add("gui.wynnmiata.settings.TCC.Checkbox.HighlightLava", "Lava Highlight");
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.HeadRendering", "Head Rendering");
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.FireEntityRendering", "FireEntity Rendering");
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.FireHudRendering", "Fire Hud Rendering");
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering", "Armor Hud Rendering");
+        translationBuilder.add("gui.wynnmiata.settings.Raids.Checkbox.showPlayerRaids", "Show Player Raids");
     }
 }

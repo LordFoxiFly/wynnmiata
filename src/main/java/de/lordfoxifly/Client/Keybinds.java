@@ -1,7 +1,6 @@
-package de.lorfoxifly.Client;
+package de.lordfoxifly.Client;
 
-import de.lorfoxifly.WynnMiata;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;

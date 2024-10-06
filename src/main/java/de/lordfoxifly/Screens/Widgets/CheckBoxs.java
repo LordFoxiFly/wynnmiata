@@ -1,16 +1,15 @@
-package de.lorfoxifly.Screens.Widgets;
+package de.lordfoxifly.Screens.Widgets;
 
-import de.lorfoxifly.WynnMiata;
+import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.text.Text;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 
 public class CheckBoxs {
 
     public static int leftpos, toppos;
 
-    private static boolean HighLightLavaBoolean = false;
+
 
     public static boolean isHighLightLavaBoolean() {
         return HighLightLavaBoolean;
@@ -19,8 +18,11 @@ public class CheckBoxs {
     public static boolean isHeadRenderingBoolean() {
         return HeadRenderingBoolean;
     }
+    public static boolean isArmorRenderingBoolean() {
+        return ArmorRenderingBoolean;
+    }
 
-    private static boolean HeadRenderingBoolean = false;
+
 
     public static boolean isFireEntityRenderingBoolean() {
         return FireEntityRenderingBoolean;
@@ -29,15 +31,16 @@ public class CheckBoxs {
     public static boolean isFireHudRenderingBoolean() {
         return FireHudRenderingBoolean;
     }
-
+    public static boolean isShowPlayerRaidsBoolean() {return showPlayerRaidsBoolean;}
+    private static boolean HeadRenderingBoolean = false;
+    private static boolean HighLightLavaBoolean = false;
     private static boolean FireHudRenderingBoolean = false;
     private static boolean FireEntityRenderingBoolean = false;
+    private static boolean ArmorRenderingBoolean = false;
 
-    public static boolean isArmorRenderingBoolean() {
-        return ArmorRenderingBoolean;
-    }
 
-    private static boolean ArmorRenderingBoolean = true;
+
+    private static boolean showPlayerRaidsBoolean = false;
 
 
 
@@ -69,6 +72,13 @@ public class CheckBoxs {
             .pos(leftpos + 184,toppos + 76)
             .checked(isArmorRenderingBoolean())
             .callback((checkbox, checked) ->  ArmorRenderingBoolean = checkbox.isChecked())
+            .build();
+
+
+    public static CheckboxWidget  showPlayerRaids = CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Raids.Checkbox.showPlayerRaids"), MinecraftClient.getInstance().textRenderer)
+            .pos(leftpos + 184,toppos + 28)
+            .checked(isShowPlayerRaidsBoolean())
+            .callback((checkbox, checked) -> showPlayerRaidsBoolean = checkbox.isChecked())
             .build();
 
 }

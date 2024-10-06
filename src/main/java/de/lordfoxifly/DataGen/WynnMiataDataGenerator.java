@@ -1,4 +1,4 @@
-package de.lorfoxifly.DataGen;
+package de.lordfoxifly.DataGen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

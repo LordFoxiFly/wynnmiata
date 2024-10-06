@@ -1,6 +1,6 @@
-package de.lorfoxifly.mixin;
+package de.lordfoxifly.mixin;
 
-import de.lorfoxifly.Screens.Widgets.CheckBoxs;
+import de.lordfoxifly.Screens.Widgets.CheckBoxs;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;

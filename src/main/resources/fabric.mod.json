@@ -3,9 +3,9 @@
 	"id": "wynnmiata",
 	"version": "${version}",
 	"name": "WynnMiata",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Wynncraft Raid Mod",
 	"authors": [
-		"Me!"
+		"LordFoxiFly"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"client": [
-			"de.lorfoxifly.WynnMiata"
+			"de.lordfoxifly.WynnMiata"
 		],
 		"fabric-datagen": [
-			"de.lorfoxifly.DataGen.WynnMiataDataGenerator"
+			"de.lordfoxifly.DataGen.WynnMiataDataGenerator"
 		]
 	},
 	"mixins": [
