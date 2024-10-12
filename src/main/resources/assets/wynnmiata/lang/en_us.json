@@ -16,6 +16,7 @@
   "gui.wynnmiata.settings.TCC.Button.Open": "TCC",
   "gui.wynnmiata.settings.TCC.Checkbox.HighlightLava": "Lava Highlight",
   "key.category.wynnmiata": "WynnMiata",
+  "key.wynnmiata.debugg_key": "Debugg",
   "key.wynnmiata.player_preview_key": "Player Preview",
   "key.wynnmiata.settings_key": "Settings"
 }

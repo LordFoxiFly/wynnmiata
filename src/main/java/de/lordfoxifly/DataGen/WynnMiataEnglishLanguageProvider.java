@@ -16,6 +16,7 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add("key.wynnmiata.settings_key", "Settings");
         translationBuilder.add("key.wynnmiata.player_preview_key", "Player Preview");
+        translationBuilder.add("key.wynnmiata.debugg_key", "Debugg");
         translationBuilder.add("key.category.wynnmiata", "WynnMiata");
         translationBuilder.add("gui.wynnmiata.settings.TCC.Button.Open", "TCC");
         translationBuilder.add("gui.wynnmiata.settings.NOL.Button.Open", "NOL");
