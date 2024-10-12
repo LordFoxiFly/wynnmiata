@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "de.lorfoxifly.mixin",
+	"package": "de.lordfoxifly.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"HeadNotRenderMixin",

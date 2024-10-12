@@ -1,12 +1,21 @@
 {
+  "gui.wynnmiata.playerstats.Button.Enter": "Enter",
+  "gui.wynnmiata.playerstats.TextWidget.NameInput": "Input Name",
+  "gui.wynnmiata.playerstats.raidstats.Lable.NOGComps": "NOG Completions:",
+  "gui.wynnmiata.playerstats.raidstats.Lable.NOLComps": "NOL Completions:",
+  "gui.wynnmiata.playerstats.raidstats.Lable.TCCComps": "TCC Completions:",
+  "gui.wynnmiata.playerstats.raidstats.Lable.TNAComps": "TNA Completions:",
   "gui.wynnmiata.settings.MISC.Button.Open": "MISC",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering": "Armor Hud Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.FireEntityRendering": "FireEntity Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.FireHudRendering": "Fire Hud Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.HeadRendering": "Head Rendering",
   "gui.wynnmiata.settings.NOL.Button.Open": "NOL",
+  "gui.wynnmiata.settings.RAIDS.Button.Open": "RAIDS",
+  "gui.wynnmiata.settings.Raids.Checkbox.showPlayerRaids": "Show Player Raids",
   "gui.wynnmiata.settings.TCC.Button.Open": "TCC",
   "gui.wynnmiata.settings.TCC.Checkbox.HighlightLava": "Lava Highlight",
   "key.category.wynnmiata": "WynnMiata",
+  "key.wynnmiata.player_preview_key": "Player Preview",
   "key.wynnmiata.settings_key": "Settings"
 }
