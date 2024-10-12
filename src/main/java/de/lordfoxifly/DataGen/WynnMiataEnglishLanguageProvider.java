@@ -1,5 +1,6 @@
 package de.lordfoxifly.DataGen;
 
+import de.lordfoxifly.WynnMiata;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -14,6 +15,7 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add("key.wynnmiata.settings_key", "Settings");
+        translationBuilder.add("key.wynnmiata.player_preview_key", "Player Preview");
         translationBuilder.add("key.category.wynnmiata", "WynnMiata");
         translationBuilder.add("gui.wynnmiata.settings.TCC.Button.Open", "TCC");
         translationBuilder.add("gui.wynnmiata.settings.NOL.Button.Open", "NOL");
@@ -25,5 +27,15 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.FireHudRendering", "Fire Hud Rendering");
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering", "Armor Hud Rendering");
         translationBuilder.add("gui.wynnmiata.settings.Raids.Checkbox.showPlayerRaids", "Show Player Raids");
+        translationBuilder.add("gui." + WynnMiata.MOD_ID + ".playerstats.raidstats.Lable.TCCComps", "TCC Completions:");
+        translationBuilder.add("gui." + WynnMiata.MOD_ID + ".playerstats.raidstats.Lable.NOGComps", "NOG Completions:");
+        translationBuilder.add("gui." + WynnMiata.MOD_ID + ".playerstats.raidstats.Lable.NOLComps", "NOL Completions:");
+        translationBuilder.add("gui." + WynnMiata.MOD_ID + ".playerstats.raidstats.Lable.TNAComps", "TNA Completions:");
+
+
+
+        //
+        translationBuilder.add("gui.wynnmiata.playerstats.TextWidget.NameInput", "Input Name");
+        translationBuilder.add("gui.wynnmiata.playerstats.Button.Enter", "Enter");
     }
 }

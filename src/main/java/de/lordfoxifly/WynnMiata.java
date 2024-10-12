@@ -1,12 +1,12 @@
 package de.lordfoxifly;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
-import de.lordfoxifly.Api.MinecraftAPI;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
 import de.lordfoxifly.Client.Keybinds;
 import de.lordfoxifly.Commands.PlayerStatsCommand;
+import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
 import de.lordfoxifly.render.Types.Box;
 import de.lordfoxifly.render.WorldRender;
@@ -16,7 +16,6 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,12 +40,13 @@ public class WynnMiata implements ClientModInitializer {
 	public void onInitializeClient() {
 		LOGGER.info("Hello Fabric world!");
         try {
-            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername()));
+            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/LordFoxiFly"));//MinecraftClient.getInstance().getSession().getUsername()));
         } catch (URISyntaxException | IOException | InterruptedException e) {
 			LOGGER.error(e.toString());
             throw new RuntimeException(e);
         }
         KeyBindingHelper.registerKeyBinding(Keybinds.Settings);
+		KeyBindingHelper.registerKeyBinding(Keybinds.Player_PreView);
 
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			dispatcher.register(ClientCommandManager.literal("playerstats")
@@ -62,6 +62,9 @@ public class WynnMiata implements ClientModInitializer {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (Keybinds.Settings.isPressed()){
 				client.setScreen(new SettingScreen());
+			}
+			while (Keybinds.Player_PreView.isPressed()){
+				client.setScreen(new PlayerStatsScreen(null));
 			}
 		});
 	}

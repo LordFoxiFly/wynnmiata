@@ -25,10 +25,10 @@ public class NexusOfLightScreen extends Screen {
         leftpos = (this.width - this.imagewidth ) / 2;
         toppos = (this.height - this.imageheight) / 2;
 
-        addDrawableChild(Buttons.TCC);
-        addDrawableChild(Buttons.NOL);
-        addDrawableChild(Buttons.MISC);
-        addDrawableChild(Buttons.RAIDS);
+        addDrawableChild(Buttons.TTCButton(leftpos, toppos));
+        addDrawableChild(Buttons.NOLButton(leftpos, toppos));
+        addDrawableChild(Buttons.MISCButton(leftpos, toppos));
+        addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
     }
 
     @Override

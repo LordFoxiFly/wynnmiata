@@ -26,14 +26,14 @@ public class MiscScreen extends Screen {
         super.init();
         leftpos = (this.width - this.imagewidth ) / 2;
         toppos = (this.height - this.imageheight) / 2;
-        addDrawableChild(Buttons.TCC);
-        addDrawableChild(Buttons.NOL);
-        addDrawableChild(Buttons.MISC);
-        addDrawableChild(Buttons.RAIDS);
-        addDrawableChild(CheckBoxs.HeadRendering);
-        addDrawableChild(CheckBoxs.FireEntityRendering);
-        addDrawableChild(CheckBoxs.FireHudRendering);
-        addDrawableChild(CheckBoxs.ArmorRendering);
+        addDrawableChild(Buttons.TTCButton(leftpos, toppos));
+        addDrawableChild(Buttons.NOLButton(leftpos, toppos));
+        addDrawableChild(Buttons.MISCButton(leftpos, toppos));
+        addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
+        addDrawableChild(CheckBoxs.HeadRendering(leftpos,toppos));
+        addDrawableChild(CheckBoxs.FireEntityRendering(leftpos,toppos));
+        addDrawableChild(CheckBoxs.FireHudRendering(leftpos,toppos));
+        addDrawableChild(CheckBoxs.ArmorRendering(leftpos,toppos));
     }
 
     @Override

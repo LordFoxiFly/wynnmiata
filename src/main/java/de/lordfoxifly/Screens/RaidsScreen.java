@@ -27,11 +27,11 @@ public class RaidsScreen extends Screen {
         leftpos = (this.width - this.imagewidth ) / 2;
         toppos = (this.height - this.imageheight) / 2;
 
-        addDrawableChild(Buttons.TCC);
-        addDrawableChild(Buttons.NOL);
-        addDrawableChild(Buttons.MISC);
-        addDrawableChild(Buttons.RAIDS);
-        addDrawableChild(CheckBoxs.showPlayerRaids);
+        addDrawableChild(Buttons.TTCButton(leftpos, toppos));
+        addDrawableChild(Buttons.NOLButton(leftpos, toppos));
+        addDrawableChild(Buttons.MISCButton(leftpos, toppos));
+        addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
+        addDrawableChild(CheckBoxs.showPlayerRaids(leftpos,toppos));
     }
 
     @Override
