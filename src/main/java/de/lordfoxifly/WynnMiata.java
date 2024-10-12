@@ -16,12 +16,16 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.Key;
 
 public class WynnMiata implements ClientModInitializer {
 	public static final String MOD_ID = "wynnmiata";
@@ -40,13 +44,14 @@ public class WynnMiata implements ClientModInitializer {
 	public void onInitializeClient() {
 		LOGGER.info("Hello Fabric world!");
         try {
-            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/LordFoxiFly"));//MinecraftClient.getInstance().getSession().getUsername()));
+            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername()));//MinecraftClient.getInstance().getSession().getUsername()));
         } catch (URISyntaxException | IOException | InterruptedException e) {
 			LOGGER.error(e.toString());
             throw new RuntimeException(e);
         }
         KeyBindingHelper.registerKeyBinding(Keybinds.Settings);
 		KeyBindingHelper.registerKeyBinding(Keybinds.Player_PreView);
+		if (MinecraftClient.getInstance().getSession().getUsername() == "LordFoxiFly") {KeyBindingHelper.registerKeyBinding(Keybinds.DEBUGG);}
 
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			dispatcher.register(ClientCommandManager.literal("playerstats")
@@ -65,6 +70,11 @@ public class WynnMiata implements ClientModInitializer {
 			}
 			while (Keybinds.Player_PreView.isPressed()){
 				client.setScreen(new PlayerStatsScreen(null));
+			}
+			if (MinecraftClient.getInstance().getSession().getUsername() == "LordFoxiFly"){
+				while (Keybinds.DEBUGG.isPressed()){
+					MinecraftClient.getInstance().player.sendMessage(Text.literal(MinecraftClient.getInstance().getServer().getScoreboard().toString()));
+				}
 			}
 		});
 	}

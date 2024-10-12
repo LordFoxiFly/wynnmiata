@@ -14,5 +14,7 @@ public class Keybinds {
 
     public static final KeyBinding Player_PreView = new KeyBinding("key." + WynnMiata.MOD_ID + ".player_preview_key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_O, "key.category.wynnmiata" );
 
+    public static final KeyBinding DEBUGG = new KeyBinding("key." + WynnMiata.MOD_ID +".debugg_key", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_J, "key.category.wynnmiata");
+
 
 }
