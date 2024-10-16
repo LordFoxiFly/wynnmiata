@@ -6,6 +6,9 @@ import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
 import de.lordfoxifly.Client.Keybinds;
 import de.lordfoxifly.Commands.PlayerStatsCommand;
+import de.lordfoxifly.Debug.DebugCommands;
+import de.lordfoxifly.Debug.DevUtilsListeners;
+import de.lordfoxifly.Events.ScoreboardUpdateEvent;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
 import de.lordfoxifly.render.Types.Box;
@@ -51,8 +54,6 @@ public class WynnMiata implements ClientModInitializer {
         }
         KeyBindingHelper.registerKeyBinding(Keybinds.Settings);
 		KeyBindingHelper.registerKeyBinding(Keybinds.Player_PreView);
-		if (MinecraftClient.getInstance().getSession().getUsername() == "LordFoxiFly") {KeyBindingHelper.registerKeyBinding(Keybinds.DEBUGG);}
-
 		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
 			dispatcher.register(ClientCommandManager.literal("playerstats")
 							.then(ClientCommandManager.argument("raid", StringArgumentType.string())
@@ -60,7 +61,13 @@ public class WynnMiata implements ClientModInitializer {
 									.then(ClientCommandManager.argument("playername", StringArgumentType.string())
 											.executes(PlayerStatsCommand::GetPlayerRaidStats))));
 		});
+		ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
+			dispatcher.register(ClientCommandManager.literal("debug")
+					.executes(DebugCommands::getScoreBoardString)
+			);
+		});
 
+		DevUtilsListeners.load();
 
 
 		WorldRender.addRenderable(new Box(new Vec3d(1, 60, 0), new Vec3d(2, 65, 1), 0xFF00FF00, false));
@@ -71,11 +78,7 @@ public class WynnMiata implements ClientModInitializer {
 			while (Keybinds.Player_PreView.isPressed()){
 				client.setScreen(new PlayerStatsScreen(null));
 			}
-			if (MinecraftClient.getInstance().getSession().getUsername() == "LordFoxiFly"){
-				while (Keybinds.DEBUGG.isPressed()){
-					MinecraftClient.getInstance().player.sendMessage(Text.literal(MinecraftClient.getInstance().getServer().getScoreboard().toString()));
-				}
-			}
+
 		});
 	}
 }
