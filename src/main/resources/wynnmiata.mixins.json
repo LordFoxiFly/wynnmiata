@@ -6,7 +6,8 @@
 		"HeadNotRenderMixin",
 		"HideFireMixin",
 		"IGHudMixin",
-		"ArmorFeatureRenderMixin"
+		"ArmorFeatureRenderMixin",
+		"ScoreBoardMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

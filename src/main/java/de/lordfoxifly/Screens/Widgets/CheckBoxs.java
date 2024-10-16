@@ -1,7 +1,10 @@
 package de.lordfoxifly.Screens.Widgets;
 
+import de.lordfoxifly.Debug.DebugCommands;
+import de.lordfoxifly.Debug.Devutils;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TextWidget;
@@ -51,7 +54,10 @@ public class CheckBoxs {
         return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.Checkbox.HighlightLava"), MinecraftClient.getInstance().textRenderer)
                 .pos(leftpos + leftBackGroundX + 66,toppos + topBackGroundY)
                 .checked(isHighLightLavaBoolean())
-                .callback((checkbox, checked) ->  HighLightLavaBoolean = checkbox.isChecked())
+                .callback((checkbox, checked) -> {
+                    HighLightLavaBoolean = checkbox.isChecked();
+                })
+                .tooltip(Tooltip.of(Text.literal("!Experimental could crash the game! Highlights Lava")))
                 .build();
     }
 

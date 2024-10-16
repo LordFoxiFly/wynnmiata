@@ -1,23 +1,14 @@
 package de.lordfoxifly.Screens.PlayerStats.Screens;
 
 import de.lordfoxifly.Api.PlayerAPI.Player;
-import de.lordfoxifly.Api.PlayerAPIHelper;
-import de.lordfoxifly.Api.RequestHelper;
-import de.lordfoxifly.Screens.PlayerStats.PlayerStatsHelper;
 import de.lordfoxifly.Screens.Widgets.Buttons;
-import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.logging.Logger;
 
 public class RaidStatScreen extends Screen {
 
