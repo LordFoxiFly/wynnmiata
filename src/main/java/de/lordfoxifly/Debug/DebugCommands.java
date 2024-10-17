@@ -33,7 +33,7 @@ public class DebugCommands {
             lines.reversed();
             for (String line : lines){
                 context.getSource().sendFeedback(Text.literal(line));
-                Devutils.appendToFile(Formatting.strip(line));
+                Devutils.appendToFile(Formatting.strip(line) , "wynnmiatalogs.txt");
             }
         }
 

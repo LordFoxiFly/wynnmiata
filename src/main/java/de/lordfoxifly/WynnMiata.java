@@ -9,6 +9,8 @@ import de.lordfoxifly.Commands.PlayerStatsCommand;
 import de.lordfoxifly.Debug.DebugCommands;
 import de.lordfoxifly.Debug.DevUtilsListeners;
 import de.lordfoxifly.Events.ScoreboardUpdateEvent;
+import de.lordfoxifly.Events.WynnMiataEventLoader;
+import de.lordfoxifly.Events.WynnMiataEventUtils;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
 import de.lordfoxifly.render.Types.Box;
@@ -66,7 +68,7 @@ public class WynnMiata implements ClientModInitializer {
 					.executes(DebugCommands::getScoreBoardString)
 			);
 		});
-
+		WynnMiataEventLoader.load();
 		DevUtilsListeners.load();
 
 
