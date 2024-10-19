@@ -2,6 +2,7 @@ package de.lordfoxifly.Debug;
 
 import de.lordfoxifly.Events.ChatMessageEvent;
 import de.lordfoxifly.Events.ScoreboardUpdateEvent;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.scoreboard.ScoreHolder;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.screen.ScreenHandlerListener;
@@ -11,11 +12,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class Devutils {
 
     public static void appendToFile( String content, String filename) {
-        String filePath = "C:/logs/ "+ filename;
+        String filePath = Paths.get(MinecraftClient.getInstance().runDirectory.getPath())+ "/logs/" + filename;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             // Write the content
             writer.write(content);
