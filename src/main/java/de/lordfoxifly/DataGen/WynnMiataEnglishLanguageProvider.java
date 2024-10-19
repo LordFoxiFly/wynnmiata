@@ -32,7 +32,7 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui." + WynnMiata.MOD_ID + ".playerstats.raidstats.Lable.NOGComps", "NOG Completions:");
         translationBuilder.add("gui." + WynnMiata.MOD_ID + ".playerstats.raidstats.Lable.NOLComps", "NOL Completions:");
         translationBuilder.add("gui." + WynnMiata.MOD_ID + ".playerstats.raidstats.Lable.TNAComps", "TNA Completions:");
-
+        translationBuilder.add("gui." + WynnMiata.MOD_ID + ".settings.Raids.Checkbox.copyPlayerStats", "Copy PlayerStats");
 
 
         //

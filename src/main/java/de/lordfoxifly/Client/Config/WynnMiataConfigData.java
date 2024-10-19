@@ -53,14 +53,22 @@ public class WynnMiataConfigData {
     public void setShowPlayerRaidsBoolean(boolean showPlayerRaidsBoolean) {
         this.showPlayerRaidsBoolean = showPlayerRaidsBoolean;
     }
+    public boolean isCopyPlayerStatsBoolean() {
+        return copyPlayerStatsBoolean;
+    }
+
+    public void setCopyPlayerStatsBoolean(boolean copyPlayerStatsBoolean) {
+        this.copyPlayerStatsBoolean = copyPlayerStatsBoolean;
+    }
 
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
     private  boolean FireHudRenderingBoolean = false;
     private  boolean FireEntityRenderingBoolean = false;
     private  boolean ArmorRenderingBoolean = false;
-
     private  boolean showPlayerRaidsBoolean = false;
+
+    private boolean copyPlayerStatsBoolean= false;
 
 
     public static WynnMiataConfigData getDefault() {

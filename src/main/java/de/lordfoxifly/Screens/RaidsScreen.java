@@ -8,7 +8,11 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+
 public class RaidsScreen extends Screen {
+
    private static final  Text TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.RaidScreen");
     private static final Identifier BACKGROUND_IMAGE = Identifier.of("wynnmiata", "textures/gui/background_texture.png");
     private  int leftpos, toppos;
@@ -32,6 +36,7 @@ public class RaidsScreen extends Screen {
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(CheckBoxs.showPlayerRaids(leftpos,toppos));
+        addDrawableChild(CheckBoxs.copyPlayerStatsCommand(leftpos,toppos));
     }
 
     @Override

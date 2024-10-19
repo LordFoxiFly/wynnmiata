@@ -12,10 +12,14 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.text.Text;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+
 public class CheckBoxs {
 
     private  static final int leftBackGroundX = 6;
     private static final int topBackGroundY = 22;
+
 
 
 
@@ -122,6 +126,16 @@ public class CheckBoxs {
                 .build();
     }
 
+    public static CheckboxWidget  copyPlayerStatsCommand(int leftpos, int toppos){
+        return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Raids.Checkbox.copyPlayerStats"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY + 16)
+                .checked(WynnMiata.CONFIG.isCopyPlayerStatsBoolean())
+                .callback((checkbox, checked) -> {
+                    WynnMiata.CONFIG.setCopyPlayerStatsBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .build();
+    }
 
 
 

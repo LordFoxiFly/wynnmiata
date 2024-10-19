@@ -8,6 +8,8 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
+import java.util.Objects;
+
 public class TextFields {
 
 public static TextFieldWidget PlayerStatSearch(int leftpos, int toppos){
