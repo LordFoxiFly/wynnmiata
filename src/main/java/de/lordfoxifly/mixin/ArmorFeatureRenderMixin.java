@@ -1,6 +1,8 @@
 package de.lordfoxifly.mixin;
 
+import de.lordfoxifly.Client.Config.WynnMiataConfig;
 import de.lordfoxifly.Screens.Widgets.CheckBoxs;
+import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -24,7 +26,7 @@ public class ArmorFeatureRenderMixin {
             cancellable = true
     )
     public <T extends LivingEntity, A extends BipedEntityModel<T>> void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model, CallbackInfo ci){
-        if (CheckBoxs.isArmorRenderingBoolean() && entity instanceof PlayerEntity){
+        if (WynnMiata.CONFIG.isArmorRenderingBoolean() && entity instanceof PlayerEntity){
             ci.cancel();
         }
     }

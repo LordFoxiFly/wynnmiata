@@ -1,6 +1,7 @@
 package de.lordfoxifly.mixin;
 
 import de.lordfoxifly.Screens.Widgets.CheckBoxs;
+import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.util.math.MatrixStack;
@@ -20,7 +21,7 @@ public class HideFireMixin {
              cancellable = true
      )
     public void renderFire(MatrixStack matrices, VertexConsumerProvider vertexConsumers, Entity entity, Quaternionf rotation, CallbackInfo ci){
-        if (CheckBoxs.isFireEntityRenderingBoolean()){
+        if (WynnMiata.CONFIG.isFireEntityRenderingBoolean()){
             ci.cancel();
         }
      }
