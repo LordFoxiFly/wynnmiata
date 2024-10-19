@@ -1,6 +1,7 @@
 package de.lordfoxifly.mixin;
 
 import de.lordfoxifly.Screens.Widgets.CheckBoxs;
+import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -23,7 +24,7 @@ public class HeadNotRenderMixin {
     )
     @SuppressWarnings("MissingJavadoc")
     public <T extends LivingEntity> void render(final MatrixStack matrixStack, final VertexConsumerProvider vertexConsumerProvider, final int i, final T livingEntity, final float f, final float g, final float h, final float j, final float k, final float l, final CallbackInfo ci) {
-        if (CheckBoxs.isHeadRenderingBoolean() && livingEntity.hasStackEquipped(EquipmentSlot.HEAD) && livingEntity instanceof PlayerEntity) {
+        if (WynnMiata.CONFIG.isHeadRenderingBoolean() && livingEntity.hasStackEquipped(EquipmentSlot.HEAD) && livingEntity instanceof PlayerEntity) {
             ci.cancel();
         }
 

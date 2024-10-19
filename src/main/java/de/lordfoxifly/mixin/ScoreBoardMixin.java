@@ -35,6 +35,6 @@ public class ScoreBoardMixin {
     )
     public void updateScore(ScoreHolder scoreHolder, ScoreboardObjective objective, ScoreboardScore score, CallbackInfo ci){
         ScoreboardUpdateEvent.EVENT.invoker().update(scoreHolder.getNameForScoreboard());
-        Devutils.appendToFile("Event Triggered");
+        //Devutils.appendToFile("Event Triggered");
     }
 }

@@ -4,5 +4,6 @@ public class DevUtilsListeners {
 
     public static void load(){
         Devutils.ScoreboardTesting();
+        Devutils.messagelog();
     }
 }

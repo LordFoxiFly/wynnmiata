@@ -1,5 +1,6 @@
 package de.lordfoxifly.Debug;
 
+import de.lordfoxifly.Events.ChatMessageEvent;
 import de.lordfoxifly.Events.ScoreboardUpdateEvent;
 import net.minecraft.scoreboard.ScoreHolder;
 import net.minecraft.scoreboard.Scoreboard;
@@ -13,8 +14,8 @@ import java.io.IOException;
 
 public class Devutils {
 
-    public static void appendToFile( String content) {
-        String filePath = "C:/Users/wynnmiatalogs.txt";
+    public static void appendToFile( String content, String filename) {
+        String filePath = "C:/logs/ "+ filename;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             // Write the content
             writer.write(content);
@@ -30,9 +31,13 @@ public class Devutils {
 
     public static void ScoreboardTesting() {
         ScoreboardUpdateEvent.EVENT.register((content -> {
-            Devutils.appendToFile(Formatting.strip(content));
+            Devutils.appendToFile(Formatting.strip(content), "wynnmiatalogs.txt");
         }));
     }
-
+    public static void messagelog(){
+        ChatMessageEvent.EVENT.register((message->{
+            Devutils.appendToFile(Formatting.strip(message), "wynnmiatachatlogs.txt");
+        }));
+    }
 
 }

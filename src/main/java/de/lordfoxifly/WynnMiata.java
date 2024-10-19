@@ -4,11 +4,15 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
+import de.lordfoxifly.Client.Config.WynnMiataConfig;
+import de.lordfoxifly.Client.Config.WynnMiataConfigData;
 import de.lordfoxifly.Client.Keybinds;
 import de.lordfoxifly.Commands.PlayerStatsCommand;
 import de.lordfoxifly.Debug.DebugCommands;
 import de.lordfoxifly.Debug.DevUtilsListeners;
 import de.lordfoxifly.Events.ScoreboardUpdateEvent;
+import de.lordfoxifly.Events.WynnMiataEventLoader;
+import de.lordfoxifly.Events.WynnMiataEventUtils;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
 import de.lordfoxifly.render.Types.Box;
@@ -41,6 +45,7 @@ public class WynnMiata implements ClientModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static Player ClientPlayer;
 
+	public static WynnMiataConfigData CONFIG;
 
 
 	@Override
@@ -66,9 +71,9 @@ public class WynnMiata implements ClientModInitializer {
 					.executes(DebugCommands::getScoreBoardString)
 			);
 		});
-
-		DevUtilsListeners.load();
-
+		WynnMiataEventLoader.load();
+		//DevUtilsListeners.load();
+		CONFIG = WynnMiataConfig.loadConfigData();
 
 		WorldRender.addRenderable(new Box(new Vec3d(1, 60, 0), new Vec3d(2, 65, 1), 0xFF00FF00, false));
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {

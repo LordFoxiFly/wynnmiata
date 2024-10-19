@@ -1,5 +1,7 @@
 package de.lordfoxifly.Screens.Widgets;
 
+import de.lordfoxifly.Client.Config.WynnMiataConfig;
+import de.lordfoxifly.Client.Config.WynnMiataConfigData;
 import de.lordfoxifly.Debug.DebugCommands;
 import de.lordfoxifly.Debug.Devutils;
 import de.lordfoxifly.WynnMiata;
@@ -44,8 +46,6 @@ public class CheckBoxs {
     private static boolean FireEntityRenderingBoolean = false;
     private static boolean ArmorRenderingBoolean = false;
 
-
-
     private static boolean showPlayerRaidsBoolean = false;
 
 
@@ -53,9 +53,11 @@ public class CheckBoxs {
     public static CheckboxWidget HighlightLava(int leftpos, int toppos){
         return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.Checkbox.HighlightLava"), MinecraftClient.getInstance().textRenderer)
                 .pos(leftpos + leftBackGroundX + 66,toppos + topBackGroundY)
-                .checked(isHighLightLavaBoolean())
+                .checked(WynnMiata.CONFIG.isHighLightLavaBoolean())
                 .callback((checkbox, checked) -> {
-                    HighLightLavaBoolean = checkbox.isChecked();
+                    WynnMiata.CONFIG.setHighLightLavaBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
                 .tooltip(Tooltip.of(Text.literal("!Experimental could crash the game! Highlights Lava")))
                 .build();
@@ -64,32 +66,47 @@ public class CheckBoxs {
     public static CheckboxWidget HeadRendering(int leftpos, int toppos){
         return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.HeadRendering"), MinecraftClient.getInstance().textRenderer)
                 .pos(leftpos + leftBackGroundX  +66,toppos + topBackGroundY)
-                .checked(isHeadRenderingBoolean())
-                .callback((checkbox, checked) ->  HeadRenderingBoolean = checkbox.isChecked())
+                .checked(WynnMiata.CONFIG.isHeadRenderingBoolean())
+                .callback((checkbox, checked) ->  {
+                    WynnMiata.CONFIG.setHeadRenderingBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+                })
                 .build();
     }
 
     public static CheckboxWidget FireEntityRendering(int leftpos, int toppos){
         return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.FireEntityRendering"), MinecraftClient.getInstance().textRenderer)
                 .pos(leftpos + leftBackGroundX + 66,toppos + topBackGroundY +  16)
-                .checked(isFireEntityRenderingBoolean())
-                .callback((checkbox, checked) ->  FireEntityRenderingBoolean = checkbox.isChecked())
+                .checked(WynnMiata.CONFIG.isFireEntityRenderingBoolean())
+                .callback((checkbox, checked) ->  {
+                    WynnMiata.CONFIG.setFireEntityRenderingBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+                })
                 .build();
     }
 
     public static CheckboxWidget FireHudRendering(int leftpos, int toppos){
         return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.FireHudRendering"), MinecraftClient.getInstance().textRenderer)
                 .pos(leftpos + leftBackGroundX + 66,toppos + topBackGroundY + 32)
-                .checked(isFireHudRenderingBoolean())
-                .callback((checkbox, checked) ->  FireHudRenderingBoolean = checkbox.isChecked())
+                .checked(WynnMiata.CONFIG.isFireHudRenderingBoolean())
+                .callback((checkbox, checked) ->  {
+                    WynnMiata.CONFIG.setFireHudRenderingBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+                })
                 .build();
     }
 
     public static CheckboxWidget ArmorRendering(int leftpos, int toppos){
         return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.ArmorHudRendering"), MinecraftClient.getInstance().textRenderer)
                 .pos(leftpos +leftBackGroundX +66,toppos + topBackGroundY + 48)
-                .checked(isArmorRenderingBoolean())
-                .callback((checkbox, checked) ->  ArmorRenderingBoolean = checkbox.isChecked())
+                .checked(WynnMiata.CONFIG.isArmorRenderingBoolean())
+                .callback((checkbox, checked) ->{
+                    WynnMiata.CONFIG.setArmorRenderingBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
                 .build();
     }
 
@@ -97,8 +114,11 @@ public class CheckBoxs {
     public static CheckboxWidget  showPlayerRaids(int leftpos, int toppos){
         return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Raids.Checkbox.showPlayerRaids"), MinecraftClient.getInstance().textRenderer)
                 .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY)
-                .checked(isShowPlayerRaidsBoolean())
-                .callback((checkbox, checked) ->  showPlayerRaidsBoolean = checkbox.isChecked())
+                .checked(WynnMiata.CONFIG.isShowPlayerRaidsBoolean())
+                .callback((checkbox, checked) -> {
+                        WynnMiata.CONFIG.setShowPlayerRaidsBoolean(checkbox.isChecked());
+                        WynnMiata.CONFIG.save();
+                        WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
                 .build();
     }
 
