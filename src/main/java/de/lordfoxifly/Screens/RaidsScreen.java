@@ -35,6 +35,7 @@ public class RaidsScreen extends Screen {
         addDrawableChild(Buttons.NOLButton(leftpos, toppos));
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
+        addDrawableChild(Buttons.DebugButton(leftpos,toppos));
         addDrawableChild(CheckBoxs.showPlayerRaids(leftpos,toppos));
         addDrawableChild(CheckBoxs.copyPlayerStatsCommand(leftpos,toppos));
     }

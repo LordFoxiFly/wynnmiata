@@ -13,6 +13,7 @@ import de.lordfoxifly.Debug.DevUtilsListeners;
 import de.lordfoxifly.Events.ScoreboardUpdateEvent;
 import de.lordfoxifly.Events.WynnMiataEventLoader;
 import de.lordfoxifly.Events.WynnMiataEventUtils;
+import de.lordfoxifly.Features.Raids.RaidInstance;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
 import de.lordfoxifly.render.Types.Box;
@@ -46,6 +47,7 @@ public class WynnMiata implements ClientModInitializer {
 	public static Player ClientPlayer;
 
 	public static WynnMiataConfigData CONFIG;
+	public static RaidInstance raidInstance;
 
 
 	@Override
@@ -71,9 +73,10 @@ public class WynnMiata implements ClientModInitializer {
 					.executes(DebugCommands::getScoreBoardString)
 			);
 		});
-		WynnMiataEventLoader.load();
-		//DevUtilsListeners.load();
 		CONFIG = WynnMiataConfig.loadConfigData();
+		WynnMiataEventLoader.load();
+		DevUtilsListeners.load();
+
 
 		WorldRender.addRenderable(new Box(new Vec3d(1, 60, 0), new Vec3d(2, 65, 1), 0xFF00FF00, false));
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {

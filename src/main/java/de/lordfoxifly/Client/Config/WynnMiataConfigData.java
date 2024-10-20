@@ -60,7 +60,21 @@ public class WynnMiataConfigData {
     public void setCopyPlayerStatsBoolean(boolean copyPlayerStatsBoolean) {
         this.copyPlayerStatsBoolean = copyPlayerStatsBoolean;
     }
+    public boolean isDebugRaidsBoolean() {
+        return isDebugRaidsBoolean;
+    }
 
+    public void setDebugRaidsBoolean(boolean debugRaidsBoolean) {
+        isDebugRaidsBoolean = debugRaidsBoolean;
+    }
+
+    public boolean isDebugEventsBoolean() {
+        return debugEventsBoolean;
+    }
+
+    public void setDebugEventsBoolean(boolean debugEventsBoolean) {
+        this.debugEventsBoolean = debugEventsBoolean;
+    }
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
     private  boolean FireHudRenderingBoolean = false;
@@ -69,6 +83,11 @@ public class WynnMiataConfigData {
     private  boolean showPlayerRaidsBoolean = false;
 
     private boolean copyPlayerStatsBoolean= false;
+
+
+    public boolean isDebugRaidsBoolean = false;
+
+    private boolean debugEventsBoolean = false;
 
 
     public static WynnMiataConfigData getDefault() {
@@ -86,4 +105,6 @@ public class WynnMiataConfigData {
             throw new RuntimeException(e);
         }
     }
+
+
 }

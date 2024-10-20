@@ -30,6 +30,7 @@ public class MiscScreen extends Screen {
         addDrawableChild(Buttons.NOLButton(leftpos, toppos));
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
+        addDrawableChild(Buttons.DebugButton(leftpos,toppos));
         addDrawableChild(CheckBoxs.HeadRendering(leftpos,toppos));
         addDrawableChild(CheckBoxs.FireEntityRendering(leftpos,toppos));
         addDrawableChild(CheckBoxs.FireHudRendering(leftpos,toppos));

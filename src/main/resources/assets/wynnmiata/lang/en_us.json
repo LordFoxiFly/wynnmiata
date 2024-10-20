@@ -5,6 +5,9 @@
   "gui.wynnmiata.playerstats.raidstats.Lable.NOLComps": "NOL Completions:",
   "gui.wynnmiata.playerstats.raidstats.Lable.TCCComps": "TCC Completions:",
   "gui.wynnmiata.playerstats.raidstats.Lable.TNAComps": "TNA Completions:",
+  "gui.wynnmiata.settings.Debug.Button.Open": "Debug",
+  "gui.wynnmiata.settings.Debug.Checkbox.debugEvents": "Debug Events",
+  "gui.wynnmiata.settings.Debug.Checkbox.debugRaids": "Debug Raids",
   "gui.wynnmiata.settings.MISC.Button.Open": "MISC",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering": "Armor Hud Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.FireEntityRendering": "FireEntity Rendering",
@@ -17,7 +20,7 @@
   "gui.wynnmiata.settings.TCC.Button.Open": "TCC",
   "gui.wynnmiata.settings.TCC.Checkbox.HighlightLava": "Lava Highlight",
   "key.category.wynnmiata": "WynnMiata",
-  "key.wynnmiata.debugg_key": "Debugg",
+  "key.wynnmiata.debugg_key": "Debug",
   "key.wynnmiata.player_preview_key": "Player Preview",
   "key.wynnmiata.settings_key": "Settings"
 }

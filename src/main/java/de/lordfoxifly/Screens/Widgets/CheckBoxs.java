@@ -137,6 +137,24 @@ public class CheckBoxs {
                 .build();
     }
 
-
-
+    public static CheckboxWidget  debugEvents(int leftpos, int toppos){
+        return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Debug.Checkbox.debugEvents"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY)
+                .checked(WynnMiata.CONFIG.isDebugEventsBoolean())
+                .callback((checkbox, checked) -> {
+                    WynnMiata.CONFIG.setDebugEventsBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .build();
+    }
+    public static CheckboxWidget  debugRaids(int leftpos, int toppos){
+        return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Debug.Checkbox.debugRaids"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY +16)
+                .checked(WynnMiata.CONFIG.isDebugRaidsBoolean())
+                .callback((checkbox, checked) -> {
+                    WynnMiata.CONFIG.setDebugRaidsBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .build();
+    }
 }

@@ -8,15 +8,15 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class TheCanyonColossusScreen extends Screen {
+public class DebugScreen extends Screen {
 
-    private static final Text TCC_TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC");
+    private static final Text DEBUG_TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.DEBUG");
     private static final Identifier BACKGROUND_IMAGE = Identifier.of("wynnmiata", "textures/gui/background_texture.png");
 
     private  int leftpos, toppos;
     private final int imagewidth,imageheight;
-    public TheCanyonColossusScreen() {
-        super(TCC_TITLE);
+    public DebugScreen() {
+        super(DEBUG_TITLE);
         imageheight = 256;
         imagewidth = 256;
     }
@@ -32,7 +32,8 @@ public class TheCanyonColossusScreen extends Screen {
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos,toppos));
-        addDrawableChild(CheckBoxs.HighlightLava(leftpos, toppos));
+        addDrawableChild(CheckBoxs.debugEvents(leftpos, toppos));
+        addDrawableChild(CheckBoxs.debugRaids(leftpos,toppos));
 
     }
 
@@ -47,4 +48,3 @@ public class TheCanyonColossusScreen extends Screen {
         context.drawTexture(BACKGROUND_IMAGE,  leftpos, toppos + 15,0,0, 256,220, 256, 220);
     }
 }
-
