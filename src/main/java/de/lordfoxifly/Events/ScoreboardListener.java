@@ -18,7 +18,7 @@ public class ScoreboardListener {
             Devutils.appendToFile("Scoreboard Loaded", "wynnmiatadevlog.txt");
         }
         ScoreboardUpdateEvent.EVENT.register(content ->{
-            if (WynnMiata.raidInstance == null){
+            if (WynnMiata.raidInstance == null || WynnMiata.raidInstance.isRaidCompleted()){
                 RaidInstance raidInstance = createRaidInstance(content);
                 if (raidInstance == null){
                     return;
@@ -38,7 +38,12 @@ public class ScoreboardListener {
                 if (!Objects.equals(WynnMiata.raidInstance.getRaidChallange(), RaidInstanceUtils.getRaidChallange(raidPhase)) && RaidInstanceUtils.getRaidChallange(raidPhase) != 7){
                     WynnMiata.raidInstance.setRaidChallange(RaidInstanceUtils.getRaidChallange(raidPhase));
                     Devutils.appendToFile("RaidChallange changed to : " + RaidInstanceUtils.getRaidChallange(raidPhase), "wynnmiatadevlog.txt");
-
+                    if (WynnMiata.raidInstance.getRaidChallange() == 4){
+                        WynnMiata.raidInstance.setRaidCompleted(true);
+                        if (WynnMiata.CONFIG.isDebugRaidsBoolean()){
+                            Devutils.appendToFile("Raid Instance got marked as completed" , "wynnmiatadevlog.txt");
+                        }
+                    }
                 }
                 WynnMiata.raidInstance.setRaidPhase(raidPhase);
                 }

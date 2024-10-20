@@ -25,6 +25,16 @@ public class RaidInstance {
 
     private Integer raidChallange = 0;
 
+    public boolean isRaidCompleted() {
+        return raidCompleted;
+    }
+
+    public void setRaidCompleted(boolean raidCompleted) {
+        this.raidCompleted = raidCompleted;
+    }
+
+    private boolean raidCompleted = false;
+
 
     public RaidInstance(RaidType raidType){
         this.raidType = raidType;

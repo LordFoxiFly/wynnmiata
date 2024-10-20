@@ -26,7 +26,7 @@ public class RaidInstanceUtils {
     private static final Box lava4box = new Box(new Vec3d(11654, 19, 3075), new Vec3d(11655, 40, 3076), 0xFF00FF00, false );
     private static final Box lava3box = new Box(new Vec3d(11667, 19, 3084), new Vec3d(11668, 40, 3085) , 0xFF00FF00,false);
     private static final Box lava2box = new Box(new Vec3d(11676, 19, 3086), new Vec3d(11677, 40, 3087) , 0xFF00FF00 ,false);
-    private static final Box lava1box = new Box(new Vec3d(11685, 18, 3073), new Vec3d(11685, 40, 3074), 0xFF00FF00,  false);
+    private static final Box lava1box = new Box(new Vec3d(11685, 17, 3073), new Vec3d(11686, 40, 3074), 0xFF00FF00,  false);
 
     public static void loadRaidFeatures(){
 
@@ -39,7 +39,7 @@ public class RaidInstanceUtils {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (WynnMiata.raidInstance != null){
                 if (WynnMiata.CONFIG.isHighLightLavaBoolean() && WynnMiata.raidInstance.getRaidPhase().equals(RaidPhase.FIRSTROOM_TYPE_ONE)) {
-                    if (tick >= 10) {
+                    if (tick >= 5) {
                         HighlightLava();
                         tick = 0;
                     } else {
@@ -117,6 +117,7 @@ public class RaidInstanceUtils {
             case "maze's exit." -> raidPhase = RaidPhase.SECONDROOM_TYPE_TWO;
             case "Activate 4 Binding" -> raidPhase = RaidPhase.THIRDROOM_TYPE_ONE;
             case "Great Protector." -> raidPhase = RaidPhase.BOSS;
+            case "Too many players have" -> raidPhase = RaidPhase.FAILED;
             case null, default -> raidPhase =  null;
         }
         return raidPhase;
@@ -128,8 +129,7 @@ public class RaidInstanceUtils {
             case FIRSTBUFFS, FIRSTROOM_TYPE_ONE, FIRSTROOM_TYPE_TWO -> output = 1;
             case SECONDROOM_TYPE_TWO, SECONDBUFFS, SECONDROOM_TYPE_ONE -> output =  2;
             case THIRDBUFFS, THIRDROOM_TYPE_ONE, THIRDROOM_TYPE_TWO -> output = 3;
-            case BOSS -> output = 4;
-            case Over -> output = 5;
+            case BOSS, Over -> output = 4;
             case null, default -> output = 7;
         }
         return  output;
