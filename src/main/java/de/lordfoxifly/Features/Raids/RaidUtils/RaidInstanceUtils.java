@@ -1,8 +1,6 @@
 package de.lordfoxifly.Features.Raids.RaidUtils;
 
-import de.lordfoxifly.Features.Raids.RaidInstance;
 import de.lordfoxifly.Features.Raids.RaidPhase;
-import de.lordfoxifly.Features.Raids.RaidType;
 import de.lordfoxifly.Features.Raids.types.RaidTypes;
 import de.lordfoxifly.WynnMiata;
 import de.lordfoxifly.render.Types.Box;
@@ -12,7 +10,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.village.raid.Raid;
 
 public class RaidInstanceUtils {
     private static int tick = 0;

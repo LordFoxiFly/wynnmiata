@@ -63,7 +63,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
-                .tooltip(Tooltip.of(Text.literal("!Experimental could crash the game! Highlights Lava")))
+                .tooltip(Tooltip.of(Text.literal("Replaces the Lava Color !Turn Wynntils Scoreboard Overlays off!")))
                 .build();
     }
 
@@ -76,6 +76,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
+                .tooltip(Tooltip.of(Text.literal("Hides Head Cosmetics from Players")))
                 .build();
     }
 
@@ -88,6 +89,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
+                .tooltip(Tooltip.of(Text.literal("Disbales Fire Entity Rendering")))
                 .build();
     }
 
@@ -100,6 +102,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
+                .tooltip(Tooltip.of(Text.literal("Disables Fire Hud Rendering")))
                 .build();
     }
 
@@ -111,6 +114,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.setArmorRenderingBoolean(checkbox.isChecked());
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Hides Armor of Players ")))
                 .build();
     }
 
@@ -123,7 +127,9 @@ public class CheckBoxs {
                         WynnMiata.CONFIG.setShowPlayerRaidsBoolean(checkbox.isChecked());
                         WynnMiata.CONFIG.save();
                         WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Comming Soon")))
                 .build();
+
     }
 
     public static CheckboxWidget  copyPlayerStatsCommand(int leftpos, int toppos){
@@ -134,6 +140,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.setCopyPlayerStatsBoolean(checkbox.isChecked());
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Copys the stats from /playerstats to the clipboard")))
                 .build();
     }
 
@@ -145,6 +152,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.setDebugEventsBoolean(checkbox.isChecked());
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Logs EventTriggers & Values ")))
                 .build();
     }
     public static CheckboxWidget  debugRaids(int leftpos, int toppos){
@@ -155,6 +163,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.setDebugRaidsBoolean(checkbox.isChecked());
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Logs RaidEvents")))
                 .build();
     }
 }
