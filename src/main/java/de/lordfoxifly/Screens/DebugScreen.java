@@ -8,48 +8,43 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
+public class DebugScreen extends Screen {
 
-public class RaidsScreen extends Screen {
-
-   private static final  Text TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.RaidScreen");
+    private static final Text DEBUG_TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.DEBUG");
     private static final Identifier BACKGROUND_IMAGE = Identifier.of("wynnmiata", "textures/gui/background_texture.png");
+
     private  int leftpos, toppos;
     private final int imagewidth,imageheight;
-
-    public RaidsScreen() {
-        super(TITLE);
+    public DebugScreen() {
+        super(DEBUG_TITLE);
         imageheight = 256;
         imagewidth = 256;
     }
 
     @Override
     protected void init() {
-
         super.init();
         leftpos = (this.width - this.imagewidth ) / 2;
         toppos = (this.height - this.imageheight) / 2;
 
-        addDrawableChild(Buttons.TTCButton(leftpos, toppos));
+        addDrawableChild(Buttons.TTCButton(leftpos,toppos));
         addDrawableChild(Buttons.NOLButton(leftpos, toppos));
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos,toppos));
-        addDrawableChild(CheckBoxs.showPlayerRaids(leftpos,toppos));
-        addDrawableChild(CheckBoxs.copyPlayerStatsCommand(leftpos,toppos));
+        addDrawableChild(CheckBoxs.debugEvents(leftpos, toppos));
+        addDrawableChild(CheckBoxs.debugRaids(leftpos,toppos));
+
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.renderBackground(context, mouseX, mouseY, delta);
+        renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
         context.drawTexture(BACKGROUND_IMAGE,  leftpos, toppos + 15,0,0, 256,220, 256, 220);
-
-
     }
 }

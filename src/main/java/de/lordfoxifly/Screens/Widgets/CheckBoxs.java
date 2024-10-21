@@ -12,10 +12,14 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.text.Text;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+
 public class CheckBoxs {
 
     private  static final int leftBackGroundX = 6;
     private static final int topBackGroundY = 22;
+
 
 
 
@@ -59,7 +63,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
-                .tooltip(Tooltip.of(Text.literal("!Experimental could crash the game! Highlights Lava")))
+                .tooltip(Tooltip.of(Text.literal("Replaces the Lava Color !Turn Wynntils Scoreboard Overlays off!")))
                 .build();
     }
 
@@ -72,6 +76,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
+                .tooltip(Tooltip.of(Text.literal("Hides Head Cosmetics from Players")))
                 .build();
     }
 
@@ -84,6 +89,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
+                .tooltip(Tooltip.of(Text.literal("Disbales Fire Entity Rendering")))
                 .build();
     }
 
@@ -96,6 +102,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
                 })
+                .tooltip(Tooltip.of(Text.literal("Disables Fire Hud Rendering")))
                 .build();
     }
 
@@ -107,6 +114,7 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.setArmorRenderingBoolean(checkbox.isChecked());
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Hides Armor of Players ")))
                 .build();
     }
 
@@ -119,10 +127,43 @@ public class CheckBoxs {
                         WynnMiata.CONFIG.setShowPlayerRaidsBoolean(checkbox.isChecked());
                         WynnMiata.CONFIG.save();
                         WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Comming Soon")))
+                .build();
+
+    }
+
+    public static CheckboxWidget  copyPlayerStatsCommand(int leftpos, int toppos){
+        return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Raids.Checkbox.copyPlayerStats"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY + 16)
+                .checked(WynnMiata.CONFIG.isCopyPlayerStatsBoolean())
+                .callback((checkbox, checked) -> {
+                    WynnMiata.CONFIG.setCopyPlayerStatsBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Copys the stats from /playerstats to the clipboard")))
                 .build();
     }
 
-
-
-
+    public static CheckboxWidget  debugEvents(int leftpos, int toppos){
+        return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Debug.Checkbox.debugEvents"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY)
+                .checked(WynnMiata.CONFIG.isDebugEventsBoolean())
+                .callback((checkbox, checked) -> {
+                    WynnMiata.CONFIG.setDebugEventsBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Logs EventTriggers & Values ")))
+                .build();
+    }
+    public static CheckboxWidget  debugRaids(int leftpos, int toppos){
+        return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Debug.Checkbox.debugRaids"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY +16)
+                .checked(WynnMiata.CONFIG.isDebugRaidsBoolean())
+                .callback((checkbox, checked) -> {
+                    WynnMiata.CONFIG.setDebugRaidsBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Logs RaidEvents")))
+                .build();
+    }
 }

@@ -25,19 +25,19 @@ public class Buttons {
         return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.NOL.Button.Open"), (btn) -> {
             MinecraftClient.getInstance().setScreen(new NexusOfLightScreen());
 
-        }).dimensions( lefpos + leftBackGroundX, toppos +  topBackGroundY + 20, 55, 20).tooltip(Tooltip.of(Text.of("Testing"))).build();
+        }).dimensions( lefpos + leftBackGroundX, toppos +  topBackGroundY + 20, 55, 20).tooltip(Tooltip.of(Text.of("Coming Soon"))).build();
     }
 
     public static   ButtonWidget MISCButton (int leftpos, int toppos){return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.MISC.Button.Open"), (btn) -> {
         MinecraftClient.getInstance().setScreen(new MiscScreen());
 
-    }).dimensions( leftpos + leftBackGroundX, toppos+  topBackGroundY+ 40, 55, 20).tooltip(Tooltip.of(Text.of("Testing"))).build();}
+    }).dimensions( leftpos + leftBackGroundX, toppos+  topBackGroundY+ 40, 55, 20).tooltip(Tooltip.of(Text.of("Misc Features"))).build();}
 
     public static   ButtonWidget RAIDSButton(int leftpos, int toppos){
         return  ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.RAIDS.Button.Open"), (btn) -> {
             MinecraftClient.getInstance().setScreen(new RaidsScreen());
 
-        }).dimensions(  leftpos + leftBackGroundX,  toppos+ topBackGroundY + 60, 55, 20).tooltip(Tooltip.of(Text.of("Testing"))).build();
+        }).dimensions(  leftpos + leftBackGroundX,  toppos+ topBackGroundY + 60, 55, 20).tooltip(Tooltip.of(Text.of("Raid Features"))).build();
     }
 
 
@@ -45,8 +45,17 @@ public class Buttons {
         return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.Button.Open"), (btn) -> {
             MinecraftClient.getInstance().setScreen(new TheCanyonColossusScreen());
 
-        }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY, 55, 20).tooltip(Tooltip.of(Text.of("Testing"))).build();
+        }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY, 55, 20).tooltip(Tooltip.of(Text.of("TCC Features"))).build();
     }
+
+
+    public static ButtonWidget DebugButton(int leftpos, int toppos){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Debug.Button.Open"), (btn) -> {
+            MinecraftClient.getInstance().setScreen(new DebugScreen());
+
+        }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY + 80, 55, 20).tooltip(Tooltip.of(Text.of("For Debugging/Testing Features"))).build();
+    }
+
 
     public static ImageButtonWidget RAIDSTATS(int leftpos, int toppos){
         boolean selected = false;

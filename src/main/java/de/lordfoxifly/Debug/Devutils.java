@@ -2,6 +2,8 @@ package de.lordfoxifly.Debug;
 
 import de.lordfoxifly.Events.ChatMessageEvent;
 import de.lordfoxifly.Events.ScoreboardUpdateEvent;
+import de.lordfoxifly.WynnMiata;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.scoreboard.ScoreHolder;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.screen.ScreenHandlerListener;
@@ -11,12 +13,21 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Devutils {
 
+    public static final Path logs_dir = Paths.get(MinecraftClient.getInstance().runDirectory.getPath()+ "/logs");
+
+    /**
+     * Writes to a log file
+     * @param content
+     * @param filename name of the File
+     */
     public static void appendToFile( String content, String filename) {
-        String filePath = "C:/logs/ "+ filename;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+        Path config_file = Paths.get(logs_dir + "/" +filename );
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(config_file.toFile(), true))) {
             // Write the content
             writer.write(content);
 
@@ -30,14 +41,18 @@ public class Devutils {
     }
 
     public static void ScoreboardTesting() {
-        ScoreboardUpdateEvent.EVENT.register((content -> {
-            Devutils.appendToFile(Formatting.strip(content), "wynnmiatalogs.txt");
-        }));
+        if (WynnMiata.CONFIG.isDebugEventsBoolean()){
+            ScoreboardUpdateEvent.EVENT.register((content -> {
+                Devutils.appendToFile(Formatting.strip(content), "wynnmiatalogs.txt");
+            }));
+        }
     }
     public static void messagelog(){
-        ChatMessageEvent.EVENT.register((message->{
-            Devutils.appendToFile(Formatting.strip(message), "wynnmiatachatlogs.txt");
-        }));
+        if (WynnMiata.CONFIG.isDebugEventsBoolean()) {
+            ChatMessageEvent.EVENT.register((message -> {
+                Devutils.appendToFile(Formatting.strip(message), "wynnmiatachatlogs.txt");
+            }));
+        }
     }
 
 }

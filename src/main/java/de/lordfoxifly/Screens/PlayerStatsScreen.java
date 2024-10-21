@@ -7,6 +7,7 @@ import de.lordfoxifly.Screens.PlayerStats.PlayerStatsHelper;
 import de.lordfoxifly.Screens.Widgets.Buttons;
 import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
@@ -15,6 +16,7 @@ import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class PlayerStatsScreen extends Screen {
 
@@ -40,9 +42,12 @@ public class PlayerStatsScreen extends Screen {
         PlayerStatsScreen.requestedPlayer = requestedPlayer;
     }
 
-    public static   void setPlayer(String username) {
+    public static void setPlayer(String username) {
         try {
              requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username ));//MinecraftClient.getInstance().getSession().getUsername()));
+            if (requestedPlayer.getUsername().equals( MinecraftClient.getInstance().getSession().getUsername())){
+                WynnMiata.ClientPlayer = PlayerStatsScreen.getRequestedPlayer();
+            }
         } catch (URISyntaxException | IOException | InterruptedException e) {
             WynnMiata.LOGGER.error(e.toString());
             throw new RuntimeException(e);
