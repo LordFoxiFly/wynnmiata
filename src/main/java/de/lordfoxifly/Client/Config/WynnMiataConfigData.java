@@ -75,19 +75,27 @@ public class WynnMiataConfigData {
     public void setDebugEventsBoolean(boolean debugEventsBoolean) {
         this.debugEventsBoolean = debugEventsBoolean;
     }
+    public Integer getHighlightLavaColor() {
+        return highlightLavaColor;
+    }
+
+    public void setHighlightLavaColor(Integer highlightLavaColor) {
+        this.highlightLavaColor = highlightLavaColor;
+    }
+
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
     private  boolean FireHudRenderingBoolean = false;
     private  boolean FireEntityRenderingBoolean = false;
     private  boolean ArmorRenderingBoolean = false;
     private  boolean showPlayerRaidsBoolean = false;
-
     private boolean copyPlayerStatsBoolean= false;
-
-
     public boolean isDebugRaidsBoolean = false;
 
     private boolean debugEventsBoolean = false;
+
+
+    private Integer highlightLavaColor = 0xffffff;
 
 
     public static WynnMiataConfigData getDefault() {

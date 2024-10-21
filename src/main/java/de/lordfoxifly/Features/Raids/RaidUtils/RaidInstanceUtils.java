@@ -18,12 +18,11 @@ public class RaidInstanceUtils {
     private  static final BlockPos lava3 = new BlockPos(11667, 20, 3084);
     private  static final BlockPos lava2 = new BlockPos(11676, 20, 3086);
     private  static final BlockPos lava1 = new BlockPos(11685, 19, 3073);
-
-    private static final Box lava5box = new Box(new Vec3d(11645, 16, 3068), new Vec3d(11646, 40, 3069), 0xFF00FF00, false);
-    private static final Box lava4box = new Box(new Vec3d(11654, 19, 3075), new Vec3d(11655, 40, 3076), 0xFF00FF00, false );
-    private static final Box lava3box = new Box(new Vec3d(11667, 19, 3084), new Vec3d(11668, 40, 3085) , 0xFF00FF00,false);
-    private static final Box lava2box = new Box(new Vec3d(11676, 19, 3086), new Vec3d(11677, 40, 3087) , 0xFF00FF00 ,false);
-    private static final Box lava1box = new Box(new Vec3d(11685, 17, 3073), new Vec3d(11686, 40, 3074), 0xFF00FF00,  false);
+    private static final Box lava5box = new Box(new Vec3d(11645, 16, 3068), new Vec3d(11646, 40, 3069), WynnMiata.CONFIG.getHighlightLavaColor(), false);
+    private static final Box lava4box = new Box(new Vec3d(11654, 19, 3075), new Vec3d(11655, 40, 3076), WynnMiata.CONFIG.getHighlightLavaColor(), false );
+    private static final Box lava3box = new Box(new Vec3d(11667, 19, 3084), new Vec3d(11668, 40, 3085) , WynnMiata.CONFIG.getHighlightLavaColor(),false);
+    private static final Box lava2box = new Box(new Vec3d(11676, 19, 3086), new Vec3d(11677, 40, 3087) , WynnMiata.CONFIG.getHighlightLavaColor() ,false);
+    private static final Box lava1box = new Box(new Vec3d(11685, 17, 3073), new Vec3d(11686, 40, 3074), WynnMiata.CONFIG.getHighlightLavaColor(),  false);
 
     public static void loadRaidFeatures(){
 
