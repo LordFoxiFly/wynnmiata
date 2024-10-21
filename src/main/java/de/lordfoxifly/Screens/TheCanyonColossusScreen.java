@@ -4,6 +4,7 @@ import de.lordfoxifly.Screens.Widgets.Buttons;
 import de.lordfoxifly.Screens.Widgets.CheckBoxs;
 import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -56,19 +57,19 @@ public class TheCanyonColossusScreen extends Screen {
 
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderColorInput();
+        renderColorInput(context);
         context.drawTexture(BACKGROUND_IMAGE,  leftpos, toppos + 15,0,0, 256,220, 256, 220);
     }
 
 
-    public void renderColorInput(){
+    public void renderColorInput(DrawContext context){
         if (WynnMiata.CONFIG.isHighLightLavaBoolean()){
             yHighlightLavaOffset = 20;
             addDrawableChild(redlavacolor);
             addDrawableChild(greenlavacolor);
             addDrawableChild(bluelavacolor);
             addDrawableChild(highlightlavacolorenter);
-
+            context.drawText(MinecraftClient.getInstance().textRenderer,Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.Label.RGB"), leftpos+ 6 + 70, toppos + 45, WynnMiata.CONFIG.getHighlightLavaColor(), true);
         }
         else {
             yHighlightLavaOffset = 0;

@@ -32,13 +32,13 @@ public class TextFields {
     }
 
     public static TextFieldWidget RedLavaColor(int leftpos, int topPos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos +leftBackGroundX + 86, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.RedLavaColorInput"));
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos +leftBackGroundX + 91, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.RedLavaColorInput"));
     }
     public static TextFieldWidget GreenLavaColor(int leftpos, int topPos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos + leftBackGroundX + 126, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.GreenLavaColorInput"));
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos + leftBackGroundX + 131, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.GreenLavaColorInput"));
     }
     public static TextFieldWidget BlueLavaColor(int leftpos, int topPos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos + leftBackGroundX + 166, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.BlueLavaColorInput"));
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos + leftBackGroundX + 171, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.BlueLavaColorInput"));
     }
 
     public static ButtonWidget HighlightColorEnter(int leftpos, int toppos, TextFieldWidget redValue, TextFieldWidget greenValue, TextFieldWidget blueValue){
@@ -66,6 +66,6 @@ public class TextFields {
                 greenValue.setText("255");
             }
 
-        }).dimensions( leftpos + 206, toppos  + 40, 40, 20).tooltip(Tooltip.of(Text.of("Save your Input!"))).build();
+        }).dimensions( leftpos + 211, toppos  + 40, 40, 20).tooltip(Tooltip.of(Text.of("Save your Input!"))).build();
     }
 }

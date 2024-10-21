@@ -20,6 +20,7 @@
   "gui.wynnmiata.settings.TCC.Button.HighlightLavaColorENTER": "Enter",
   "gui.wynnmiata.settings.TCC.Button.Open": "TCC",
   "gui.wynnmiata.settings.TCC.Checkbox.HighlightLava": "Lava Highlight",
+  "gui.wynnmiata.settings.TCC.Label.RGB": "RGB:",
   "gui.wynnmiata.settings.TCC.TextWidget.BlueLavaColorInput": "Input Blue Color",
   "gui.wynnmiata.settings.TCC.TextWidget.GreenLavaColorInput": "Input Green Color",
   "gui.wynnmiata.settings.TCC.TextWidget.RedLavaColorInput": "Input Red Color",
