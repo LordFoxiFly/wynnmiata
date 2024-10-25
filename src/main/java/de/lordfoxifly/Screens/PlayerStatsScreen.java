@@ -1,5 +1,7 @@
 package de.lordfoxifly.Screens;
 
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
@@ -18,6 +20,7 @@ import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Map;
 
 public class PlayerStatsScreen extends Screen {
 
@@ -46,8 +49,9 @@ public class PlayerStatsScreen extends Screen {
     public static void setPlayer(String username) {
         try {
             requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username ));//MinecraftClient.getInstance().getSession().getUsername()));
-            requestedPlayer.setCharacters(CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username +  "/characters")));
-
+            Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username +  "/characters"));
+            requestedPlayer.setCharacters(CharacterListUtils.getCharacterList(characterListDataMap));
+            requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), username));
             if (requestedPlayer.getUsername().equals( MinecraftClient.getInstance().getSession().getUsername())){
                 WynnMiata.ClientPlayer = PlayerStatsScreen.getRequestedPlayer();
             }
@@ -87,9 +91,9 @@ public class PlayerStatsScreen extends Screen {
         PlayerStatsHelper.renderOnlineWool(context, requestedPlayer.isOnline(), leftpos,toppos);
         context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
-        context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
-        context.drawText(textRenderer, "Class: "+ requestedPlayer.getCharacters().getFirst().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
-        for (ImageButtonWidget imageButtonWidget: PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer.getCharacters())){
+        //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getCharacters().getFirst().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
+        for (ImageButtonWidget imageButtonWidget: PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer)){
             addDrawableChild(imageButtonWidget);
         }
     }

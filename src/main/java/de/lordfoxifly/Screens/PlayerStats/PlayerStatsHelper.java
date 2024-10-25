@@ -2,6 +2,9 @@ package de.lordfoxifly.Screens.PlayerStats;
 
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
+import de.lordfoxifly.Api.PlayerAPI.Player;
+import de.lordfoxifly.Screens.PlayerStats.Screens.ProfStatScreen;
+import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.Widgets.ImageButtonWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
@@ -41,11 +44,17 @@ public class PlayerStatsHelper {
         }
     }
 
-    public static List<ImageButtonWidget> getClassWidgets(int leftpos, int toppos, List<CharacterListData> dataList){
+    public static List<ImageButtonWidget> getClassWidgets(int leftpos, int toppos, Player player){
         List<ImageButtonWidget> imageButtonWidgets = new ArrayList<>();
+
         int yOffset = 35;
-        for (CharacterListData characterListData: dataList){
-            ImageButtonWidget tempbutton = new ImageButtonWidget(leftpos - 20, toppos + yOffset, 20, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button." + characterListData.getCharacterUuid()),getClassIdentifier(characterListData.getType().toLowerCase()), false, button -> MinecraftClient.getInstance().setScreen(null));
+        for (CharacterListData characterListData: player.getCharacters()){
+            ImageButtonWidget tempbutton = new ImageButtonWidget(leftpos - 20, toppos + yOffset, 20, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button." + characterListData.getCharacterUuid()),getClassIdentifier(characterListData.getType().toLowerCase()), false, button -> {
+                MinecraftClient.getInstance().setScreen(new ProfStatScreen(player));
+            });
+            if (player.getActiveCharacter() == characterListData.getCharacterUuid()){
+                tempbutton.setSelected(true);
+            }
             tempbutton.setyBackgroundOffset(0);
             imageButtonWidgets.add( tempbutton);
             yOffset += 30;

@@ -1,6 +1,7 @@
 package de.lordfoxifly;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
 import de.lordfoxifly.Api.PlayerAPI.Player;
@@ -27,10 +28,12 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spongepowered.asm.launch.GlobalProperties;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 
 public class WynnMiata implements ClientModInitializer {
 	public static final String MOD_ID = "wynnmiata";
@@ -52,7 +55,9 @@ public class WynnMiata implements ClientModInitializer {
 		LOGGER.info("Hello Fabric world!");
         try {
             ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername()));
-			ClientPlayer.setCharacters(CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters")));
+			Map<String,CharacterListData> data = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters"));
+			ClientPlayer.setCharacters(CharacterListUtils.getCharacterList(data));
+			ClientPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername()));
 			//MinecraftClient.getInstance().getSession().getUsername()));
         } catch (URISyntaxException | IOException | InterruptedException e) {
 			LOGGER.error(e.toString());

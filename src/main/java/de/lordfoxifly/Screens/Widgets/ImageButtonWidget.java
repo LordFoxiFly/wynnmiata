@@ -19,7 +19,7 @@ public class ImageButtonWidget extends PressableWidget {
     private static final Identifier Selected = Identifier.of(WynnMiata.MOD_ID, "textures/gui/playerstatstab_selected.png");
     private static final Identifier UnSelected = Identifier.of(WynnMiata.MOD_ID, "textures/gui/playerstatstab.png");
     private final Identifier BackgroundImage;
-    private final boolean isSelected;
+    private boolean isSelected;
     private final PressAction onPress;
     private int yBackgroundOffset =  5;
     private int xBackgroundOffsets = 0;
@@ -78,4 +78,7 @@ public class ImageButtonWidget extends PressableWidget {
         this.xBackgroundOffsets = xBackgroundOffsets;
     }
 
+    public void setSelected(boolean isSelected){
+        this.isSelected = isSelected;
+    }
 }
