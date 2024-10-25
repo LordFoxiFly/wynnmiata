@@ -86,6 +86,7 @@ public class PlayerStatsScreen extends Screen {
         PlayerStatsHelper.renderOnlineWool(context, requestedPlayer.isOnline(), leftpos,toppos);
         context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
+        context.drawText(textRenderer, "Classes: "+ WynnMiata.ClientPlayerCharacters.size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
 
     }
 

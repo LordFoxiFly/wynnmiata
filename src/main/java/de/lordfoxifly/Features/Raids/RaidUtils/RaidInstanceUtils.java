@@ -114,7 +114,7 @@ public class RaidInstanceUtils {
             case "maze's exit." -> raidPhase = RaidPhase.SECONDROOM_TYPE_TWO;
             case "Activate 4 Binding" -> raidPhase = RaidPhase.THIRDROOM_TYPE_ONE;
             case "Great Protector." -> raidPhase = RaidPhase.BOSS;
-            case "Too many players have" -> raidPhase = RaidPhase.FAILED;
+            case "Too many players have", "Failed to Protect" -> raidPhase = RaidPhase.FAILED;
             case null, default -> raidPhase =  null;
         }
         return raidPhase;
