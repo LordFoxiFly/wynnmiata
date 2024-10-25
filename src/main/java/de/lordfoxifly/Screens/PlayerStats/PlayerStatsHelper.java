@@ -1,7 +1,16 @@
 package de.lordfoxifly.Screens.PlayerStats;
 
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
+import de.lordfoxifly.Screens.Widgets.ImageButtonWidget;
+import de.lordfoxifly.WynnMiata;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerStatsHelper {
     private static final Identifier GREENWOOL = Identifier.of("wynnmiata" , "textures/gui/wool/greenwool.png");
@@ -32,4 +41,19 @@ public class PlayerStatsHelper {
         }
     }
 
+    public static List<ImageButtonWidget> getClassWidgets(int leftpos, int toppos, List<CharacterListData> dataList){
+        List<ImageButtonWidget> imageButtonWidgets = new ArrayList<>();
+        int yOffset = 35;
+        for (CharacterListData characterListData: dataList){
+            ImageButtonWidget tempbutton = new ImageButtonWidget(leftpos - 20, toppos + yOffset, 20, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button." + characterListData.getCharacterUuid()),getClassIdentifier(characterListData.getType().toLowerCase()), false, button -> MinecraftClient.getInstance().setScreen(null));
+            tempbutton.setyBackgroundOffset(0);
+            imageButtonWidgets.add( tempbutton);
+            yOffset += 30;
+        }
+        return imageButtonWidgets;
+    }
+
+    public static Identifier getClassIdentifier(String classType){
+        return Identifier.of("wynnmiata","textures/gui/wynncrafttexture/" +  classType+ ".png");
+    }
 }

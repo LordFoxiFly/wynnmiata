@@ -4,6 +4,8 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.GsonBuilder;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class CharacterListUtils {
@@ -32,14 +34,14 @@ public abstract class CharacterListUtils {
      * @return a Map of all characters
      */
 
-    public static Map<String, CharacterListData> getCharacterMap(String source){
+    public static List<CharacterListData> getCharacterMap(String source){
         Type type = new TypeToken<Map<String, CharacterListData>>(){}.getType();
         Map<String, CharacterListData> characterMap = new GsonBuilder()
                 .registerTypeAdapter(type, new CharacterListJsonDeserializer())
                 .create()
                 .fromJson(source, type);
 
-        return characterMap;
+        return characterMap.values().stream().toList();
     }
 
 }

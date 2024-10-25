@@ -21,6 +21,8 @@ public class ImageButtonWidget extends PressableWidget {
     private final Identifier BackgroundImage;
     private final boolean isSelected;
     private final PressAction onPress;
+    private int yBackgroundOffset =  5;
+    private int xBackgroundOffsets = 0;
 
 
     public ImageButtonWidget(int x, int y, int width, int height, Text key, Identifier backgroundImage, boolean isSelected ,PressAction onPress) {
@@ -39,8 +41,8 @@ public class ImageButtonWidget extends PressableWidget {
      */
     @Override
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        if (isSelected) { context.drawTexture(Selected, getX() , getY() - 5, 0 , 0 ,  getWidth(), getHeight() +5,   getWidth(), getHeight()  + 5);}
-        else {context.drawTexture(UnSelected, getX(), getY() - 5, 0 , 0 ,  getWidth(),  getHeight() + 5,getWidth(), getHeight() +5);}
+        if (isSelected) { context.drawTexture(Selected, getX() , getY() - yBackgroundOffset, 0 , 0 ,  getWidth() + xBackgroundOffsets, getHeight() +yBackgroundOffset,   getWidth(), getHeight()  + 5);}
+        else {context.drawTexture(UnSelected, getX(), getY() - yBackgroundOffset, 0 , 0 ,  getWidth() +xBackgroundOffsets,  getHeight() + yBackgroundOffset,getWidth(), getHeight() +5);}
         context.drawTexture(BackgroundImage, getX(), getY(), 0 , 0 ,getWidth(), getHeight(), getWidth(), getHeight());
 
     }
@@ -69,5 +71,11 @@ public class ImageButtonWidget extends PressableWidget {
         void onPress(ImageButtonWidget button);
     }
 
+    public void setyBackgroundOffset(int yBackgroundOffset){
+        this.yBackgroundOffset = yBackgroundOffset;
+    }
+    public void setxBackgroundOffsets(int xBackgroundOffsets){
+        this.xBackgroundOffsets = xBackgroundOffsets;
+    }
 
 }

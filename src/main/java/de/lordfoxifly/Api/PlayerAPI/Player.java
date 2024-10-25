@@ -1,6 +1,9 @@
 package de.lordfoxifly.Api.PlayerAPI;
 
 import com.google.gson.annotations.SerializedName;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
+
+import java.util.List;
 
 public class Player{
 
@@ -63,6 +66,15 @@ public class Player{
 
 	@SerializedName("username")
 	private String username;
+	private List<CharacterListData> characters;
+
+	public List<CharacterListData> getCharacters() {
+		return characters;
+	}
+
+	public void setCharacters(List<CharacterListData> characters) {
+		this.characters = characters;
+	}
 
 	public String getServer(){
 		return server;

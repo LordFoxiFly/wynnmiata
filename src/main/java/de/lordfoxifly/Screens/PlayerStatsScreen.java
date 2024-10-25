@@ -1,10 +1,13 @@
 package de.lordfoxifly.Screens;
 
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
 import de.lordfoxifly.Screens.PlayerStats.PlayerStatsHelper;
 import de.lordfoxifly.Screens.Widgets.Buttons;
+import de.lordfoxifly.Screens.Widgets.ImageButtonWidget;
 import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
@@ -44,7 +47,8 @@ public class PlayerStatsScreen extends Screen {
 
     public static void setPlayer(String username) {
         try {
-             requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username ));//MinecraftClient.getInstance().getSession().getUsername()));
+            requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username ));//MinecraftClient.getInstance().getSession().getUsername()));
+            requestedPlayer.setCharacters(CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username +  "/characters")));
             if (requestedPlayer.getUsername().equals( MinecraftClient.getInstance().getSession().getUsername())){
                 WynnMiata.ClientPlayer = PlayerStatsScreen.getRequestedPlayer();
             }
@@ -57,6 +61,9 @@ public class PlayerStatsScreen extends Screen {
     @Override
     protected void init() {
         super.init();
+        if (requestedPlayer ==null){
+            requestedPlayer = WynnMiata.ClientPlayer;
+        }
         leftpos = (this.width - this.imagewidth ) / 2 - 64;
         toppos = (this.height - this.imageheight) / 2;
 
@@ -65,18 +72,16 @@ public class PlayerStatsScreen extends Screen {
         addDrawableChild(TextFields.PLayerStatSearchEnter(leftpos,toppos,textFieldWidget));
         addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos));
         addDrawableChild(Buttons.DEFAULTSTATS(leftpos, toppos, true));
+        for (ImageButtonWidget imageButtonWidget: PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer.getCharacters())){
+            addDrawableChild(imageButtonWidget);
+        }
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
-        if (requestedPlayer !=null){
-           renderPlayerStats(context);
-        }
-        else {
-            requestedPlayer = WynnMiata.ClientPlayer;
-        }
+        renderPlayerStats(context);
 
     }
 
@@ -86,7 +91,8 @@ public class PlayerStatsScreen extends Screen {
         PlayerStatsHelper.renderOnlineWool(context, requestedPlayer.isOnline(), leftpos,toppos);
         context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
-        context.drawText(textRenderer, "Classes: "+ WynnMiata.ClientPlayerCharacters.size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "Class: "+ requestedPlayer.getCharacters().getFirst().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
 
     }
 
