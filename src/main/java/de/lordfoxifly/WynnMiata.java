@@ -28,11 +28,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.spongepowered.asm.launch.GlobalProperties;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 import java.util.Map;
 
 public class WynnMiata implements ClientModInitializer {
@@ -58,6 +56,9 @@ public class WynnMiata implements ClientModInitializer {
 			Map<String,CharacterListData> data = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters"));
 			ClientPlayer.setCharacters(data);
 			ClientPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername()));
+			ClientPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(ClientPlayer));
+			ClientPlayer.setSelectedCharacterData(ClientPlayer.getActiveCharacterData());
+			ClientPlayer.setSelectedCharacterUUID(ClientPlayer.getActiveCharacter());
 			//MinecraftClient.getInstance().getSession().getUsername()));
         } catch (URISyntaxException | IOException | InterruptedException e) {
 			LOGGER.error(e.toString());

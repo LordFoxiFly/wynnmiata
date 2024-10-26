@@ -35,7 +35,7 @@ public class ProfStatScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
-        context.drawText(textRenderer,Text.literal("Class: " + requestedPlayer.getCharacterData().getFirst().getType()), leftpos + 20, toppos + 20, 0xFFFFFF, true);
+        context.drawText(textRenderer,Text.literal("Class: " + requestedPlayer.getActiveCharacterData().getType()), leftpos + 20, toppos + 20, 0xFFFFFF, true);
     }
 
     @Override

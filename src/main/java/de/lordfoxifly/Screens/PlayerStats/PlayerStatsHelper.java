@@ -1,5 +1,7 @@
 package de.lordfoxifly.Screens.PlayerStats;
 
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterData.CharacterData;
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
 import de.lordfoxifly.Api.PlayerAPI.Player;
@@ -60,9 +62,11 @@ public class PlayerStatsHelper {
         int yOffset = 35;
         for (Map.Entry<String, CharacterListData> entry: characterListData.entrySet()){
             ImageButtonWidget tempbutton = new ImageButtonWidget(leftpos - 20, toppos + yOffset, 20, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button." + entry.getKey()),getClassIdentifier(entry.getValue().getType().toLowerCase()), false, button -> {
-                MinecraftClient.getInstance().setScreen(new ProfStatScreen(player, entry.getKey()));
+                player.setSelectedCharacterData(CharacterDataUtils.getCharacterData(player, entry.getKey()));
+                player.setSelectedCharacterUUID(entry.getKey());
+                MinecraftClient.getInstance().setScreen(new PlayerStatsScreen(player));
             });
-            if (Objects.equals(player.getActiveCharacter(), entry.getKey())){
+            if (Objects.equals(player.getSelectedCharacterUUID(), entry.getKey())){
                 tempbutton.setSelected(true);
             }
             tempbutton.setyBackgroundOffset(0);
@@ -75,5 +79,8 @@ public class PlayerStatsHelper {
     public static Identifier getClassIdentifier(String classType){
         return Identifier.of("wynnmiata","textures/gui/wynncrafttexture/" +  classType+ ".png");
     }
+
+
+
 
 }

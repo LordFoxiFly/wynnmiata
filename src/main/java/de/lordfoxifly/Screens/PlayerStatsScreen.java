@@ -17,7 +17,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import org.objectweb.asm.tree.TryCatchBlockNode;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -56,6 +55,9 @@ public class PlayerStatsScreen extends Screen {
             Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username +  "/characters"));
             requestedPlayer.setCharacters(characterListDataMap);
             requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), username));
+            requestedPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(requestedPlayer));
+            requestedPlayer.setSelectedCharacterData(requestedPlayer.getActiveCharacterData());
+            requestedPlayer.setSelectedCharacterUUID(requestedPlayer.getActiveCharacter());
             update = true;
             if (requestedPlayer.getUsername().equals( MinecraftClient.getInstance().getSession().getUsername())){
                 WynnMiata.ClientPlayer = PlayerStatsScreen.getRequestedPlayer();
@@ -82,6 +84,7 @@ public class PlayerStatsScreen extends Screen {
         addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos));
         addDrawableChild(Buttons.DEFAULTSTATS(leftpos, toppos, true));
 
+
     }
 
     @Override
@@ -99,7 +102,7 @@ public class PlayerStatsScreen extends Screen {
         context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
         //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
-        context.drawText(textRenderer, "Active Class: "+ CharacterListUtils.getCharacterList(requestedPlayer.getCharacters()).getFirst().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getSelectedCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
         if(update){
             for (ImageButtonWidget imageButtonWidget: classbuttons){
                 remove(imageButtonWidget);
