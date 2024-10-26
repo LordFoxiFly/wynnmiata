@@ -11,15 +11,17 @@ public class ProfStatScreen extends Screen {
 
     private static final Text TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + "playerstats");
     private static final Identifier PLAYERBACKGROUND_STATS = Identifier.of("wynnmiata", "textures/gui/playerstats_texture.png");
+    private final String characteruuid;
     private Player requestedPlayer;
 
     private  final int imagewidth, imageheight;
     private int leftpos, toppos;
-    public ProfStatScreen(Player player){
+    public ProfStatScreen(Player player, String characteruuid){
         super(TITLE);
         imageheight = 256;
         imagewidth = imageheight;
         this.requestedPlayer = player;
+        this.characteruuid = characteruuid;
     }
 
     @Override

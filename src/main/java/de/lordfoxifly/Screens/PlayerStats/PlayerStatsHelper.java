@@ -11,9 +11,12 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class PlayerStatsHelper {
     private static final Identifier GREENWOOL = Identifier.of("wynnmiata" , "textures/gui/wool/greenwool.png");
@@ -44,15 +47,23 @@ public class PlayerStatsHelper {
         }
     }
 
+    /**
+     * Creates ImageButtons for the Characters from a Player
+     * @param leftpos
+     * @param toppos
+     * @param player
+     * @return
+     */
     public static List<ImageButtonWidget> getClassWidgets(int leftpos, int toppos, Player player){
+        //TODO: FIX MY ASS
         List<ImageButtonWidget> imageButtonWidgets = new ArrayList<>();
-
+        Map<String, CharacterListData> characterListData = player.getCharacters();
         int yOffset = 35;
-        for (CharacterListData characterListData: player.getCharacters()){
-            ImageButtonWidget tempbutton = new ImageButtonWidget(leftpos - 20, toppos + yOffset, 20, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button." + characterListData.getCharacterUuid()),getClassIdentifier(characterListData.getType().toLowerCase()), false, button -> {
-                MinecraftClient.getInstance().setScreen(new ProfStatScreen(player));
+        for (Map.Entry<String, CharacterListData> entry: characterListData.entrySet()){
+            ImageButtonWidget tempbutton = new ImageButtonWidget(leftpos - 20, toppos + yOffset, 20, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button." + entry.getKey()),getClassIdentifier(entry.getValue().getType().toLowerCase()), false, button -> {
+                MinecraftClient.getInstance().setScreen(new ProfStatScreen(player, entry.getKey()));
             });
-            if (player.getActiveCharacter() == characterListData.getCharacterUuid()){
+            if (Objects.equals(player.getActiveCharacter(), entry.getKey())){
                 tempbutton.setSelected(true);
             }
             tempbutton.setyBackgroundOffset(0);
@@ -65,4 +76,5 @@ public class PlayerStatsHelper {
     public static Identifier getClassIdentifier(String classType){
         return Identifier.of("wynnmiata","textures/gui/wynncrafttexture/" +  classType+ ".png");
     }
+
 }

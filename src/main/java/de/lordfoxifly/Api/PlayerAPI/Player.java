@@ -5,6 +5,7 @@ import de.lordfoxifly.Api.CharacterDataAPI.CharacterData.CharacterData;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
 
 import java.util.List;
+import java.util.Map;
 
 public class Player{
 
@@ -67,8 +68,12 @@ public class Player{
 
 	@SerializedName("username")
 	private String username;
-	private List<CharacterListData> characters;
+	private Map<String, CharacterListData> characters;
+	private List<CharacterData> characterData;
 
+	public Map<String, CharacterListData> getCharacters() {
+		return characters;
+	}
 	public List<CharacterData> getCharacterData() {
 		return characterData;
 	}
@@ -77,13 +82,7 @@ public class Player{
 		this.characterData = characterData;
 	}
 
-	private List<CharacterData> characterData;
-
-	public List<CharacterListData> getCharacters() {
-		return characters;
-	}
-
-	public void setCharacters(List<CharacterListData> characters) {
+	public void setCharacters(Map<String, CharacterListData> characters) {
 		this.characters = characters;
 	}
 
