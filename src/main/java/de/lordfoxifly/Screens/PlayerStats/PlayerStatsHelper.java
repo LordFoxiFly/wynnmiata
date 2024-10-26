@@ -55,7 +55,6 @@ public class PlayerStatsHelper {
      * @return
      */
     public static List<ImageButtonWidget> getClassWidgets(int leftpos, int toppos, Player player){
-        //TODO: FIX MY ASS
         List<ImageButtonWidget> imageButtonWidgets = new ArrayList<>();
         Map<String, CharacterListData> characterListData = player.getCharacters();
         int yOffset = 35;

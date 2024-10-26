@@ -17,9 +17,11 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.objectweb.asm.tree.TryCatchBlockNode;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Map;
 
 public class PlayerStatsScreen extends Screen {
@@ -33,6 +35,8 @@ public class PlayerStatsScreen extends Screen {
     public static Player getRequestedPlayer() {
         return requestedPlayer;
     }
+    private List<ImageButtonWidget> classbuttons;
+    private static boolean update = true;
 
     private static Player requestedPlayer;
 
@@ -52,6 +56,7 @@ public class PlayerStatsScreen extends Screen {
             Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username +  "/characters"));
             requestedPlayer.setCharacters(characterListDataMap);
             requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), username));
+            update = true;
             if (requestedPlayer.getUsername().equals( MinecraftClient.getInstance().getSession().getUsername())){
                 WynnMiata.ClientPlayer = PlayerStatsScreen.getRequestedPlayer();
             }
@@ -64,17 +69,19 @@ public class PlayerStatsScreen extends Screen {
     @Override
     protected void init() {
         super.init();
+        update = true;
         if (requestedPlayer ==null){
             requestedPlayer = WynnMiata.ClientPlayer;
         }
+         classbuttons = PlayerStatsHelper.getClassWidgets(leftpos, toppos, requestedPlayer);
         leftpos = (this.width - this.imagewidth ) / 2 - 64;
         toppos = (this.height - this.imageheight) / 2;
-
         textFieldWidget = TextFields.PlayerStatSearch(leftpos, toppos);
         addDrawableChild(textFieldWidget);
         addDrawableChild(TextFields.PLayerStatSearchEnter(leftpos,toppos,textFieldWidget));
         addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos));
         addDrawableChild(Buttons.DEFAULTSTATS(leftpos, toppos, true));
+
     }
 
     @Override
@@ -93,8 +100,15 @@ public class PlayerStatsScreen extends Screen {
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
         //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
         context.drawText(textRenderer, "Active Class: "+ CharacterListUtils.getCharacterList(requestedPlayer.getCharacters()).getFirst().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
-        for (ImageButtonWidget imageButtonWidget: PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer)){
-            addDrawableChild(imageButtonWidget);
+        if(update){
+            for (ImageButtonWidget imageButtonWidget: classbuttons){
+                remove(imageButtonWidget);
+            }
+            classbuttons = PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer);
+            for (ImageButtonWidget imageButtonWidget: classbuttons ){
+                addDrawableChild(imageButtonWidget);
+            }
+            update = false;
         }
     }
 
