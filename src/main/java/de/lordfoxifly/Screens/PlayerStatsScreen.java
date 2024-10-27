@@ -75,16 +75,17 @@ public class PlayerStatsScreen extends Screen {
         if (requestedPlayer ==null){
             requestedPlayer = WynnMiata.ClientPlayer;
         }
-         classbuttons = PlayerStatsHelper.getClassWidgets(leftpos, toppos, requestedPlayer);
+        classbuttons = PlayerStatsHelper.getClassWidgets(leftpos, toppos, requestedPlayer);
         leftpos = (this.width - this.imagewidth ) / 2 - 64;
         toppos = (this.height - this.imageheight) / 2;
         textFieldWidget = TextFields.PlayerStatSearch(leftpos, toppos);
         addDrawableChild(textFieldWidget);
         addDrawableChild(TextFields.PLayerStatSearchEnter(leftpos,toppos,textFieldWidget));
-        addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos));
         addDrawableChild(Buttons.DEFAULTSTATS(leftpos, toppos, true));
-
-
+        addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos));
+        addDrawableChild(Buttons.PROFSTATS(leftpos,toppos));
+        addDrawableChild(Buttons.ABILTYTREE(leftpos,toppos));
+        addDrawableChild(Buttons.OTHERSTATS(leftpos,toppos));
     }
 
     @Override
@@ -92,7 +93,6 @@ public class PlayerStatsScreen extends Screen {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         renderPlayerStats(context);
-
     }
 
     private void renderPlayerStats(DrawContext context) {
@@ -102,7 +102,7 @@ public class PlayerStatsScreen extends Screen {
         context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
         //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
-        context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getSelectedCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getActiveCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
         if(update){
             for (ImageButtonWidget imageButtonWidget: classbuttons){
                 remove(imageButtonWidget);

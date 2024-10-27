@@ -25,7 +25,6 @@ public class RaidStatScreen extends Screen {
     private int leftpos, toppos;
     private final Player requestedPlayer;
 
-    private TextFieldWidget textFieldWidget;
 
 
     public RaidStatScreen(Player requestedPlayer) {
@@ -33,8 +32,6 @@ public class RaidStatScreen extends Screen {
         imageheight = 256;
         imagewidth = imageheight;
         this.requestedPlayer = requestedPlayer;
-        WynnMiata.LOGGER.info(requestedPlayer.getUsername());
-
     }
 
     @Override
@@ -42,8 +39,11 @@ public class RaidStatScreen extends Screen {
         super.init();
         leftpos = (this.width - this.imagewidth ) / 2 - 64;
         toppos = (this.height - this.imageheight) / 2;
-        addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos, true));
         addDrawableChild(Buttons.DEFAULTSTATS(leftpos,toppos ));
+        addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos, true));
+        addDrawableChild(Buttons.PROFSTATS(leftpos,toppos));
+        addDrawableChild(Buttons.ABILTYTREE(leftpos,toppos));
+        addDrawableChild(Buttons.OTHERSTATS(leftpos,toppos));
     }
 
     @Override

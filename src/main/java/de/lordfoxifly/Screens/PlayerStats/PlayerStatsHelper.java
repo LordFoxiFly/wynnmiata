@@ -35,17 +35,20 @@ public class PlayerStatsHelper {
         }
     }
 
-    public static void renderProgressBar(DrawContext context, int value, Boolean isMax ,int leftpos, int toppos){
-        int width = 80;
-        int barProgress = Math.round( width * ((float) value / width));
+    public static void renderProgressBar(DrawContext context, int value, boolean isMax ,int leftpos, int toppos){
+        int width = 100;
+        //int barProgress = Math.round( width * ((float) value / width));
         if (isMax){
             context.drawTexture(xpbar, leftpos, toppos,0 ,0 , width , 5, width ,5);
-            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , barProgress, 5, barProgress, 5);
-
+            context.enableScissor(leftpos, toppos,leftpos + value, toppos + 5);
+            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , width, 5, width, 5);
+            context.disableScissor();
         }
         else{
             context.drawTexture(xpbar, leftpos, toppos,0 ,0 , width , 5, width ,5);
-            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , barProgress, 5, barProgress, 5);
+            context.enableScissor(leftpos, toppos,leftpos + value, toppos + 5);
+            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , width, 5, width, 5);
+            context.disableScissor();
         }
     }
 
