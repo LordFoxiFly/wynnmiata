@@ -33,10 +33,6 @@ public class TheCanyonColossusScreen extends Screen {
     protected void init() {
         leftpos = (this.width - this.imagewidth ) / 2;
         toppos = (this.height - this.imageheight) / 2;
-        redlavacolor = TextFields.RedLavaColor(leftpos,toppos);
-        greenlavacolor = TextFields.GreenLavaColor(leftpos,toppos);
-        bluelavacolor = TextFields.BlueLavaColor(leftpos,toppos);
-        highlightlavacolorenter = TextFields.HighlightColorEnter(leftpos, toppos, redlavacolor, greenlavacolor, bluelavacolor);
         super.init();
 
 
@@ -57,28 +53,11 @@ public class TheCanyonColossusScreen extends Screen {
 
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderColorInput(context);
         context.drawTexture(BACKGROUND_IMAGE,  leftpos, toppos + 15,0,0, 256,220, 256, 220);
     }
 
 
     public void renderColorInput(DrawContext context){
-        if (WynnMiata.CONFIG.isHighLightLavaBoolean()){
-            yHighlightLavaOffset = 20;
-            addDrawableChild(redlavacolor);
-            addDrawableChild(greenlavacolor);
-            addDrawableChild(bluelavacolor);
-            addDrawableChild(highlightlavacolorenter);
-            context.drawText(MinecraftClient.getInstance().textRenderer,Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.Label.RGB"), leftpos+ 6 + 70, toppos + 45, WynnMiata.CONFIG.getHighlightLavaColor(), true);
-        }
-        else {
-            yHighlightLavaOffset = 0;
-            remove(redlavacolor);
-            remove(greenlavacolor);
-            remove(bluelavacolor);
-            remove(highlightlavacolorenter);
-
-        }
     }
 }
 
