@@ -31,41 +31,5 @@ public class TextFields {
     }).dimensions( leftpos + 205 + 124, toppos  + 17, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
     }
 
-    public static TextFieldWidget RedLavaColor(int leftpos, int topPos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos +leftBackGroundX + 91, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.RedLavaColorInput"));
-    }
-    public static TextFieldWidget GreenLavaColor(int leftpos, int topPos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos + leftBackGroundX + 131, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.GreenLavaColorInput"));
-    }
-    public static TextFieldWidget BlueLavaColor(int leftpos, int topPos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer , leftpos + leftBackGroundX + 171, topPos +40 , 30, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.TextWidget.BlueLavaColorInput"));
-    }
 
-    public static ButtonWidget HighlightColorEnter(int leftpos, int toppos, TextFieldWidget redValue, TextFieldWidget greenValue, TextFieldWidget blueValue){
-
-        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.TCC.Button.HighlightLavaColorENTER"), (btn) -> {
-            if (WynnMiataUtils.isNumeric(redValue.getText()) && WynnMiataUtils.isNumeric(greenValue.getText()) && WynnMiataUtils.isNumeric(greenValue.getText() ) && redValue.getText().length() == 3 && greenValue.getText().length() == 3 && blueValue.getText().length() == 3){
-                ArrayList<Integer> rgbInteger = new ArrayList<>();
-                rgbInteger.add(Integer.parseInt(redValue.getText()));
-                rgbInteger.add(Integer.parseInt(greenValue.getText()));
-                rgbInteger.add(Integer.parseInt(blueValue.getText()));
-                if (WynnMiataUtils.isBetween(rgbInteger,0,255) ){
-                    WynnMiata.LOGGER.info("Red:" + redValue.getText() + " Green:" + greenValue.getText() + " Blue:" +blueValue.getText() );
-                    WynnMiata.CONFIG.setHighlightLavaColor(ColorUtils.rgbToARGB(Integer.parseInt(redValue.getText()),Integer.parseInt(greenValue.getText()),Integer.parseInt(blueValue.getText())));
-                    WynnMiata.CONFIG.save();
-                    WynnMiata.LOGGER.info(String.valueOf(ColorUtils.rgbToARGB(Integer.parseInt(redValue.getText()),Integer.parseInt(greenValue.getText()),Integer.parseInt(blueValue.getText()))));
-                }else {
-                    blueValue.setText("255");
-                    redValue.setText("255");
-                    greenValue.setText("255");
-                }
-            }
-            else{
-                blueValue.setText("255");
-                redValue.setText("255");
-                greenValue.setText("255");
-            }
-
-        }).dimensions( leftpos + 211, toppos  + 40, 40, 20).tooltip(Tooltip.of(Text.of("Save your Input!"))).build();
-    }
 }

@@ -1,7 +1,20 @@
 package de.lordfoxifly.Screens.PlayerStats;
 
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
+import de.lordfoxifly.Api.PlayerAPI.Player;
+import de.lordfoxifly.Screens.PlayerStatsScreen;
+import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.ImageButtonWidget;
+import de.lordfoxifly.WynnMiata;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class PlayerStatsHelper {
     private static final Identifier GREENWOOL = Identifier.of("wynnmiata" , "textures/gui/wool/greenwool.png");
@@ -18,18 +31,55 @@ public class PlayerStatsHelper {
         }
     }
 
-    public static void renderProgressBar(DrawContext context, int value, Boolean isMax ,int leftpos, int toppos){
-        int width = 80;
-        int barProgress = Math.round( width * ((float) value / width));
+    public static void renderProgressBar(DrawContext context, int value, boolean isMax ,int leftpos, int toppos){
+        int width = 100;
+        //int barProgress = Math.round( width * ((float) value / width));
         if (isMax){
             context.drawTexture(xpbar, leftpos, toppos,0 ,0 , width , 5, width ,5);
-            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , barProgress, 5, barProgress, 5);
-
+            context.enableScissor(leftpos, toppos,leftpos + value, toppos + 5);
+            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , width, 5, width, 5);
+            context.disableScissor();
         }
         else{
             context.drawTexture(xpbar, leftpos, toppos,0 ,0 , width , 5, width ,5);
-            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , barProgress, 5, barProgress, 5);
+            context.enableScissor(leftpos, toppos,leftpos + value, toppos + 5);
+            context.drawTexture(xpbarProgress, leftpos,toppos,   0 ,0 , width, 5, width, 5);
+            context.disableScissor();
         }
     }
+
+    /**
+     * Creates ImageButtons for the Characters from a Player
+     * @param leftpos
+     * @param toppos
+     * @param player
+     * @return
+     */
+    public static List<ImageButtonWidget> getClassWidgets(int leftpos, int toppos, Player player){
+        List<ImageButtonWidget> imageButtonWidgets = new ArrayList<>();
+        Map<String, CharacterListData> characterListData = player.getCharacters();
+        int yOffset = 35;
+        for (Map.Entry<String, CharacterListData> entry: characterListData.entrySet()){
+            ImageButtonWidget tempbutton = new ImageButtonWidget(leftpos - 20, toppos + yOffset, 20, 20, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button." + entry.getKey()),getClassIdentifier(entry.getValue().getType().toLowerCase()), false, button -> {
+                player.setSelectedCharacterData(CharacterDataUtils.getCharacterData(player, entry.getKey()));
+                player.setSelectedCharacterUUID(entry.getKey());
+                MinecraftClient.getInstance().setScreen(new PlayerStatsScreen(player));
+            });
+            if (Objects.equals(player.getSelectedCharacterUUID(), entry.getKey())){
+                tempbutton.setSelected(true);
+            }
+            tempbutton.setyBackgroundOffset(0);
+            imageButtonWidgets.add( tempbutton);
+            yOffset += 30;
+        }
+        return imageButtonWidgets;
+    }
+
+    public static Identifier getClassIdentifier(String classType){
+        return Identifier.of("wynnmiata","textures/gui/wynncrafttexture/" +  classType+ ".png");
+    }
+
+
+
 
 }

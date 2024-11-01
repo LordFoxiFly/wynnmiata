@@ -1,21 +1,27 @@
 package de.lordfoxifly.Screens.Widgets;
 
-import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Screens.*;
+import de.lordfoxifly.Screens.PlayerStats.Screens.AbilityTreeScreen;
+import de.lordfoxifly.Screens.PlayerStats.Screens.OtherStatsScreen;
+import de.lordfoxifly.Screens.PlayerStats.Screens.ProfStatScreen;
 import de.lordfoxifly.Screens.PlayerStats.Screens.RaidStatScreen;
+import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.ImageButtonWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 
+
 public class Buttons {
 
     private final static Identifier TOLRUNE = Identifier.of("wynnmiata", "textures/gui/runes/tolrune.png");
     private final static Identifier DEFAULTSTATS = Identifier.of("wynnmiata", "textures/gui/paper.png");
+    private final static Identifier IRON_PICKAXE = Identifier.of("wynnmiata", "textures/gui/iron_pickaxe.png");
+    private final static Identifier KNOWLEDGE_BOOK = Identifier.of("wynnmiata", "textures/gui/knowledge_book.png");
+    private final static Identifier ABILITY_TREE = Identifier.of("wynnmiata", "textures/gui/wynncrafttexture/ability_shard.png");
 
     private  static final int leftBackGroundX = 6;
     private static final int topBackGroundY = 22;
@@ -80,5 +86,39 @@ public class Buttons {
         return new ImageButtonWidget(leftpos + 15, toppos + 240, 20,20, Text.translatable(WynnMiata.MOD_ID, "gui. " + WynnMiata.MOD_ID + "playerstats.Button.DefaultStats"), DEFAULTSTATS, isSelected,(button) -> {
             MinecraftClient.getInstance().setScreen(new PlayerStatsScreen(PlayerStatsScreen.getRequestedPlayer()));
         } );
+    }
+
+    public static ImageButtonWidget PROFSTATS(int leftpos, int toppos){
+        boolean selected = false;
+
+        return new ImageButtonWidget(leftpos + 85 , toppos + 240, 20,20, Text.translatable(WynnMiata.MOD_ID,"gui. " + WynnMiata.MOD_ID + "playerstats.Button.RaidStats"),IRON_PICKAXE, selected,  (button) -> {
+            MinecraftClient.getInstance().setScreen(new ProfStatScreen(PlayerStatsScreen.getRequestedPlayer()));});
+    }
+
+    public static ImageButtonWidget PROFSTATS(int leftpos, int toppos, boolean isSelected){
+        return new ImageButtonWidget(leftpos + 85 , toppos + 240, 20,20, Text.translatable(WynnMiata.MOD_ID,"gui. " + WynnMiata.MOD_ID + "playerstats.Button.RaidStats"),IRON_PICKAXE, isSelected,  (button) -> {
+            MinecraftClient.getInstance().setScreen(new ProfStatScreen(PlayerStatsScreen.getRequestedPlayer()));});
+    }
+
+    public static ImageButtonWidget ABILTYTREE(int leftpos, int toppos){
+        boolean selected = false;
+        return new ImageButtonWidget(leftpos + 120 , toppos + 240, 20,20, Text.translatable(WynnMiata.MOD_ID,"gui. " + WynnMiata.MOD_ID + "playerstats.Button.AbilityTree"),ABILITY_TREE, selected,  (button) -> {
+            MinecraftClient.getInstance().setScreen(new AbilityTreeScreen(PlayerStatsScreen.getRequestedPlayer()));});
+    }
+
+    public static ImageButtonWidget ABILTYTREE(int leftpos, int toppos, boolean isSelected){
+        return new ImageButtonWidget(leftpos + 120 , toppos + 240, 20,20, Text.translatable(WynnMiata.MOD_ID,"gui. " + WynnMiata.MOD_ID + "playerstats.Button.AbiltyTree"),ABILITY_TREE, isSelected,  (button) -> {
+            MinecraftClient.getInstance().setScreen(new AbilityTreeScreen(PlayerStatsScreen.getRequestedPlayer()));});
+    }
+
+    public static ImageButtonWidget OTHERSTATS(int leftpos, int toppos){
+        boolean selected = false;
+        return new ImageButtonWidget(leftpos + 155 , toppos + 240, 20,20, Text.translatable(WynnMiata.MOD_ID,"gui. " + WynnMiata.MOD_ID + "playerstats.Button.OtherStats"),KNOWLEDGE_BOOK, selected,  (button) -> {
+            MinecraftClient.getInstance().setScreen(new OtherStatsScreen(PlayerStatsScreen.getRequestedPlayer()));});
+    }
+
+    public static ImageButtonWidget OTHERSTATS(int leftpos, int toppos, boolean isSelected){
+        return new ImageButtonWidget(leftpos + 155 , toppos + 240, 20,20, Text.translatable(WynnMiata.MOD_ID,"gui. " + WynnMiata.MOD_ID + "playerstats.Button.OtherStats"),KNOWLEDGE_BOOK, isSelected,  (button) -> {
+            MinecraftClient.getInstance().setScreen(new OtherStatsScreen(PlayerStatsScreen.getRequestedPlayer()));});
     }
 }

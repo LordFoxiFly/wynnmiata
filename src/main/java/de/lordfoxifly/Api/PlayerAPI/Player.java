@@ -1,6 +1,11 @@
 package de.lordfoxifly.Api.PlayerAPI;
 
 import com.google.gson.annotations.SerializedName;
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterData.CharacterData;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
+
+import java.util.List;
+import java.util.Map;
 
 public class Player{
 
@@ -63,6 +68,31 @@ public class Player{
 
 	@SerializedName("username")
 	private String username;
+	private Map<String, CharacterListData> characters;
+	private Map<String, CharacterData> characterData;
+	private CharacterData activeCharacterData;
+	private CharacterData selectedCharacterData;
+	private String selectedCharacterUUID;
+	public CharacterData getActiveCharacterData() {return activeCharacterData;}
+	public String getSelectedCharacterUUID() {return selectedCharacterUUID;}
+	public CharacterData getSelectedCharacterData() {return selectedCharacterData;}
+	public Map<String, CharacterListData> getCharacters() {
+		return characters;
+	}
+	public Map<String,CharacterData> getCharacterData() {
+		return characterData;
+	}
+	public void setSelectedCharacterUUID(String selectedCharacterUUID) {this.selectedCharacterUUID = selectedCharacterUUID;}
+	public void setSelectedCharacterData(CharacterData selectedCharacterData) {this.selectedCharacterData = selectedCharacterData;}
+	public void setActiveCharacterData(CharacterData activeCharacterData) {this.activeCharacterData = activeCharacterData;}
+
+	public void setCharacterData(Map<String,CharacterData> characterData) {
+		this.characterData = characterData;
+	}
+
+	public void setCharacters(Map<String, CharacterListData> characters) {
+		this.characters = characters;
+	}
 
 	public String getServer(){
 		return server;

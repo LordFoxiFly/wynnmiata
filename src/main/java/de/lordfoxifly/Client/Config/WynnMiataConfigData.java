@@ -61,11 +61,16 @@ public class WynnMiataConfigData {
         this.copyPlayerStatsBoolean = copyPlayerStatsBoolean;
     }
     public boolean isDebugRaidsBoolean() {
-        return isDebugRaidsBoolean;
+        return debugRaidsBoolean;
+    }
+    public boolean isDebugHudBoolean() {
+        return debugHudBoolean;
     }
 
-    public void setDebugRaidsBoolean(boolean debugRaidsBoolean) {
-        isDebugRaidsBoolean = debugRaidsBoolean;
+    public void setDebugHudBoolean(boolean debugHudBoolean) {
+        this.debugHudBoolean = debugHudBoolean;
+    }
+    public void setDebugRaidsBoolean(boolean debugRaidsBoolean) { this.debugRaidsBoolean = debugRaidsBoolean;
     }
 
     public boolean isDebugEventsBoolean() {
@@ -75,27 +80,35 @@ public class WynnMiataConfigData {
     public void setDebugEventsBoolean(boolean debugEventsBoolean) {
         this.debugEventsBoolean = debugEventsBoolean;
     }
-    public Integer getHighlightLavaColor() {
-        return highlightLavaColor;
+    public int getShowPlayerRaidy() {
+        return showPlayerRaidy;
     }
 
-    public void setHighlightLavaColor(Integer highlightLavaColor) {
-        this.highlightLavaColor = highlightLavaColor;
+    public void setShowPlayerRaidy(int showPlayerRaidy) {
+        this.showPlayerRaidy = showPlayerRaidy;
     }
 
+    public int getShowPlayerRaidx() {
+        return showPlayerRaidx;
+    }
+
+    public void setShowPlayerRaidx(int showPlayerRaidx) {
+        this.showPlayerRaidx = showPlayerRaidx;
+    }
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
     private  boolean FireHudRenderingBoolean = false;
     private  boolean FireEntityRenderingBoolean = false;
     private  boolean ArmorRenderingBoolean = false;
     private  boolean showPlayerRaidsBoolean = false;
+    private int showPlayerRaidy = 150;
+    private int showPlayerRaidx = 10;
     private boolean copyPlayerStatsBoolean= false;
-    public boolean isDebugRaidsBoolean = false;
+
+    private  boolean debugHudBoolean = false;
+    private boolean debugRaidsBoolean = false;
 
     private boolean debugEventsBoolean = false;
-
-
-    private Integer highlightLavaColor = 0xffffff;
 
 
     public static WynnMiataConfigData getDefault() {

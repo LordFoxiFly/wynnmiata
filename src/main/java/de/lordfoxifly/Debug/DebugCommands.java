@@ -1,20 +1,14 @@
 package de.lordfoxifly.Debug;
 
 import com.mojang.brigadier.context.CommandContext;
+import de.lordfoxifly.Debug.Screen.DebugHud;
 import de.lordfoxifly.Features.ScoreboardHandler;
-import de.lordfoxifly.Screens.Widgets.CheckBoxs;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.scoreboard.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.text.Format;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class DebugCommands {
@@ -36,7 +30,7 @@ public class DebugCommands {
                 Devutils.appendToFile(Formatting.strip(line) , "wynnmiatalogs.txt");
             }
         }
-
+        new DebugHud();
         return 1;
     }
 

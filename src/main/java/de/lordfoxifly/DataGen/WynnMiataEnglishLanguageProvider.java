@@ -1,5 +1,6 @@
 package de.lordfoxifly.DataGen;
 
+import de.lordfoxifly.WynnMiata;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -35,14 +36,10 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.settings.Raids.Checkbox.copyPlayerStats", "Copy PlayerStats");
         translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugEvents", "Debug Events");
         translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugRaids", "Debug Raids");
-        translationBuilder.add("gui.wynnmiata.settings.TCC.Label.RGB", "RGB:");
+        translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugHud", "Debug Hud");
+
         //
         translationBuilder.add("gui.wynnmiata.playerstats.TextWidget.NameInput", "Input Name");
         translationBuilder.add("gui.wynnmiata.playerstats.Button.Enter", "Enter");
-        translationBuilder.add("gui.wynnmiata.settings.TCC.Button.HighlightLavaColorENTER", "Enter");
-        translationBuilder.add("gui.wynnmiata.settings.TCC.TextWidget.RedLavaColorInput", "Input Red Color");
-        translationBuilder.add("gui.wynnmiata.settings.TCC.TextWidget.GreenLavaColorInput", "Input Green Color");
-        translationBuilder.add("gui.wynnmiata.settings.TCC.TextWidget.BlueLavaColorInput", "Input Blue Color");
-
     }
 }

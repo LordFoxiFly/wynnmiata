@@ -1,10 +1,15 @@
 package de.lordfoxifly.Screens;
 
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
+import de.lordfoxifly.Api.MinecraftAPI;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
 import de.lordfoxifly.Screens.PlayerStats.PlayerStatsHelper;
 import de.lordfoxifly.Screens.Widgets.Buttons;
+import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.ImageButtonWidget;
 import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
@@ -16,7 +21,8 @@ import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Objects;
+import java.util.List;
+import java.util.Map;
 
 public class PlayerStatsScreen extends Screen {
 
@@ -29,6 +35,8 @@ public class PlayerStatsScreen extends Screen {
     public static Player getRequestedPlayer() {
         return requestedPlayer;
     }
+    private List<ImageButtonWidget> classbuttons;
+    private static boolean update = true;
 
     private static Player requestedPlayer;
 
@@ -44,7 +52,14 @@ public class PlayerStatsScreen extends Screen {
 
     public static void setPlayer(String username) {
         try {
-             requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username ));//MinecraftClient.getInstance().getSession().getUsername()));
+            requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ MinecraftAPI.getPlayerUUID(username)));//MinecraftClient.getInstance().getSession().getUsername()));
+            Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" +requestedPlayer.getUuid() +  "/characters"));
+            requestedPlayer.setCharacters(characterListDataMap);
+            requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), requestedPlayer.getUuid(), requestedPlayer.isPublicProfile()));
+            requestedPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(requestedPlayer));
+            requestedPlayer.setSelectedCharacterData(requestedPlayer.getActiveCharacterData());
+            requestedPlayer.setSelectedCharacterUUID(requestedPlayer.getActiveCharacter());
+            update = true;
             if (requestedPlayer.getUsername().equals( MinecraftClient.getInstance().getSession().getUsername())){
                 WynnMiata.ClientPlayer = PlayerStatsScreen.getRequestedPlayer();
             }
@@ -57,27 +72,28 @@ public class PlayerStatsScreen extends Screen {
     @Override
     protected void init() {
         super.init();
+        update = true;
+        if (requestedPlayer ==null){
+            requestedPlayer = WynnMiata.ClientPlayer;
+        }
+        classbuttons = PlayerStatsHelper.getClassWidgets(leftpos, toppos, requestedPlayer);
         leftpos = (this.width - this.imagewidth ) / 2 - 64;
         toppos = (this.height - this.imageheight) / 2;
-
         textFieldWidget = TextFields.PlayerStatSearch(leftpos, toppos);
         addDrawableChild(textFieldWidget);
         addDrawableChild(TextFields.PLayerStatSearchEnter(leftpos,toppos,textFieldWidget));
-        addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos));
         addDrawableChild(Buttons.DEFAULTSTATS(leftpos, toppos, true));
+        addDrawableChild(Buttons.RAIDSTATS(leftpos,toppos));
+        addDrawableChild(Buttons.PROFSTATS(leftpos,toppos));
+        addDrawableChild(Buttons.ABILTYTREE(leftpos,toppos));
+        addDrawableChild(Buttons.OTHERSTATS(leftpos,toppos));
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
-        if (requestedPlayer !=null){
-           renderPlayerStats(context);
-        }
-        else {
-            requestedPlayer = WynnMiata.ClientPlayer;
-        }
-
+        renderPlayerStats(context);
     }
 
     private void renderPlayerStats(DrawContext context) {
@@ -86,7 +102,18 @@ public class PlayerStatsScreen extends Screen {
         PlayerStatsHelper.renderOnlineWool(context, requestedPlayer.isOnline(), leftpos,toppos);
         context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
-
+        //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getActiveCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
+        if(update){
+            for (ImageButtonWidget imageButtonWidget: classbuttons){
+                remove(imageButtonWidget);
+            }
+            classbuttons = PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer);
+            for (ImageButtonWidget imageButtonWidget: classbuttons ){
+                addDrawableChild(imageButtonWidget);
+            }
+            update = false;
+        }
     }
 
     @Override

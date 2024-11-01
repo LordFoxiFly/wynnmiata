@@ -2,6 +2,7 @@ package de.lordfoxifly.Commands;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import de.lordfoxifly.Api.MinecraftAPI;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
@@ -18,7 +19,11 @@ import java.net.URISyntaxException;
 public class PlayerStatsCommand  {
     private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static Player getPlayer(String username) throws URISyntaxException, IOException, InterruptedException {
-        String src = RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username);
+        String uuid = MinecraftAPI.getPlayerUUID(username);
+        WynnMiata.LOGGER.info(uuid);
+        String src = RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ uuid);
+        WynnMiata.LOGGER.info("https://api.wynncraft.com/v3/player/"+ uuid);
+        WynnMiata.LOGGER.info(src);
         return PlayerAPIHelper.getPlayer(src);
     }
 

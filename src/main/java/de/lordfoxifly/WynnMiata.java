@@ -1,6 +1,9 @@
 package de.lordfoxifly;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
+import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
+import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
@@ -10,30 +13,25 @@ import de.lordfoxifly.Client.Keybinds;
 import de.lordfoxifly.Commands.PlayerStatsCommand;
 import de.lordfoxifly.Debug.DebugCommands;
 import de.lordfoxifly.Debug.DevUtilsListeners;
-import de.lordfoxifly.Events.ScoreboardUpdateEvent;
 import de.lordfoxifly.Events.WynnMiataEventLoader;
-import de.lordfoxifly.Events.WynnMiataEventUtils;
 import de.lordfoxifly.Features.Raids.RaidInstance;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
 import de.lordfoxifly.render.Types.Box;
 import de.lordfoxifly.render.WorldRender;
 import net.fabricmc.api.ClientModInitializer;
-
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.Key;
+import java.util.Map;
 
 public class WynnMiata implements ClientModInitializer {
 	public static final String MOD_ID = "wynnmiata";
@@ -54,7 +52,14 @@ public class WynnMiata implements ClientModInitializer {
 	public void onInitializeClient() {
 		LOGGER.info("Hello Fabric world!");
         try {
-            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername()));//MinecraftClient.getInstance().getSession().getUsername()));
+            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUuidOrNull()));
+			Map<String,CharacterListData> data = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters"));
+			ClientPlayer.setCharacters(data);
+			ClientPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername(), ClientPlayer.isPublicProfile()));
+			ClientPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(ClientPlayer));
+			ClientPlayer.setSelectedCharacterData(ClientPlayer.getActiveCharacterData());
+			ClientPlayer.setSelectedCharacterUUID(ClientPlayer.getActiveCharacter());
+			//MinecraftClient.getInstance().getSession().getUsername()));
         } catch (URISyntaxException | IOException | InterruptedException e) {
 			LOGGER.error(e.toString());
             throw new RuntimeException(e);
