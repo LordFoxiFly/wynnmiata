@@ -25,7 +25,7 @@ public class CompletionsHud implements HudRenderCallback {
      */
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
-        int y = 0;
+        int y = 15;
         if (WynnMiata.CONFIG == null) {
             return;
         }
@@ -43,25 +43,25 @@ public class CompletionsHud implements HudRenderCallback {
             createnew = true;
         }
         if (WynnMiata.CONFIG.isShowPlayerRaidsBoolean() && WynnMiata.raidInstance.getRaidChallange() >= 1 && WynnMiata.raidInstance.getRaidChallange() < 4){
-            drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal("Raid: "+ raidTypes.name()), 20, 150, 0x00FF00, true);
+            drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal("Raid: "+ raidTypes.name()), WynnMiata.CONFIG.getShowPlayerRaidx(), WynnMiata.CONFIG.getShowPlayerRaidy(), 0x00FF00, true);
             for (RaidPlayer raidPlayer: party){
                if (!party.isEmpty()){
                    if (raidPlayer.getPlayer() == null || raidPlayer.getPlayer().getGlobalData() == null){
-                       drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": Error Data was null"), 20, 170 + y, 0x00FF00, true);
+                       drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": Error Data was null"), WynnMiata.CONFIG.getShowPlayerRaidx(),WynnMiata.CONFIG.getShowPlayerRaidy() + y, 0x00FF00, true);
                        y += 15;
                    }
                    else {
                        if (raidTypes == RaidTypes.TCC){
-                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getTheCanyonColossus() ), 20, 170 + y, 0x00FF00, true);
+                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getTheCanyonColossus() ), WynnMiata.CONFIG.getShowPlayerRaidx(),WynnMiata.CONFIG.getShowPlayerRaidy() + y, 0x00FF00, true);
                        }
                        if (raidTypes == RaidTypes.NOG){
-                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getNestOfTheGrootslangs()), 20, 170 + y, 0x00FF00, true);
+                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getNestOfTheGrootslangs()), WynnMiata.CONFIG.getShowPlayerRaidx(),WynnMiata.CONFIG.getShowPlayerRaidy() + y, 0x00FF00, true);
                        }
                        if (raidTypes == RaidTypes.NOL){
-                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getOrphionSNexusOfLight()), 20, 170 + y, 0x00FF00, true);
+                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getOrphionSNexusOfLight()), WynnMiata.CONFIG.getShowPlayerRaidx(),WynnMiata.CONFIG.getShowPlayerRaidy() + y, 0x00FF00, true);
                        }
                        if (raidTypes == RaidTypes.TNA){
-                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getTheNamelessAnomaly() ), 20, 170 + y, 0x00FF00, true);
+                           drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.literal(raidPlayer.getName() + ": " +raidPlayer.getPlayer().getGlobalData().getRaids().getList().getTheNamelessAnomaly() ), WynnMiata.CONFIG.getShowPlayerRaidx(),WynnMiata.CONFIG.getShowPlayerRaidy() + y, 0x00FF00, true);
                        }
                        y += 15;
                    }

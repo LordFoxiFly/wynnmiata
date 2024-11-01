@@ -3,6 +3,7 @@ package de.lordfoxifly.Screens;
 import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
+import de.lordfoxifly.Api.MinecraftAPI;
 import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
@@ -51,10 +52,10 @@ public class PlayerStatsScreen extends Screen {
 
     public static void setPlayer(String username) {
         try {
-            requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username ));//MinecraftClient.getInstance().getSession().getUsername()));
-            Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username +  "/characters"));
+            requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ MinecraftAPI.getPlayerUUID(username)));//MinecraftClient.getInstance().getSession().getUsername()));
+            Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" +requestedPlayer.getUuid() +  "/characters"));
             requestedPlayer.setCharacters(characterListDataMap);
-            requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), username, requestedPlayer.isPublicProfile()));
+            requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), requestedPlayer.getUuid(), requestedPlayer.isPublicProfile()));
             requestedPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(requestedPlayer));
             requestedPlayer.setSelectedCharacterData(requestedPlayer.getActiveCharacterData());
             requestedPlayer.setSelectedCharacterUUID(requestedPlayer.getActiveCharacter());

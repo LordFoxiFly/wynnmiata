@@ -70,7 +70,7 @@ public class WynnMiataConfigData {
     public void setDebugHudBoolean(boolean debugHudBoolean) {
         this.debugHudBoolean = debugHudBoolean;
     }
-    public void setDebugRaidsBoolean(boolean debugRaidsBoolean) { debugRaidsBoolean = debugRaidsBoolean;
+    public void setDebugRaidsBoolean(boolean debugRaidsBoolean) { this.debugRaidsBoolean = debugRaidsBoolean;
     }
 
     public boolean isDebugEventsBoolean() {
@@ -80,13 +80,29 @@ public class WynnMiataConfigData {
     public void setDebugEventsBoolean(boolean debugEventsBoolean) {
         this.debugEventsBoolean = debugEventsBoolean;
     }
+    public int getShowPlayerRaidy() {
+        return showPlayerRaidy;
+    }
+
+    public void setShowPlayerRaidy(int showPlayerRaidy) {
+        this.showPlayerRaidy = showPlayerRaidy;
+    }
+
+    public int getShowPlayerRaidx() {
+        return showPlayerRaidx;
+    }
+
+    public void setShowPlayerRaidx(int showPlayerRaidx) {
+        this.showPlayerRaidx = showPlayerRaidx;
+    }
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
     private  boolean FireHudRenderingBoolean = false;
     private  boolean FireEntityRenderingBoolean = false;
     private  boolean ArmorRenderingBoolean = false;
     private  boolean showPlayerRaidsBoolean = false;
-
+    private int showPlayerRaidy = 150;
+    private int showPlayerRaidx = 10;
     private boolean copyPlayerStatsBoolean= false;
 
     private  boolean debugHudBoolean = false;

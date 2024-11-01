@@ -85,6 +85,15 @@ public class RaidInstanceUtils {
         if (content.contains("The Canyon Colossus")){
             raidTypes = RaidTypes.TCC;
         }
+        if (content.contains("Orphion's Nexus of Light")){
+            raidTypes = RaidTypes.NOL;
+        }
+        if (content.contains("Nest of the Grootslangs")){
+            raidTypes = RaidTypes.NOG;
+        }
+        if (content.contains("The Nameless Anomaly")){
+            raidTypes = RaidTypes.TNA;
+        }
         /*
         switch (content){
             case con -> raidTypes = RaidTypes.TCC;
@@ -115,6 +124,76 @@ public class RaidInstanceUtils {
             case "Activate 4 Binding" -> raidPhase = RaidPhase.THIRDROOM_TYPE_ONE;
             case "Great Protector." -> raidPhase = RaidPhase.BOSS;
             case "Too many players have", "Failed to Protect" -> raidPhase = RaidPhase.FAILED;
+            case null, default -> raidPhase =  null;
+        }
+        return raidPhase;
+    }
+    public static RaidPhase getRaidPhaseNOG(String content, int phase) {
+        String phaseString = Formatting.strip(content);
+        RaidPhase raidPhase = null;
+        switch (phaseString) {
+            case "Prepare to raid..." -> raidPhase = RaidPhase.BEFORE;
+            case "Hold the platform" -> raidPhase = RaidPhase.FIRSTROOM_TYPE_ONE;
+            case "Hold and defend" -> raidPhase = RaidPhase.FIRSTROOM_TYPE_TWO;
+            case "Choose a buff or go" -> {
+                switch (phase) {
+                    case 1 -> raidPhase = RaidPhase.FIRSTBUFFS;
+                    case 2 -> raidPhase = RaidPhase.SECONDBUFFS;
+                    case 3 -> raidPhase = RaidPhase.THIRDBUFFS;
+                }
+            }
+            case "to construct the" -> raidPhase = RaidPhase.SECONDROOM_TYPE_ONE;
+            case "Slay minibosses to" -> raidPhase = RaidPhase.THIRDROOM_TYPE_ONE;
+            case "Heavy Hammer." -> raidPhase = RaidPhase.THIRDROOM_TYPE_TWO;
+            case "Devourer." -> raidPhase = RaidPhase.BOSS;
+            case "Too many players have" -> raidPhase = RaidPhase.FAILED;
+            case null, default -> raidPhase =  null;
+        }
+        return raidPhase;
+    }
+    public static RaidPhase getRaidPhaseNOL(String content, int phase) {
+        String phaseString = Formatting.strip(content);
+        RaidPhase raidPhase = null;
+        switch (phaseString) {
+            case "Prepare to raid..." -> raidPhase = RaidPhase.BEFORE;
+            case "Hold the tower" -> raidPhase = RaidPhase.FIRSTROOM_TYPE_ONE;
+            case "Choose a buff or go" -> {
+                switch (phase) {
+                    case 1 -> raidPhase = RaidPhase.FIRSTBUFFS;
+                    case 2 -> raidPhase = RaidPhase.SECONDBUFFS;
+                    case 3 -> raidPhase = RaidPhase.THIRDBUFFS;
+                }
+            }
+            case "Kill all Crystalline" -> raidPhase = RaidPhase.SECONDROOM_TYPE_ONE;
+            case "Collect 10 Light" -> raidPhase = RaidPhase.SECONDROOM_TYPE_TWO;
+            case "Escort your party to" -> raidPhase = RaidPhase.THIRDROOM_TYPE_ONE;
+            case "Guide the Crystal" -> raidPhase = RaidPhase.THIRDROOM_TYPE_TWO;
+            case "Save him." -> raidPhase = RaidPhase.BOSS;
+            case "Too many players have" -> raidPhase = RaidPhase.FAILED;
+            case null, default -> raidPhase =  null;
+        }
+        return raidPhase;
+    }
+    public static RaidPhase getRaidPhaseTNA(String content, int phase) {
+        String phaseString = Formatting.strip(content);
+        RaidPhase raidPhase = null;
+        switch (phaseString) {
+            case "Prepare to raid..." -> raidPhase = RaidPhase.BEFORE;
+            case "Hold the stump for" -> raidPhase = RaidPhase.FIRSTROOM_TYPE_ONE;
+            case "the Berserker Berry." -> raidPhase = RaidPhase.FIRSTROOM_TYPE_TWO;
+            case "Choose a buff or go" -> {
+                switch (phase) {
+                    case 1 -> raidPhase = RaidPhase.FIRSTBUFFS;
+                    case 2 -> raidPhase = RaidPhase.SECONDBUFFS;
+                    case 3 -> raidPhase = RaidPhase.THIRDBUFFS;
+                }
+            }
+            case "tree." -> raidPhase = RaidPhase.SECONDROOM_TYPE_ONE;
+            case "Collect 10 Light" -> raidPhase = RaidPhase.SECONDROOM_TYPE_TWO;
+            case "Find and kill" -> raidPhase = RaidPhase.THIRDROOM_TYPE_ONE;
+            case "Protect the Bulb" -> raidPhase = RaidPhase.THIRDROOM_TYPE_TWO;
+            case "Survive." -> raidPhase = RaidPhase.BOSS;
+            case "Too many players have" -> raidPhase = RaidPhase.FAILED;
             case null, default -> raidPhase =  null;
         }
         return raidPhase;

@@ -52,7 +52,7 @@ public class WynnMiata implements ClientModInitializer {
 	public void onInitializeClient() {
 		LOGGER.info("Hello Fabric world!");
         try {
-            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername()));
+            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUuidOrNull()));
 			Map<String,CharacterListData> data = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters"));
 			ClientPlayer.setCharacters(data);
 			ClientPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername(), ClientPlayer.isPublicProfile()));

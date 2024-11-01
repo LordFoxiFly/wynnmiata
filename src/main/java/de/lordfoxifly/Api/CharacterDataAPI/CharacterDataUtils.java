@@ -22,11 +22,11 @@ public abstract class CharacterDataUtils {
      * @param keys The Player you want the Character Data from
      * @return
      */
-    public static Map<String,CharacterData> getCharacterDataFromCharacterUUIDList(List<String> keys, String username, boolean isDataPublic) {
+    public static Map<String,CharacterData> getCharacterDataFromCharacterUUIDList(List<String> keys, String playeruuid, boolean isDataPublic) {
         Map<String,CharacterData> characterDataList = new HashMap<>();
         for (String uuid: keys){
            try{
-               String apisrc = RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username + "/characters/" + uuid);
+               String apisrc = RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + playeruuid + "/characters/" + uuid);
                //WynnMiata.LOGGER.info("https://api.wynncraft.com/v3/player/" + username + "/characters/" + uuid);
                //WynnMiata.LOGGER.info(apisrc);
                if (apisrc == null || apisrc.isEmpty()){

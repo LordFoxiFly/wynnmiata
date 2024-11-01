@@ -20,7 +20,7 @@ public class RaidPlayer {
     public RaidPlayer(String uuid, String name){
        this.uuid = uuid;
        this.name = name;
-        RequestHelper.getAPIDataAsync("https://api.wynncraft.com/v3/player/" + name).thenAccept(
+        RequestHelper.getAPIDataAsync("https://api.wynncraft.com/v3/player/" + uuid).thenAccept(
                 string -> {
                     this.player =  PlayerAPIHelper.getPlayer(string);
                 }
