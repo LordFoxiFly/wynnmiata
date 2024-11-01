@@ -24,13 +24,6 @@ public class RaidInstanceUtils {
     private static final Box lava2box = new Box(new Vec3d(11676, 19, 3086), new Vec3d(11677, 40, 3087) , 0xFF00FF00 ,false);
     private static final Box lava1box = new Box(new Vec3d(11685, 17, 3073), new Vec3d(11686, 40, 3074), 0xFF00FF00,  false);
 
-    public static void loadRaidFeatures(){
-
-        if (WynnMiata.raidInstance != null){
-            if (WynnMiata.raidInstance.getRaidType().getRaidTypes().equals(RaidTypes.TCC)) loadTCCFeatures();
-        }
-    }
-
     public static void loadTCCFeatures(){
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (WynnMiata.raidInstance != null){
