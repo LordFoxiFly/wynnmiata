@@ -1,19 +1,15 @@
 package de.lordfoxifly.Screens.PlayerStats;
 
-import de.lordfoxifly.Api.CharacterDataAPI.CharacterData.CharacterData;
 import de.lordfoxifly.Api.CharacterDataAPI.CharacterDataUtils;
 import de.lordfoxifly.Api.CharacterListAPI.CharacterListData;
-import de.lordfoxifly.Api.CharacterListAPI.CharacterListUtils;
 import de.lordfoxifly.Api.PlayerAPI.Player;
-import de.lordfoxifly.Screens.PlayerStats.Screens.ProfStatScreen;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
-import de.lordfoxifly.Screens.Widgets.ImageButtonWidget;
+import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.ImageButtonWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;

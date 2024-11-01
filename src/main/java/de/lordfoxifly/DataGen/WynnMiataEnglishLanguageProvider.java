@@ -36,6 +36,7 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.settings.Raids.Checkbox.copyPlayerStats", "Copy PlayerStats");
         translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugEvents", "Debug Events");
         translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugRaids", "Debug Raids");
+        translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugHud", "Debug Hud");
 
         //
         translationBuilder.add("gui.wynnmiata.playerstats.TextWidget.NameInput", "Input Name");

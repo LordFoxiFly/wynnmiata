@@ -5,6 +5,7 @@ import de.lordfoxifly.Screens.PlayerStats.Screens.AbilityTreeScreen;
 import de.lordfoxifly.Screens.PlayerStats.Screens.OtherStatsScreen;
 import de.lordfoxifly.Screens.PlayerStats.Screens.ProfStatScreen;
 import de.lordfoxifly.Screens.PlayerStats.Screens.RaidStatScreen;
+import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.ImageButtonWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.tooltip.Tooltip;

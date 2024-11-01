@@ -127,7 +127,7 @@ public class CheckBoxs {
                         WynnMiata.CONFIG.setShowPlayerRaidsBoolean(checkbox.isChecked());
                         WynnMiata.CONFIG.save();
                         WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
-                .tooltip(Tooltip.of(Text.literal("Comming Soon")))
+                .tooltip(Tooltip.of(Text.literal("Shows you the Completions of every Partymember")))
                 .build();
 
     }
@@ -164,6 +164,17 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
                 .tooltip(Tooltip.of(Text.literal("Logs RaidEvents")))
+                .build();
+    }
+    public static CheckboxWidget  debugHud(int leftpos, int toppos){
+        return  CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Debug.Checkbox.debugHud"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + leftBackGroundX +66,toppos + topBackGroundY +32)
+                .checked(WynnMiata.CONFIG.isDebugHudBoolean())
+                .callback((checkbox, checked) -> {
+                    WynnMiata.CONFIG.setDebugHudBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Shows a Debug Hud")))
                 .build();
     }
 }

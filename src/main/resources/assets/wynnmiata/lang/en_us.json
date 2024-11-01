@@ -7,6 +7,7 @@
   "gui.wynnmiata.playerstats.raidstats.Lable.TNAComps": "TNA Completions:",
   "gui.wynnmiata.settings.Debug.Button.Open": "Debug",
   "gui.wynnmiata.settings.Debug.Checkbox.debugEvents": "Debug Events",
+  "gui.wynnmiata.settings.Debug.Checkbox.debugHud": "Debug Hud",
   "gui.wynnmiata.settings.Debug.Checkbox.debugRaids": "Debug Raids",
   "gui.wynnmiata.settings.MISC.Button.Open": "MISC",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering": "Armor Hud Rendering",

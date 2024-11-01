@@ -55,7 +55,7 @@ public class WynnMiata implements ClientModInitializer {
             ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername()));
 			Map<String,CharacterListData> data = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters"));
 			ClientPlayer.setCharacters(data);
-			ClientPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername()));
+			ClientPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername(), ClientPlayer.isPublicProfile()));
 			ClientPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(ClientPlayer));
 			ClientPlayer.setSelectedCharacterData(ClientPlayer.getActiveCharacterData());
 			ClientPlayer.setSelectedCharacterUUID(ClientPlayer.getActiveCharacter());

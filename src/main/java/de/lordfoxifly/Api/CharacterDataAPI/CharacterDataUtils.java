@@ -9,7 +9,10 @@ import de.lordfoxifly.WynnMiata;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public abstract class CharacterDataUtils {
 
@@ -19,17 +22,18 @@ public abstract class CharacterDataUtils {
      * @param keys The Player you want the Character Data from
      * @return
      */
-    public static Map<String,CharacterData> getCharacterDataFromCharacterUUIDList(List<String> keys, String username) {
+    public static Map<String,CharacterData> getCharacterDataFromCharacterUUIDList(List<String> keys, String username, boolean isDataPublic) {
         Map<String,CharacterData> characterDataList = new HashMap<>();
         for (String uuid: keys){
            try{
                String apisrc = RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username + "/characters/" + uuid);
-               WynnMiata.LOGGER.info("https://api.wynncraft.com/v3/player/" + username + "/characters/" + uuid);
-               WynnMiata.LOGGER.info(apisrc);
-               if (apisrc == null){
+               //WynnMiata.LOGGER.info("https://api.wynncraft.com/v3/player/" + username + "/characters/" + uuid);
+               //WynnMiata.LOGGER.info(apisrc);
+               if (apisrc == null || apisrc.isEmpty()){
                    continue;
                }
-               characterDataList.put(uuid, getCharData(apisrc));
+               CharacterData tempdate = getCharData(apisrc);
+               characterDataList.put(uuid, tempdate);
            }catch (URISyntaxException | IOException| InterruptedException e){
                WynnMiata.LOGGER.error(e.toString());
            }
@@ -37,18 +41,7 @@ public abstract class CharacterDataUtils {
         return characterDataList;
     }
 
-    private static final Gson gson = new Gson();
-    private static final ObjectMapper mapper = new ObjectMapper(gson);
 
-
-    /**
-     * Get the CharacterData from API Response String
-     * @param src The Api Response String
-     * @return
-     */
-    public static CharacterData getCharData(String src){
-        return mapper.readValue(src, CharacterData.class);
-    }
 
     /**
      * Gets the active Character of a Player
@@ -96,4 +89,19 @@ public abstract class CharacterDataUtils {
         }
         return output;
     }
+
+
+    private static final Gson gson = new Gson();
+    private static final ObjectMapper mapper = new ObjectMapper(gson);
+
+
+    /**
+     * Get the CharacterData from API Response String
+     * @param src The Api Response String
+     * @return
+     */
+    public static CharacterData getCharData(String src){
+        return mapper.readValue(src, CharacterData.class);
+    }
+
 }

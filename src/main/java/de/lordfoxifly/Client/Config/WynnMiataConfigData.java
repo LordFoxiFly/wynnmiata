@@ -61,11 +61,16 @@ public class WynnMiataConfigData {
         this.copyPlayerStatsBoolean = copyPlayerStatsBoolean;
     }
     public boolean isDebugRaidsBoolean() {
-        return isDebugRaidsBoolean;
+        return debugRaidsBoolean;
+    }
+    public boolean isDebugHudBoolean() {
+        return debugHudBoolean;
     }
 
-    public void setDebugRaidsBoolean(boolean debugRaidsBoolean) {
-        isDebugRaidsBoolean = debugRaidsBoolean;
+    public void setDebugHudBoolean(boolean debugHudBoolean) {
+        this.debugHudBoolean = debugHudBoolean;
+    }
+    public void setDebugRaidsBoolean(boolean debugRaidsBoolean) { debugRaidsBoolean = debugRaidsBoolean;
     }
 
     public boolean isDebugEventsBoolean() {
@@ -84,8 +89,8 @@ public class WynnMiataConfigData {
 
     private boolean copyPlayerStatsBoolean= false;
 
-
-    public boolean isDebugRaidsBoolean = false;
+    private  boolean debugHudBoolean = false;
+    private boolean debugRaidsBoolean = false;
 
     private boolean debugEventsBoolean = false;
 

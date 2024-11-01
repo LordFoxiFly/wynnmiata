@@ -1,16 +1,10 @@
-package de.lordfoxifly.Screens.Widgets;
+package de.lordfoxifly.Screens.Widgets.WynnMiataWidgets;
 
-import de.lordfoxifly.Api.PlayerAPI.Player;
-import de.lordfoxifly.Screens.PlayerStats.Screens.RaidStatScreen;
 import de.lordfoxifly.WynnMiata;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.PlayerSkinDrawer;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.PressableWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;

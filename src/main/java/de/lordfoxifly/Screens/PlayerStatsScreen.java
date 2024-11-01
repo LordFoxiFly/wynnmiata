@@ -8,7 +8,7 @@ import de.lordfoxifly.Api.PlayerAPIHelper;
 import de.lordfoxifly.Api.RequestHelper;
 import de.lordfoxifly.Screens.PlayerStats.PlayerStatsHelper;
 import de.lordfoxifly.Screens.Widgets.Buttons;
-import de.lordfoxifly.Screens.Widgets.ImageButtonWidget;
+import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.ImageButtonWidget;
 import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
@@ -54,7 +54,7 @@ public class PlayerStatsScreen extends Screen {
             requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ username ));//MinecraftClient.getInstance().getSession().getUsername()));
             Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + username +  "/characters"));
             requestedPlayer.setCharacters(characterListDataMap);
-            requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), username));
+            requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), username, requestedPlayer.isPublicProfile()));
             requestedPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(requestedPlayer));
             requestedPlayer.setSelectedCharacterData(requestedPlayer.getActiveCharacterData());
             requestedPlayer.setSelectedCharacterUUID(requestedPlayer.getActiveCharacter());
