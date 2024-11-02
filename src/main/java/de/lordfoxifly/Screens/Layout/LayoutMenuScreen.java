@@ -66,16 +66,22 @@ public class LayoutMenuScreen extends Screen {
             xTextField.setText(String.valueOf(WynnMiata.CONFIG.getShowPlayerRaidx()));
             TextFieldWidget yTextField = TextFields.ShowPlayerRaidsYTextField(leftpos,toppos);
             yTextField.setText(String.valueOf(WynnMiata.CONFIG.getShowPlayerRaidy()));
+            TextFieldWidget colorTextFiled = TextFields.ShowPlayerRaidsColorTextField(leftpos + 30, toppos + 60);
+            colorTextFiled.setText(WynnMiata.CONFIG.getShowPlayerRaidColor());
+            addDrawableChild(colorTextFiled);
             addDrawableChild(xTextField);
             addDrawableChild(yTextField);
             addDrawableChild(TextFields.ShowPlayerRaidsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
+            addDrawableChild(TextFields.ShowPlayerRaidsColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
         }
     }
     private void getElements(LayoutTypes layoutType, DrawContext context) {
         if (layoutType == LayoutTypes.ShowPlayerRaids){
-            context.drawText(textRenderer, "Layout", leftpos + 8, toppos + 25, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Layout", leftpos + 8, toppos + 25, 0xFFFFFF, true);
             context.drawText(textRenderer, "X:", leftpos + 10, toppos + 35, 0xFFFFFFFF, true);
             context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 60, 0xFFFFFF, true);
         }
     }
 

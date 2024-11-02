@@ -12,6 +12,8 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextFields {
     private  static final int leftBackGroundX = 6;
@@ -61,5 +63,25 @@ public class TextFields {
             }
 
         }).dimensions( leftpos + 180, toppos  + 33, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
+
+    public static TextFieldWidget ShowPlayerRaidsColorTextField(int x, int y){
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x,y, 50,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.TextWidget.NameInput"));
+    }
+    public static ButtonWidget ShowPlayerRaidsColorEnter(int x, int y, TextFieldWidget textFieldWidget){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button.Enter"), (btn) -> {
+            Pattern pattern = Pattern.compile("[^0-9A-F]");
+            Matcher matcher = pattern.matcher(textFieldWidget.getText());
+            if (!matcher.find() && textFieldWidget.getText().length() < 7){
+                WynnMiata.CONFIG.setShowPlayerRaidColor(textFieldWidget.getText());
+                WynnMiata.CONFIG.save();
+                WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+
+            }
+            else{
+                textFieldWidget.setText(WynnMiata.CONFIG.getShowPlayerRaidColor());
+            }
+
+        }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
     }
 }

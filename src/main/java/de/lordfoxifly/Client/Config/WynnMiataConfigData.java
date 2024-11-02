@@ -95,6 +95,9 @@ public class WynnMiataConfigData {
     public void setShowPlayerRaidx(int showPlayerRaidx) {
         this.showPlayerRaidx = showPlayerRaidx;
     }
+    public String getShowPlayerRaidColor() {return showPlayerRaidColor;}
+
+    public void setShowPlayerRaidColor(String showPlayerRaidColor) {this.showPlayerRaidColor = showPlayerRaidColor;}
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
     private  boolean FireHudRenderingBoolean = false;
@@ -103,8 +106,8 @@ public class WynnMiataConfigData {
     private  boolean showPlayerRaidsBoolean = false;
     private int showPlayerRaidy = 150;
     private int showPlayerRaidx = 10;
+    private String showPlayerRaidColor = "00FF00";
     private boolean copyPlayerStatsBoolean= false;
-
     private  boolean debugHudBoolean = false;
     private boolean debugRaidsBoolean = false;
 
