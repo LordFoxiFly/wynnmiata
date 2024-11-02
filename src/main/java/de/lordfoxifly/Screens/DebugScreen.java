@@ -32,6 +32,7 @@ public class DebugScreen extends Screen {
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos,toppos));
+        addDrawableChild(Buttons.LayoutButton(leftpos,toppos));
         addDrawableChild(CheckBoxs.debugEvents(leftpos, toppos));
         addDrawableChild(CheckBoxs.debugRaids(leftpos,toppos));
         addDrawableChild(CheckBoxs.debugHud(leftpos,toppos));

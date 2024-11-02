@@ -44,15 +44,15 @@ public class SettingScreen extends Screen {
 
     @Override
     protected void init() {
-
-        super.init();
         leftpos = (this.width - this.imagewidth ) / 2;
         toppos = (this.height - this.imageheight) / 2;
+        super.init();
         addDrawableChild(Buttons.TTCButton(leftpos, toppos));
         addDrawableChild(Buttons.NOLButton(leftpos, toppos));
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos,toppos));
+        addDrawableChild(Buttons.LayoutButton(leftpos,toppos));
     }
 
     @Override

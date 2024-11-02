@@ -61,6 +61,12 @@ public class Buttons {
 
         }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY + 80, 55, 20).tooltip(Tooltip.of(Text.of("For Debugging/Testing Features"))).build();
     }
+    public static ButtonWidget LayoutButton(int leftpos, int toppos){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Layout.Button.Open"), (btn) -> {
+            MinecraftClient.getInstance().setScreen(new LayoutScreen());
+
+        }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY + 185, 55, 20).tooltip(Tooltip.of(Text.of("Change the Layout of Features"))).build();
+    }
 
 
     public static ImageButtonWidget RAIDSTATS(int leftpos, int toppos){

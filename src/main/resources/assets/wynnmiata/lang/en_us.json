@@ -1,4 +1,5 @@
 {
+  "gui.wynnmiata.layout.Button.showPlayerRaidsCoordsEnter": "Enter",
   "gui.wynnmiata.playerstats.Button.Enter": "Enter",
   "gui.wynnmiata.playerstats.TextWidget.NameInput": "Input Name",
   "gui.wynnmiata.playerstats.raidstats.Lable.NOGComps": "NOG Completions:",
@@ -9,6 +10,7 @@
   "gui.wynnmiata.settings.Debug.Checkbox.debugEvents": "Debug Events",
   "gui.wynnmiata.settings.Debug.Checkbox.debugHud": "Debug Hud",
   "gui.wynnmiata.settings.Debug.Checkbox.debugRaids": "Debug Raids",
+  "gui.wynnmiata.settings.Layout.Button.Open": "Layout",
   "gui.wynnmiata.settings.MISC.Button.Open": "MISC",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering": "Armor Hud Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.FireEntityRendering": "FireEntity Rendering",

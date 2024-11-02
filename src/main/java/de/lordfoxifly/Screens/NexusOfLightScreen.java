@@ -30,6 +30,7 @@ public class NexusOfLightScreen extends Screen {
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos, toppos));
+        addDrawableChild(Buttons.LayoutButton(leftpos,toppos));
     }
 
     @Override
