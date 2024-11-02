@@ -8,7 +8,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class NexusOfLightScreen extends Screen {
-    private static final Text NOL_TITLE = Text.translatable(WynnMiata.MOD_ID, "gui."+ WynnMiata.MOD_ID + "settings.NOL");
+    private static final Text NOL_TITLE = Text.translatable( "gui."+ WynnMiata.MOD_ID + "settings.NOL");
     private static final Identifier BACKGROUND_IMAGE = Identifier.of("wynnmiata", "textures/gui/background_texture.png");
     private  int leftpos, toppos;
     private final int imagewidth,imageheight;
@@ -30,6 +30,7 @@ public class NexusOfLightScreen extends Screen {
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos, toppos));
+        addDrawableChild(Buttons.CustomizeButton(leftpos,toppos));
         addDrawableChild(Buttons.LayoutButton(leftpos,toppos));
     }
 

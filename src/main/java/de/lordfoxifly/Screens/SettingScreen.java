@@ -52,6 +52,7 @@ public class SettingScreen extends Screen {
         addDrawableChild(Buttons.MISCButton(leftpos, toppos));
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos,toppos));
+        addDrawableChild(Buttons.CustomizeButton(leftpos,toppos));
         addDrawableChild(Buttons.LayoutButton(leftpos,toppos));
     }
 
@@ -71,16 +72,4 @@ public class SettingScreen extends Screen {
         context.drawTexture(BACKGROUND_IMAGE,  leftpos, toppos + 15,0,0, 256,220, 256, 220);
     }
 
-    private Integer TCCComps(String source){
-        return  PlayerAPIHelper.getPlayer(source).getGlobalData().getRaids().getList().getTheCanyonColossus();
-    }
-    private Integer NOLComps( String source){
-        return  PlayerAPIHelper.getPlayer(source).getGlobalData().getRaids().getList().getOrphionSNexusOfLight();
-    }
-    private Integer NOLGComps(String source){
-        return  PlayerAPIHelper.getPlayer(source).getGlobalData().getRaids().getList().getNestOfTheGrootslangs();
-    }
-    private Integer TNAComps(String source){
-        return  PlayerAPIHelper.getPlayer(source).getGlobalData().getRaids().getList().getTheNamelessAnomaly();
-    }
 }

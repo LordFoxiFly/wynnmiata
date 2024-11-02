@@ -1,4 +1,6 @@
 {
+  "gui.wynnmiata.Customize.LavaHighlight.Open": "Lava Highlight",
+  "gui.wynnmiata.customize.Button.HighlightLavaColorEnter": "Enter",
   "gui.wynnmiata.layout.Button.showPlayerRaidsCoordsEnter": "Enter",
   "gui.wynnmiata.playerstats.Button.Enter": "Enter",
   "gui.wynnmiata.playerstats.TextWidget.NameInput": "Input Name",
@@ -6,6 +8,7 @@
   "gui.wynnmiata.playerstats.raidstats.Lable.NOLComps": "NOL Completions:",
   "gui.wynnmiata.playerstats.raidstats.Lable.TCCComps": "TCC Completions:",
   "gui.wynnmiata.playerstats.raidstats.Lable.TNAComps": "TNA Completions:",
+  "gui.wynnmiata.settings.Customize.Button.Open": "Customize",
   "gui.wynnmiata.settings.Debug.Button.Open": "Debug",
   "gui.wynnmiata.settings.Debug.Checkbox.debugEvents": "Debug Events",
   "gui.wynnmiata.settings.Debug.Checkbox.debugHud": "Debug Hud",

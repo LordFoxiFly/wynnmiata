@@ -66,10 +66,10 @@ public class TextFields {
     }
 
     public static TextFieldWidget ShowPlayerRaidsColorTextField(int x, int y){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x,y, 50,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.TextWidget.NameInput"));
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x,y, 50,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.TextWidget.ShowPlayerRaidsColorInput"));
     }
     public static ButtonWidget ShowPlayerRaidsColorEnter(int x, int y, TextFieldWidget textFieldWidget){
-        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button.Enter"), (btn) -> {
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.showPlayerRaidsCoordsEnter"), (btn) -> {
             Pattern pattern = Pattern.compile("[^0-9A-F]");
             Matcher matcher = pattern.matcher(textFieldWidget.getText());
             if (!matcher.find() && textFieldWidget.getText().length() < 7){
@@ -80,6 +80,26 @@ public class TextFields {
             }
             else{
                 textFieldWidget.setText(WynnMiata.CONFIG.getShowPlayerRaidColor());
+            }
+
+        }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
+
+    public static TextFieldWidget LavaHighlightColorTextField(int x, int y){
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x,y, 50,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".customize.TextWidget.LavaHighlightColorInput"));
+    }
+    public static ButtonWidget LavaHighlightColorEnter(int x, int y, TextFieldWidget textFieldWidget){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".customize.Button.HighlightLavaColorEnter"), (btn) -> {
+            Pattern pattern = Pattern.compile("[^0-9A-F]");
+            Matcher matcher = pattern.matcher(textFieldWidget.getText());
+            if (!matcher.find() && textFieldWidget.getText().length() < 7){
+                WynnMiata.CONFIG.setHighLightLavaColor(textFieldWidget.getText());
+                WynnMiata.CONFIG.save();
+                WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+
+            }
+            else{
+                textFieldWidget.setText(WynnMiata.CONFIG.getHighLightLavaColor());
             }
 
         }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();

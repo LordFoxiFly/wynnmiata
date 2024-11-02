@@ -42,6 +42,7 @@ public class TheCanyonColossusScreen extends Screen {
         addDrawableChild(Buttons.RAIDSButton(leftpos,toppos));
         addDrawableChild(Buttons.DebugButton(leftpos,toppos));
         addDrawableChild(Buttons.LayoutButton(leftpos,toppos));
+        addDrawableChild(Buttons.CustomizeButton(leftpos,toppos));
         addDrawableChild(CheckBoxs.HighlightLava(leftpos, toppos));
 
     }

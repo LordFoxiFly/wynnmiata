@@ -81,7 +81,7 @@ public class LayoutMenuScreen extends Screen {
             context.drawText(textRenderer, "X:", leftpos + 10, toppos + 35, 0xFFFFFFFF, true);
             context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 35, 0xFFFFFFFF, true);
             context.drawText(textRenderer, "Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
-            context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 60, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 63, 0xFFFFFF, true);
         }
     }
 

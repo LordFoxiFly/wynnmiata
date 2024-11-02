@@ -38,10 +38,13 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugRaids", "Debug Raids");
         translationBuilder.add("gui.wynnmiata.settings.Debug.Checkbox.debugHud", "Debug Hud");
         translationBuilder.add("gui.wynnmiata.settings.Layout.Button.Open", "Layout");
+        translationBuilder.add("gui.wynnmiata.settings.Customize.Button.Open", "Customize");
+        translationBuilder.add("gui.wynnmiata.Customize.LavaHighlight.Open", "Lava Highlight");
 
         //
         translationBuilder.add("gui.wynnmiata.playerstats.TextWidget.NameInput", "Input Name");
         translationBuilder.add("gui.wynnmiata.playerstats.Button.Enter", "Enter");
         translationBuilder.add("gui.wynnmiata.layout.Button.showPlayerRaidsCoordsEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.customize.Button.HighlightLavaColorEnter", "Enter");
     }
 }

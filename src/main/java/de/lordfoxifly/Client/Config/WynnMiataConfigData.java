@@ -98,8 +98,13 @@ public class WynnMiataConfigData {
     public String getShowPlayerRaidColor() {return showPlayerRaidColor;}
 
     public void setShowPlayerRaidColor(String showPlayerRaidColor) {this.showPlayerRaidColor = showPlayerRaidColor;}
+
+    public String getHighLightLavaColor() {return HighLightLavaColor;}
+    public void setHighLightLavaColor(String highLightLavaColor) {HighLightLavaColor = highLightLavaColor;}
+
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
+    private String HighLightLavaColor = "00FF00";
     private  boolean FireHudRenderingBoolean = false;
     private  boolean FireEntityRenderingBoolean = false;
     private  boolean ArmorRenderingBoolean = false;
