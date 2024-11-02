@@ -1,6 +1,8 @@
 package de.lordfoxifly.Screens.Widgets;
 
 import de.lordfoxifly.Screens.*;
+import de.lordfoxifly.Screens.Customize.CustomizeMenuScreen;
+import de.lordfoxifly.Screens.Customize.CustomizeTypes;
 import de.lordfoxifly.Screens.PlayerStats.Screens.AbilityTreeScreen;
 import de.lordfoxifly.Screens.PlayerStats.Screens.OtherStatsScreen;
 import de.lordfoxifly.Screens.PlayerStats.Screens.ProfStatScreen;
@@ -60,6 +62,25 @@ public class Buttons {
             MinecraftClient.getInstance().setScreen(new DebugScreen());
 
         }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY + 80, 55, 20).tooltip(Tooltip.of(Text.of("For Debugging/Testing Features"))).build();
+    }
+    public static ButtonWidget LayoutButton(int leftpos, int toppos){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Layout.Button.Open"), (btn) -> {
+            MinecraftClient.getInstance().setScreen(new LayoutScreen());
+
+        }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY + 185, 55, 20).tooltip(Tooltip.of(Text.of("Change the Layout of Features"))).build();
+    }
+    public static ButtonWidget CustomizeButton(int leftpos, int toppos){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Customize.Button.Open"), (btn) -> {
+            MinecraftClient.getInstance().setScreen(new CustomizeScreen());
+
+        }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY + 165, 55, 20).tooltip(Tooltip.of(Text.of("Change the Settings of Features"))).build();
+    }
+
+    public static ButtonWidget LavaHighlight(int leftpos, int toppos){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".Customize.LavaHighlight.Open"), (btn) -> {
+            MinecraftClient.getInstance().setScreen(new CustomizeMenuScreen(CustomizeTypes.LAVAHIGHLIGHT));
+
+        }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY, 55, 20).tooltip(Tooltip.of(Text.of("Change the Settings of Features"))).build();
     }
 
 

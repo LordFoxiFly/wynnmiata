@@ -17,6 +17,7 @@ import de.lordfoxifly.Events.WynnMiataEventLoader;
 import de.lordfoxifly.Features.Raids.RaidInstance;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
+import de.lordfoxifly.WynnMiataUtils.ColorUtils;
 import de.lordfoxifly.render.Types.Box;
 import de.lordfoxifly.render.WorldRender;
 import net.fabricmc.api.ClientModInitializer;
@@ -83,7 +84,7 @@ public class WynnMiata implements ClientModInitializer {
 		DevUtilsListeners.load();
 
 
-		WorldRender.addRenderable(new Box(new Vec3d(1, 60, 0), new Vec3d(2, 65, 1), 0xFF00FF00, false));
+		WorldRender.addRenderable(new Box(new Vec3d(1, 60, 0), new Vec3d(2, 65, 1), ColorUtils.hexStringToRed(WynnMiata.CONFIG.getHighLightLavaColor()), ColorUtils.hexStringToGreen(WynnMiata.CONFIG.getHighLightLavaColor()) , ColorUtils.hexStringToBlue(WynnMiata.CONFIG.getHighLightLavaColor()) ,255));
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (Keybinds.Settings.isPressed()){
 				client.setScreen(new SettingScreen());
