@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.cert.TrustAnchor;
 import java.util.Map;
 
 public class WynnMiata implements ClientModInitializer {
@@ -80,6 +81,7 @@ public class WynnMiata implements ClientModInitializer {
 			);
 		});
 		CONFIG = WynnMiataConfig.loadConfigData();
+		CONFIG.setRenderHudElements(true);
 		WynnMiataEventLoader.load();
 		DevUtilsListeners.load();
 

@@ -74,9 +74,29 @@ public class LayoutMenuScreen extends Screen {
             addDrawableChild(TextFields.ShowPlayerRaidsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
             addDrawableChild(TextFields.ShowPlayerRaidsColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
         }
+        if (layoutType == LayoutTypes.ArmorDuration){
+            TextFieldWidget xTextField = TextFields.LayoutMenuXTextField(leftpos,toppos);
+            xTextField.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityX()));
+            TextFieldWidget yTextField = TextFields.LayoutMenuYTextField(leftpos,toppos);
+            yTextField.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityY()));
+            TextFieldWidget colorTextFiled = TextFields.LayoutMenuColorTextField(leftpos + 30, toppos + 60);
+            colorTextFiled.setText(WynnMiata.CONFIG.getArmorDurabilityColor());
+            addDrawableChild(colorTextFiled);
+            addDrawableChild(xTextField);
+            addDrawableChild(yTextField);
+            addDrawableChild(TextFields.ArmorDurabilityCoordsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
+            addDrawableChild(TextFields.ArmorDurabilityColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
+        }
     }
     private void getElements(LayoutTypes layoutType, DrawContext context) {
         if (layoutType == LayoutTypes.ShowPlayerRaids){
+            context.drawText(textRenderer, "Layout", leftpos + 8, toppos + 25, 0xFFFFFF, true);
+            context.drawText(textRenderer, "X:", leftpos + 10, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 63, 0xFFFFFF, true);
+        }
+        if (layoutType == LayoutTypes.ArmorDuration){
             context.drawText(textRenderer, "Layout", leftpos + 8, toppos + 25, 0xFFFFFF, true);
             context.drawText(textRenderer, "X:", leftpos + 10, toppos + 35, 0xFFFFFFFF, true);
             context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 35, 0xFFFFFFFF, true);

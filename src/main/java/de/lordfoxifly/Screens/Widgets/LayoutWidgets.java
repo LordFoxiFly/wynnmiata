@@ -15,4 +15,10 @@ public class LayoutWidgets {
                     MinecraftClient.getInstance().setScreen(new LayoutMenuScreen(LayoutTypes.ShowPlayerRaids));
         });
     }
+    public static LayoutWidget ArmorDurability(){
+        return new  LayoutWidget(WynnMiata.CONFIG.getArmorDurabilityX(), WynnMiata.CONFIG.getArmorDurabilityY(), 20, 90, Text.translatable("gui." + WynnMiata.CONFIG + ".layout.armordurability"),
+                button -> {
+                    MinecraftClient.getInstance().setScreen(new LayoutMenuScreen(LayoutTypes.ArmorDuration));
+                });
+    }
 }

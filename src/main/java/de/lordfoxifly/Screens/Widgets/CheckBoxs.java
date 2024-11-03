@@ -6,6 +6,7 @@ import de.lordfoxifly.Debug.DebugCommands;
 import de.lordfoxifly.Debug.Devutils;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.CheckboxWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
@@ -175,6 +176,18 @@ public class CheckBoxs {
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
                 .tooltip(Tooltip.of(Text.literal("Shows a Debug Hud")))
+                .build();
+    }
+
+    public static CheckboxWidget ArmorDurability(int leftpos, int toppos) {
+        return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.ArmorDurabilityHudRendering"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos +leftBackGroundX +66,toppos + topBackGroundY + 64)
+                .checked(WynnMiata.CONFIG.isArmorDurabilityBoolean())
+                .callback((checkbox, checked) ->{
+                    WynnMiata.CONFIG.setArmorDurabilityBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Shows the Armor Durability of crafted Items on the Hud ")))
                 .build();
     }
 }

@@ -15,14 +15,17 @@ import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlayerStatsScreen extends Screen {
 
@@ -41,7 +44,9 @@ public class PlayerStatsScreen extends Screen {
     private static Player requestedPlayer;
 
     private TextFieldWidget textFieldWidget;
-
+    private ButtonWidget addFriend;
+    private ButtonWidget addGuild;
+    private ButtonWidget addParty;
 
     public PlayerStatsScreen(Player requestedPlayer) {
         super(TITLE);
@@ -87,6 +92,7 @@ public class PlayerStatsScreen extends Screen {
         addDrawableChild(Buttons.PROFSTATS(leftpos,toppos));
         addDrawableChild(Buttons.ABILTYTREE(leftpos,toppos));
         addDrawableChild(Buttons.OTHERSTATS(leftpos,toppos));
+
     }
 
     @Override
@@ -94,6 +100,7 @@ public class PlayerStatsScreen extends Screen {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         renderPlayerStats(context);
+
     }
 
     private void renderPlayerStats(DrawContext context) {
@@ -104,14 +111,41 @@ public class PlayerStatsScreen extends Screen {
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
         //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
         context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getActiveCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "First joined: " + requestedPlayer.getFirstJoin().substring(0, requestedPlayer.getFirstJoin().indexOf("T")), leftpos + 15, toppos + 95, 0xFFFFFF, true);
+        context.drawText(textRenderer, "Last joined: " + requestedPlayer.getLastJoin().substring(0, requestedPlayer.getLastJoin().indexOf("T")), leftpos + 15, toppos + 105, 0xFFFFFF, true);
+        //Guild
+        context.drawText(textRenderer,  "Guild:", leftpos + 15 , toppos + 125, 0xFFFFFF, true);
+        if (requestedPlayer.getGuild() != null){
+            context.drawText(textRenderer,  requestedPlayer.getGuild().getRankStars() + " " +requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+        }
+        else {
+            context.drawText(textRenderer,  "No Guild", leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+        }
+
+        //Right Side
+        context.drawText(textRenderer, "Gamemodes:" , leftpos + 180, toppos + 35, 0xFFFFFF, true);
+        int gamemodeyOffset = 10 * requestedPlayer.getSelectedCharacterData().getGamemode().size();
+        renderGamemodes(context, 45);
+
+
+
         if(update){
+            remove(addFriend);
+            remove(addParty);
+            remove(addGuild);
             for (ImageButtonWidget imageButtonWidget: classbuttons){
                 remove(imageButtonWidget);
             }
+            addFriend = Buttons.CommandButton(leftpos + 14, toppos+ 15, 65, 18, "friend add " +requestedPlayer.getUsername() , "Sends a Friend request to the Player", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddFriend" );
+            addParty =  Buttons.CommandButton(leftpos + 79, toppos+ 15, 65, 18, "party invite " + requestedPlayer.getUsername(), "Sends a Party invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddParty" );
+            addGuild = Buttons.CommandButton(leftpos + 144, toppos+ 15, 65, 18, "guild invite " + requestedPlayer.getUsername() , "Sends a Guild Invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddGuild" );
             classbuttons = PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer);
             for (ImageButtonWidget imageButtonWidget: classbuttons ){
                 addDrawableChild(imageButtonWidget);
             }
+            addDrawableChild(addFriend);
+            addDrawableChild(addParty);
+            addDrawableChild(addGuild);
             update = false;
         }
     }
@@ -128,6 +162,16 @@ public class PlayerStatsScreen extends Screen {
         return false;
     }
 
+    private void renderGamemodes(DrawContext context, int y){
+        int yoffset = y;
+        if (requestedPlayer.getSelectedCharacterData().getGamemode().isEmpty()){
+            return;
+        }
+        for (Object gamemode : requestedPlayer.getSelectedCharacterData().getGamemode()){
+            context.drawText(textRenderer, gamemode.toString(), leftpos + 180, toppos + yoffset, 0xFFFFFF, true);
+            yoffset += 10;
+        }
+    }
 
     public String getSupportRank(Player player){
         if (player.getSupportRank() != null){

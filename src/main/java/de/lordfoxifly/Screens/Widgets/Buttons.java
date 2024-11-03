@@ -1,5 +1,7 @@
 package de.lordfoxifly.Screens.Widgets;
 
+import com.mojang.datafixers.kinds.IdF;
+import de.lordfoxifly.Api.PlayerAPI.Player;
 import de.lordfoxifly.Screens.*;
 import de.lordfoxifly.Screens.Customize.CustomizeMenuScreen;
 import de.lordfoxifly.Screens.Customize.CustomizeTypes;
@@ -15,6 +17,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
 
 
 public class Buttons {
@@ -81,6 +84,24 @@ public class Buttons {
             MinecraftClient.getInstance().setScreen(new CustomizeMenuScreen(CustomizeTypes.LAVAHIGHLIGHT));
 
         }).dimensions( leftpos + leftBackGroundX, toppos + topBackGroundY, 55, 20).tooltip(Tooltip.of(Text.of("Change the Settings of Features"))).build();
+    }
+    public static ButtonWidget CommandButton(int x, int y, int width, int height, String command, String tooltip, String key){
+        return ButtonWidget.builder(Text.translatable(key), button -> {
+            if (MinecraftClient.getInstance().player == null ){
+                return;
+            }
+            MinecraftClient.getInstance().player.networkHandler.sendChatCommand(command);
+        }).dimensions(x, y, width, height).tooltip(Tooltip.of(Text.of(tooltip))).build();
+    }
+    public static ButtonWidget CommandButton(int x, int y, int width, int height, List<String> command, String tooltip, String key){
+        return ButtonWidget.builder(Text.translatable(key), button -> {
+            if (MinecraftClient.getInstance().player == null ){
+                return;
+            }
+            for (String cmd : command){
+                MinecraftClient.getInstance().player.networkHandler.sendChatCommand(cmd);
+            }
+        }).dimensions(x, y, width, height).tooltip(Tooltip.of(Text.of(tooltip))).build();
     }
 
 
