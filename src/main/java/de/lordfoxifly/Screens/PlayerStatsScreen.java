@@ -15,12 +15,14 @@ import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +43,9 @@ public class PlayerStatsScreen extends Screen {
     private static Player requestedPlayer;
 
     private TextFieldWidget textFieldWidget;
-
+    private ButtonWidget addFriend;
+    private ButtonWidget addGuild;
+    private ButtonWidget addParty;
 
     public PlayerStatsScreen(Player requestedPlayer) {
         super(TITLE);
@@ -87,6 +91,7 @@ public class PlayerStatsScreen extends Screen {
         addDrawableChild(Buttons.PROFSTATS(leftpos,toppos));
         addDrawableChild(Buttons.ABILTYTREE(leftpos,toppos));
         addDrawableChild(Buttons.OTHERSTATS(leftpos,toppos));
+
     }
 
     @Override
@@ -94,6 +99,7 @@ public class PlayerStatsScreen extends Screen {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
         renderPlayerStats(context);
+
     }
 
     private void renderPlayerStats(DrawContext context) {
@@ -105,13 +111,22 @@ public class PlayerStatsScreen extends Screen {
         //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
         context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getActiveCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
         if(update){
+            remove(addFriend);
+            remove(addParty);
+            remove(addGuild);
             for (ImageButtonWidget imageButtonWidget: classbuttons){
                 remove(imageButtonWidget);
             }
+            addFriend = Buttons.CommandButton(leftpos + 14, toppos+ 15, 65, 18, "friend add " +requestedPlayer.getUsername() , "Sends a Friend request to the Player", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddFriend" );
+            addParty =  Buttons.CommandButton(leftpos + 79, toppos+ 15, 65, 18, "party invite " + requestedPlayer.getUsername(), "Sends a Party invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddParty" );
+            addGuild = Buttons.CommandButton(leftpos + 144, toppos+ 15, 65, 18, "guild invite " + requestedPlayer.getUsername() , "Sends a Guild Invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddGuild" );
             classbuttons = PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer);
             for (ImageButtonWidget imageButtonWidget: classbuttons ){
                 addDrawableChild(imageButtonWidget);
             }
+            addDrawableChild(addFriend);
+            addDrawableChild(addParty);
+            addDrawableChild(addGuild);
             update = false;
         }
     }

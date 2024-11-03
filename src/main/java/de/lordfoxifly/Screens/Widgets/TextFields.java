@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class TextFields {
     private  static final int leftBackGroundX = 6;
     public static TextFieldWidget PlayerStatSearch(int leftpos, int toppos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, leftpos + 125 +124,toppos + 17, 80,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.TextWidget.NameInput"));
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, leftpos + 125 +124,toppos + 15, 80,18, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.TextWidget.NameInput"));
     }
     public static ButtonWidget PLayerStatSearchEnter(int leftpos, int toppos, TextFieldWidget textFieldWidget){
          return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.Button.Enter"), (btn) -> {
@@ -29,7 +29,7 @@ public class TextFields {
             textFieldWidget.setText(WynnMiata.ClientPlayer.getUsername());
             }
 
-    }).dimensions( leftpos + 205 + 124, toppos  + 17, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }).dimensions( leftpos + 205 + 124, toppos  + 15, 40, 19).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
     }
 
     public static TextFieldWidget ShowPlayerRaidsXTextField(int leftpos, int toppos){
