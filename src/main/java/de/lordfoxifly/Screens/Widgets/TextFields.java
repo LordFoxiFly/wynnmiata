@@ -3,7 +3,6 @@ package de.lordfoxifly.Screens.Widgets;
 import de.lordfoxifly.Client.Config.WynnMiataConfig;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.WynnMiata;
-import de.lordfoxifly.WynnMiataUtils.ColorUtils;
 import de.lordfoxifly.WynnMiataUtils.WynnMiataUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.tooltip.Tooltip;
@@ -11,7 +10,6 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,7 +67,7 @@ public class TextFields {
         return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x,y, 50,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.TextWidget.ShowPlayerRaidsColorInput"));
     }
     public static ButtonWidget ShowPlayerRaidsColorEnter(int x, int y, TextFieldWidget textFieldWidget){
-        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.showPlayerRaidsCoordsEnter"), (btn) -> {
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.showPlayerRaidsColorEnter"), (btn) -> {
             Pattern pattern = Pattern.compile("[^0-9A-F]");
             Matcher matcher = pattern.matcher(textFieldWidget.getText());
             if (!matcher.find() && textFieldWidget.getText().length() < 7){
@@ -100,6 +98,57 @@ public class TextFields {
             }
             else{
                 textFieldWidget.setText(WynnMiata.CONFIG.getHighLightLavaColor());
+            }
+
+        }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
+
+    public static TextFieldWidget LayoutMenuXTextField(int leftpos, int toppos){
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, leftpos +  20,toppos + 33, 60,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.TextWidget.showPlayerRaidsX"));
+    }
+    public static TextFieldWidget LayoutMenuYTextField(int leftpos, int toppos){
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, leftpos + 100,toppos + 33, 60,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.TextWidget.showPlayerRaidsY"));
+    }
+    public static ButtonWidget ArmorDurabilityCoordsEnter(int leftpos, int toppos, int screenwidth, int screenheight, TextFieldWidget x, TextFieldWidget y){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.armorDurabilityEnter"), (btn) -> {
+            if (WynnMiataUtils.isNumeric(y.getText()) && WynnMiataUtils.isNumeric(x.getText())){
+                int iy = Integer.parseInt(y.getText());
+                int ix = Integer.parseInt(x.getText());
+                if (iy > screenheight || iy < 0 || ix < 0 || ix > screenwidth){
+                    y.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityY()));
+                    x.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityX()));
+                }
+                else {
+                    WynnMiata.CONFIG.setArmorDurabilityX(ix);
+                    WynnMiata.CONFIG.setArmorDurabilityY(iy);
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+                }
+
+            }
+            else{
+                y.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityY()));
+                x.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityX()));
+            }
+
+        }).dimensions( leftpos + 180, toppos  + 33, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
+
+    public static TextFieldWidget LayoutMenuColorTextField(int x, int y){
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x,y, 50,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.TextWidget.ShowPlayerRaidsColorInput"));
+    }
+    public static ButtonWidget ArmorDurabilityColorEnter(int x, int y, TextFieldWidget textFieldWidget){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.armorDurabilityColorEnter"), (btn) -> {
+            Pattern pattern = Pattern.compile("[^0-9A-F]");
+            Matcher matcher = pattern.matcher(textFieldWidget.getText());
+            if (!matcher.find() && textFieldWidget.getText().length() < 7){
+                WynnMiata.CONFIG.setArmorDurabilityColor(textFieldWidget.getText());
+                WynnMiata.CONFIG.save();
+                WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+
+            }
+            else{
+                textFieldWidget.setText(WynnMiata.CONFIG.getArmorDurabilityColor());
             }
 
         }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
