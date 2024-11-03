@@ -25,6 +25,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlayerStatsScreen extends Screen {
 
@@ -110,6 +111,24 @@ public class PlayerStatsScreen extends Screen {
         context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
         //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
         context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getActiveCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
+        context.drawText(textRenderer, "First joined: " + requestedPlayer.getFirstJoin().substring(0, requestedPlayer.getFirstJoin().indexOf("T")), leftpos + 15, toppos + 95, 0xFFFFFF, true);
+        context.drawText(textRenderer, "Last joined: " + requestedPlayer.getLastJoin().substring(0, requestedPlayer.getLastJoin().indexOf("T")), leftpos + 15, toppos + 105, 0xFFFFFF, true);
+        //Guild
+        context.drawText(textRenderer,  "Guild:", leftpos + 15 , toppos + 125, 0xFFFFFF, true);
+        if (requestedPlayer.getGuild() != null){
+            context.drawText(textRenderer,  requestedPlayer.getGuild().getRankStars() + " " +requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+        }
+        else {
+            context.drawText(textRenderer,  "No Guild", leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+        }
+
+        //Right Side
+        context.drawText(textRenderer, "Gamemodes:" , leftpos + 180, toppos + 35, 0xFFFFFF, true);
+        int gamemodeyOffset = 10 * requestedPlayer.getSelectedCharacterData().getGamemode().size();
+        renderGamemodes(context, 45);
+
+
+
         if(update){
             remove(addFriend);
             remove(addParty);
@@ -143,6 +162,16 @@ public class PlayerStatsScreen extends Screen {
         return false;
     }
 
+    private void renderGamemodes(DrawContext context, int y){
+        int yoffset = y;
+        if (requestedPlayer.getSelectedCharacterData().getGamemode().isEmpty()){
+            return;
+        }
+        for (Object gamemode : requestedPlayer.getSelectedCharacterData().getGamemode()){
+            context.drawText(textRenderer, gamemode.toString(), leftpos + 180, toppos + yoffset, 0xFFFFFF, true);
+            yoffset += 10;
+        }
+    }
 
     public String getSupportRank(Player player){
         if (player.getSupportRank() != null){
