@@ -3,6 +3,7 @@
   "gui.wynnmiata.customize.Button.HighlightLavaColorEnter": "Enter",
   "gui.wynnmiata.layout.Button.armorDurabilityColorEnter": "Enter",
   "gui.wynnmiata.layout.Button.armorDurabilityEnter": "Enter",
+  "gui.wynnmiata.layout.Button.armorDurabilityTextCoordsEnter": "Enter",
   "gui.wynnmiata.layout.Button.showPlayerRaidsColorEnter": "Enter",
   "gui.wynnmiata.layout.Button.showPlayerRaidsCoordsEnter": "Enter",
   "gui.wynnmiata.playerstats.Button.AddFriend": "Add Friend",

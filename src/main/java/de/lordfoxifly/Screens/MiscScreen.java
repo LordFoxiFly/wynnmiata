@@ -1,6 +1,5 @@
 package de.lordfoxifly.Screens;
 
-import de.lordfoxifly.Features.Items.ArmorDurability;
 import de.lordfoxifly.Screens.Widgets.Buttons;
 import de.lordfoxifly.Screens.Widgets.CheckBoxs;
 import de.lordfoxifly.WynnMiata;

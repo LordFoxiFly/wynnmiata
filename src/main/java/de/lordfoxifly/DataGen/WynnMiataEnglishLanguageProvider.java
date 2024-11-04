@@ -44,6 +44,7 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add( "gui.wynnmiata.playerstats.Button.AddFriend", "Add Friend");
         translationBuilder.add( "gui.wynnmiata.playerstats.Button.AddParty", "Party Invite");
         translationBuilder.add( "gui.wynnmiata.playerstats.Button.AddGuild", "Guild Invite");
+
         //
         translationBuilder.add("gui.wynnmiata.playerstats.TextWidget.NameInput", "Input Name");
         translationBuilder.add("gui.wynnmiata.playerstats.Button.Enter", "Enter");
@@ -52,5 +53,6 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.layout.Button.armorDurabilityEnter", "Enter");
         translationBuilder.add("gui.wynnmiata.layout.Button.armorDurabilityColorEnter", "Enter");
         translationBuilder.add("gui.wynnmiata.layout.Button.showPlayerRaidsColorEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.layout.Button.armorDurabilityTextCoordsEnter", "Enter");
     }
 }

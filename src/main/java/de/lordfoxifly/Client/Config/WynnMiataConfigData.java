@@ -125,12 +125,12 @@ public class WynnMiataConfigData {
         ArmorDurabilityX = armorDurabilityX;
     }
 
-    public String getArmorDurabilityColor() {
-        return ArmorDurabilityColor;
+    public String getArmorDurabilityTextColor() {
+        return ArmorDurabilityTextColor;
     }
 
-    public void setArmorDurabilityColor(String armorDurabilityColor) {
-        ArmorDurabilityColor = armorDurabilityColor;
+    public void setArmorDurabilityTextColor(String armorDurabilityTextColor) {
+        ArmorDurabilityTextColor = armorDurabilityTextColor;
     }
 
     public boolean isRenderHudElements() {
@@ -140,7 +140,21 @@ public class WynnMiataConfigData {
     public void setRenderHudElements(boolean renderHudElements) {
         this.renderHudElements = renderHudElements;
     }
+    public int getArmorDurabilityTextY() {
+        return ArmorDurabilityTextY;
+    }
 
+    public void setArmorDurabilityTextY(int armorDurabilityTextY) {
+        ArmorDurabilityTextY = armorDurabilityTextY;
+    }
+
+    public int getArmorDurabilityTextX() {
+        return ArmorDurabilityTextX;
+    }
+
+    public void setArmorDurabilityTextX(int armorDurabilityTextX) {
+        ArmorDurabilityTextX = armorDurabilityTextX;
+    }
     private boolean renderHudElements = true;
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
@@ -154,8 +168,10 @@ public class WynnMiataConfigData {
     private String showPlayerRaidColor = "00FF00";
     private  boolean ArmorDurabilityBoolean = false;
     private int ArmorDurabilityY = 0;
-    private int ArmorDurabilityX = 10;
-    private String ArmorDurabilityColor = "FFFFFF";
+    private int ArmorDurabilityX = 20;
+    private int ArmorDurabilityTextY = 13;
+    private int ArmorDurabilityTextX = 10;
+    private String ArmorDurabilityTextColor = "FFFFFF";
     private boolean copyPlayerStatsBoolean= false;
     private  boolean debugHudBoolean = false;
     private boolean debugRaidsBoolean = false;

@@ -103,11 +103,11 @@ public class TextFields {
         }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
     }
 
-    public static TextFieldWidget LayoutMenuXTextField(int leftpos, int toppos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, leftpos +  20,toppos + 33, 60,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.TextWidget.showPlayerRaidsX"));
+    public static TextFieldWidget LayoutMenuXTextField(int x, int y){
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x ,y , 60,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.TextWidget.showPlayerRaidsX"));
     }
-    public static TextFieldWidget LayoutMenuYTextField(int leftpos, int toppos){
-        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, leftpos + 100,toppos + 33, 60,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.TextWidget.showPlayerRaidsY"));
+    public static TextFieldWidget LayoutMenuYTextField(int x, int y){
+        return new TextFieldWidget(MinecraftClient.getInstance().textRenderer, x ,y , 60,15, Text.translatable("gui." + WynnMiata.MOD_ID + ".playerstats.TextWidget.showPlayerRaidsY"));
     }
     public static ButtonWidget ArmorDurabilityCoordsEnter(int leftpos, int toppos, int screenwidth, int screenheight, TextFieldWidget x, TextFieldWidget y){
         return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.armorDurabilityEnter"), (btn) -> {
@@ -142,15 +142,40 @@ public class TextFields {
             Pattern pattern = Pattern.compile("[^0-9A-F]");
             Matcher matcher = pattern.matcher(textFieldWidget.getText());
             if (!matcher.find() && textFieldWidget.getText().length() < 7){
-                WynnMiata.CONFIG.setArmorDurabilityColor(textFieldWidget.getText());
+                WynnMiata.CONFIG.setArmorDurabilityTextColor(textFieldWidget.getText());
                 WynnMiata.CONFIG.save();
                 WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
 
             }
             else{
-                textFieldWidget.setText(WynnMiata.CONFIG.getArmorDurabilityColor());
+                textFieldWidget.setText(WynnMiata.CONFIG.getArmorDurabilityTextColor());
             }
 
         }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
+
+    public static ButtonWidget ArmorDurabilityTextCoordsEnter(int leftpos, int toppos, int screenwidth, int screenheight, TextFieldWidget x, TextFieldWidget y){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.armorDurabilityTextCoordsEnter"), (btn) -> {
+            if (WynnMiataUtils.isNumeric(y.getText()) && WynnMiataUtils.isNumeric(x.getText())){
+                int iy = Integer.parseInt(y.getText());
+                int ix = Integer.parseInt(x.getText());
+                if (iy > screenheight || iy < 0 || ix < 0 || ix > screenwidth){
+                    y.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityTextY()));
+                    x.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityTextX()));
+                }
+                else {
+                    WynnMiata.CONFIG.setArmorDurabilityTextX(ix);
+                    WynnMiata.CONFIG.setArmorDurabilityTextY(iy);
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+                }
+
+            }
+            else{
+                y.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityTextY()));
+                x.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityTextX()));
+            }
+
+        }).dimensions( leftpos + 180, toppos  + 88, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
     }
 }
