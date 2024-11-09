@@ -116,7 +116,13 @@ public class PlayerStatsScreen extends Screen {
         //Guild
         context.drawText(textRenderer,  "Guild:", leftpos + 15 , toppos + 125, 0xFFFFFF, true);
         if (requestedPlayer.getGuild() != null){
-            context.drawText(textRenderer,  requestedPlayer.getGuild().getRankStars() + " " +requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+            if (requestedPlayer.getGuild().getRankStars() !=null){
+                context.drawText(textRenderer,  requestedPlayer.getGuild().getRankStars() + " " +requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+            }
+            else{
+                context.drawText(textRenderer,  requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+            }
+
         }
         else {
             context.drawText(textRenderer,  "No Guild", leftpos + 15 , toppos + 135, 0xFFFFFF, true);

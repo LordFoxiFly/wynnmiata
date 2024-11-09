@@ -190,4 +190,15 @@ public class CheckBoxs {
                 .tooltip(Tooltip.of(Text.literal("Shows the Armor Durability of crafted Items on the Hud ")))
                 .build();
     }
+    public static CheckboxWidget ProfessionHud(int leftpos, int toppos) {
+        return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.ProfessionTrackingHudRendering"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos +leftBackGroundX +66,toppos + topBackGroundY + 80)
+                .checked(WynnMiata.CONFIG.isProfessionHudBoolean())
+                .callback((checkbox, checked) ->{
+                    WynnMiata.CONFIG.setProfessionHudBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Keeps track of your Profession Grinding.")))
+                .build();
+    }
 }

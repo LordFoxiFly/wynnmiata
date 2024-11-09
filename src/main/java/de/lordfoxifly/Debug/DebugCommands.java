@@ -1,24 +1,12 @@
 package de.lordfoxifly.Debug;
 
 import com.mojang.brigadier.context.CommandContext;
-import de.lordfoxifly.Debug.Screen.DebugHud;
-import de.lordfoxifly.Features.Items.ItemData;
 import de.lordfoxifly.Features.Items.ItemUtils;
-import de.lordfoxifly.Features.Items.Value;
-import de.lordfoxifly.Features.ScoreboardHandler;
+import de.lordfoxifly.Features.Professions.ProfessionUtils;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.scoreboard.*;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class DebugCommands {
     public static int getScoreBoardString(CommandContext<FabricClientCommandSource> context) {
@@ -63,9 +51,13 @@ public class DebugCommands {
          *         String s = stringBuilder.substring(stringBuilder.indexOf("{"));
          *         Devutils.appendToFile(s, "wynnmiatadevlog.txt");
          */
-       context.getSource().sendFeedback(Text.literal(ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD)) + " Max Dura:" + ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD))));
-
-
+       //context.getSource().sendFeedback(Text.literal(ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD)) + " Max Dura:" + ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD))));
+        //context.getSource().sendFeedback(Text.literal(String.valueOf(ProfessionUtils.getMiningSpeed(MinecraftClient.getInstance().player.getMainHandStack()))));
+        //Devutils.appendToFile(ItemUtils.getItemLore(MinecraftClient.getInstance().player.getMainHandStack()), "wynnmiatadevlog.txt");
+        //context.getSource().sendFeedback(Text.literal(String.valueOf(ProfessionUtils.isGatheringTool(MinecraftClient.getInstance().player.getMainHandStack()))));
+        //context.getSource().sendFeedback(Text.literal(String.valueOf(ProfessionUtils.getGatheringToolType(MinecraftClient.getInstance().player.getMainHandStack()))));
+        //context.getSource().sendFeedback(Text.literal(String.valueOf(ProfessionUtils.getGatheringToolTier(MinecraftClient.getInstance().player.getMainHandStack()))));
+        context.getSource().sendFeedback(Text.literal(ItemUtils.getItemLore(MinecraftClient.getInstance().player.getInventory().getStack(9))));
         return 1;
     }
 

@@ -7,6 +7,7 @@ import de.lordfoxifly.WynnMiataUtils.ColorUtils;
 import de.lordfoxifly.render.Types.Box;
 import de.lordfoxifly.render.WorldRender;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -41,29 +42,29 @@ public class RaidInstanceUtils {
     }
 
     public static void HighlightLava(){
-        if (BlockUpdater.isBlockUpdated(lava1, Blocks.OBSIDIAN)) {
+        if (BlockUpdater.isBlockUpdated(lava1, Blocks.LAVA)) {
             WorldRender.addRenderable(lava1box);
         }
         else {
             WorldRender.removeRenderable(lava1box);}
-        if (BlockUpdater.isBlockUpdated(lava2, Blocks.OBSIDIAN)) {
+        if (BlockUpdater.isBlockUpdated(lava2, Blocks.LAVA)) {
            WorldRender.addRenderable(lava2box);
         }
         else {
             WorldRender.removeRenderable(lava2box);        }
-        if (BlockUpdater.isBlockUpdated(lava3, Blocks.OBSIDIAN)) {
+        if (BlockUpdater.isBlockUpdated(lava3, Blocks.LAVA)) {
             WorldRender.addRenderable(lava3box);
         }
         else {
             WorldRender.removeRenderable(lava3box);
         }
-        if (BlockUpdater.isBlockUpdated(lava4, Blocks.OBSIDIAN)) {
+        if (BlockUpdater.isBlockUpdated(lava4, Blocks.LAVA)) {
             WorldRender.addRenderable(lava4box);
         }
         else {
             WorldRender.removeRenderable(lava4box);
         }
-        if (BlockUpdater.isBlockUpdated(lava5, Blocks.OBSIDIAN)) {
+        if (BlockUpdater.isBlockUpdated(lava5, Blocks.LAVA)) {
             WorldRender.addRenderable(lava5box);
         }
         else {

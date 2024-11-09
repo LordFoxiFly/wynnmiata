@@ -5,6 +5,7 @@ import de.lordfoxifly.Screens.Layout.LayoutTypes;
 import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.LayoutWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.Element;
 import net.minecraft.text.Text;
 
 public class LayoutWidgets {
@@ -19,6 +20,13 @@ public class LayoutWidgets {
         return new  LayoutWidget(WynnMiata.CONFIG.getArmorDurabilityX(), WynnMiata.CONFIG.getArmorDurabilityY(), 20, 90, Text.translatable("gui." + WynnMiata.CONFIG + ".layout.armordurability"),
                 button -> {
                     MinecraftClient.getInstance().setScreen(new LayoutMenuScreen(LayoutTypes.ArmorDuration));
+                });
+    }
+
+    public static LayoutWidget ProfessionHud() {
+        return new  LayoutWidget(WynnMiata.CONFIG.getProfessionHudX(), WynnMiata.CONFIG.getProfessionHudY(), 150, 32, Text.translatable("gui." + WynnMiata.CONFIG + ".layout.professionhud"),
+                button -> {
+                    MinecraftClient.getInstance().setScreen(new LayoutMenuScreen(LayoutTypes.PROFESSIONHUD));
                 });
     }
 }

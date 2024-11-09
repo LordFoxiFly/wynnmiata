@@ -1,8 +1,10 @@
 package de.lordfoxifly.Features.Items;
 
+import de.lordfoxifly.Features.Professions.ProfessionUtils;
 import de.lordfoxifly.WynnMiata;
 import de.lordfoxifly.WynnMiataUtils.WynnMiataUtils;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -37,7 +39,6 @@ public class ItemUtils {
      * @return
      */
     public static Integer getItemDurability(ItemStack itemStack){
-        int durability = 0;
         String lore  = getItemLore(itemStack);
         String dura = null;
         if (lore == null) {
@@ -51,9 +52,7 @@ public class ItemUtils {
         if (!WynnMiataUtils.isNumeric(dura)){
             return  null;
         }
-        durability = Integer.parseInt(dura);
-
-        return durability;
+        return Integer.parseInt(dura);
     }
 
     /**
@@ -62,7 +61,6 @@ public class ItemUtils {
      * @return
      */
     public static Integer getItemMaxDurability(ItemStack itemStack){
-        int durability = 0;
         String lore  = getItemLore(itemStack);
         String maxdurabilty = null;
         if (lore == null) {
@@ -76,9 +74,8 @@ public class ItemUtils {
         if (!WynnMiataUtils.isNumeric(maxdurabilty)){
             return  null;
         }
-        durability = Integer.parseInt(maxdurabilty);
 
-        return durability;
+        return Integer.parseInt(maxdurabilty);
     }
 
     /**
@@ -97,4 +94,69 @@ public class ItemUtils {
         return hasDurability;
     }
 
+    //Pattern pattern
+    public static int getArmorBonus(){
+        int ouput = 0;
+        ClientPlayerEntity clientPlayer = MinecraftClient.getInstance().player;
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.HEAD).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.HEAD)) != null){
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.HEAD));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+
+        }
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.CHEST).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.CHEST)) != null) {
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.CHEST));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+
+        }
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.LEGS).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.LEGS)) != null){
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.LEGS));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+
+        }
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.FEET).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.FEET)) != null){
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.FEET));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+        }
+        return ouput;
+    }
+
+    public static int getPieceBonus(Pattern pattern, ItemStack itemStack){
+        int output = 0;
+        if (itemStack.isEmpty()){
+            return output;
+        }
+        Matcher matcher = pattern.matcher(getItemLore(itemStack));
+        if (matcher.find()){
+            if (WynnMiataUtils.isNumeric(matcher.group(1)) && matcher.group(1) != null){
+                return Integer.parseInt(matcher.group(1));
+            }
+        }
+        return output;
+    }
+
+    public static int getAccsBonus() {
+        int output = 0;
+        for (int i = 9; i < 13; i++){
+            if (!MinecraftClient.getInstance().player.getInventory().getStack(i).isEmpty() &&  hasItemDurability(MinecraftClient.getInstance().player.getInventory().getStack(i))) {
+                output += ProfessionUtils.getProfXPBoost(MinecraftClient.getInstance().player.getInventory().getStack(i));
+            }
+        }
+        return output;
+    }
 }

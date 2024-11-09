@@ -1,6 +1,8 @@
 package de.lordfoxifly.Screens;
 
 import de.lordfoxifly.Client.Config.WynnMiataConfig;
+import de.lordfoxifly.Features.Items.ItemUtils;
+import de.lordfoxifly.Features.Professions.ProfessionUtils;
 import de.lordfoxifly.Screens.Widgets.LayoutWidgets;
 import de.lordfoxifly.WynnMiata;
 import de.lordfoxifly.WynnMiataUtils.ColorUtils;
@@ -12,6 +14,7 @@ import net.minecraft.util.Identifier;
 
 public class LayoutScreen extends Screen {
     private static final  Text TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.LayoutScreen");
+    private static final Identifier DIAMOND_AXE = Identifier.of(WynnMiata.MOD_ID, "textures/gui/wynncrafttexture/gathertools/axe_diamond.png");
     private static final Identifier DIAMOND_LEGGINGS = Identifier.of(WynnMiata.MOD_ID, "textures/gui/minecraft/diamond_leggings.png");
     private static final Identifier DIAMOND_CHESTPLATE = Identifier.of(WynnMiata.MOD_ID, "textures/gui/minecraft/diamond_chestplate.png");
     private static final Identifier DIAMOND_HELMET = Identifier.of(WynnMiata.MOD_ID, "textures/gui/minecraft/diamond_helmet.png");
@@ -34,6 +37,9 @@ public class LayoutScreen extends Screen {
         }
         if (WynnMiata.CONFIG.isArmorDurabilityBoolean()){
             addDrawableChild(LayoutWidgets.ArmorDurability());
+        }
+        if (WynnMiata.CONFIG.isProfessionHudBoolean()){
+            addDrawableChild(LayoutWidgets.ProfessionHud());
         }
 
 
@@ -58,6 +64,14 @@ public class LayoutScreen extends Screen {
            context.drawTexture(DIAMOND_CHESTPLATE, WynnMiata.CONFIG.getArmorDurabilityX(), WynnMiata.CONFIG.getArmorDurabilityY() + 20, 0, 0, 15, 15, 15, 15);
            context.drawTexture(DIAMOND_LEGGINGS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 40, 0, 0, 15, 15, 15, 15);
            context.drawTexture(EMPTY_BOOTS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 60, 0, 0, 15, 15, 15, 15);
+       }
+       if (WynnMiata.CONFIG.isProfessionHudBoolean()){
+           context.drawTexture(DIAMOND_AXE, WynnMiata.CONFIG.getProfessionHudX(),WynnMiata.CONFIG.getProfessionHudY(), 0 , 0 , 32, 32, 32, 32);
+           context.drawText(MinecraftClient.getInstance().textRenderer, "Gathering XP Boost: 20 "   ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+           String durability = "Durability: §2 109";
+           context.drawText(MinecraftClient.getInstance().textRenderer, durability ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() +10 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+           context.drawText(MinecraftClient.getInstance().textRenderer, "Gathering Speed: 275"  ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 20 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+
        }
 
     }

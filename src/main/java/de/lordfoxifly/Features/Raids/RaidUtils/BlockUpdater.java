@@ -21,6 +21,6 @@ public abstract class BlockUpdater {
             return false;
         }
         Block block1 = MinecraftClient.getInstance().world.getBlockState(blockPos).getBlock();
-        return block1 != block;
+        return block1 == block;
     }
 }

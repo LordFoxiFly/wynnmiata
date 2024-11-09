@@ -42,21 +42,37 @@ public class PlayerStatsCommand  {
             }
             switch (raid){
                 case "TCC" ->{
+                    if (player == null){
+                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                        break;
+                    }
                     String contextS = player.getUsername() +  " has in total " + player.getGlobalData().getRaids().getList().getTheCanyonColossus() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getTccCompletion();
                     context.getSource().sendFeedback(Text.literal(contextS));
                     if (WynnMiata.CONFIG.isCopyPlayerStatsBoolean()) clipboard.setContents(new StringSelection(contextS), new StringSelection(contextS));
                 }
 
                 case "NOL" -> {
+                    if (player == null){
+                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                        break;
+                    }
                     String contextS = player.getUsername() +  " has in total " + player.getGlobalData().getRaids().getList().getOrphionSNexusOfLight() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getNolCompletion();
                     context.getSource().sendFeedback(Text.literal(contextS));
                     if (WynnMiata.CONFIG.isCopyPlayerStatsBoolean()) clipboard.setContents(new StringSelection(contextS), new StringSelection(contextS));
                 }
                 case "NOG" ->{
+                    if (player == null){
+                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                        break;
+                    }
                     String contextS  = player.getUsername() +  " has in total " + player.getGlobalData().getRaids().getList().getNestOfTheGrootslangs() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getNogCompletion();
                     context.getSource().sendFeedback(Text.literal(contextS));
                     if (WynnMiata.CONFIG.isCopyPlayerStatsBoolean()) clipboard.setContents(new StringSelection(contextS), new StringSelection(contextS));}
                 case "TNA" ->{
+                    if (player == null){
+                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                        break;
+                    }
                     String contextS = player.getUsername() + " has in total " + player.getGlobalData().getRaids().getList().getTheNamelessAnomaly() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getTnaCompletion();
                     context.getSource().sendFeedback(Text.literal(contextS));
                     if (WynnMiata.CONFIG.isCopyPlayerStatsBoolean()) clipboard.setContents(new StringSelection(contextS), new StringSelection(contextS));

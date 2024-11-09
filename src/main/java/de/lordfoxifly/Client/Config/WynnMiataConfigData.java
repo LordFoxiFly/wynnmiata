@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WynnMiataConfigData {
+
+
     public boolean isHeadRenderingBoolean() {
         return HeadRenderingBoolean;
     }
@@ -155,6 +157,58 @@ public class WynnMiataConfigData {
     public void setArmorDurabilityTextX(int armorDurabilityTextX) {
         ArmorDurabilityTextX = armorDurabilityTextX;
     }
+
+    public boolean isProfessionHudBoolean() {
+        return ProfessionHudBoolean;
+    }
+
+    public void setProfessionHudBoolean(boolean professionHudBoolean) {
+        ProfessionHudBoolean = professionHudBoolean;
+    }
+    public String getProfessionHudTextColor() {
+        return ProfessionHudTextColor;
+    }
+
+    public void setProfessionHudTextColor(String professionHudTextColor) {
+        ProfessionHudTextColor = professionHudTextColor;
+    }
+
+    public int getProfessionHudY() {
+        return ProfessionHudY;
+    }
+
+    public void setProfessionHudY(int professionHudY) {
+        ProfessionHudY = professionHudY;
+    }
+
+    public int getProfessionHudX() {
+        return ProfessionHudX;
+    }
+
+    public void setProfessionHudX(int professionHudX) {
+        ProfessionHudX = professionHudX;
+    }
+
+    public int getProfessionHudTextY() {
+        return ProfessionHudTextY;
+    }
+
+    public void setProfessionHudTextY(int professionHudTextY) {
+        ProfessionHudTextY = professionHudTextY;
+    }
+    public int getProfessionHudTextX() {
+        return ProfessionHudTextX;
+    }
+
+    public void setProfessionHudTextX(int professionHudTextX) {
+        ProfessionHudTextX = professionHudTextX;
+    }
+    private int ProfessionHudTextY  = 10;
+    private int ProfessionHudTextX = 125;
+    private String ProfessionHudTextColor = "FFFFFF";
+    private int ProfessionHudY = 10;
+    private int ProfessionHudX = 90;
+    private  boolean ProfessionHudBoolean = false;
     private boolean renderHudElements = true;
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;

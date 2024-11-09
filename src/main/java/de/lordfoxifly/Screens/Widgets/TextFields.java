@@ -178,4 +178,71 @@ public class TextFields {
 
         }).dimensions( leftpos + 180, toppos  + 88, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
     }
+
+    public static ButtonWidget ProfessionHudCoordsEnter(int leftpos, int toppos, int screenwidth, int screenheight, TextFieldWidget x, TextFieldWidget y){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.ProfessionHudEnter"), (btn) -> {
+            if (WynnMiataUtils.isNumeric(y.getText()) && WynnMiataUtils.isNumeric(x.getText())){
+                int iy = Integer.parseInt(y.getText());
+                int ix = Integer.parseInt(x.getText());
+                if (iy > screenheight || iy < 0 || ix < 0 || ix > screenwidth){
+                    y.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudY()));
+                    x.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudX()));
+                }
+                else {
+                    WynnMiata.CONFIG.setProfessionHudX(ix);
+                    WynnMiata.CONFIG.setProfessionHudY(iy);
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+                }
+
+            }
+            else{
+                y.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudY()));
+                x.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudX()));
+            }
+
+        }).dimensions( leftpos + 180, toppos  + 33, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
+
+    public static ButtonWidget ProfessionHudColorEnter(int x, int y, TextFieldWidget textFieldWidget){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.ProfessionHudColorEnter"), (btn) -> {
+            Pattern pattern = Pattern.compile("[^0-9A-F]");
+            Matcher matcher = pattern.matcher(textFieldWidget.getText());
+            if (!matcher.find() && textFieldWidget.getText().length() < 7){
+                WynnMiata.CONFIG.setProfessionHudTextColor(textFieldWidget.getText());
+                WynnMiata.CONFIG.save();
+                WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+
+            }
+            else{
+                textFieldWidget.setText(WynnMiata.CONFIG.getProfessionHudTextColor());
+            }
+
+        }).dimensions( x, y, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
+
+    public static ButtonWidget ProfessionHudTextCoordsEnter(int leftpos, int toppos, int screenwidth, int screenheight, TextFieldWidget x, TextFieldWidget y){
+        return ButtonWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".layout.Button.ProfessionHudTextCoordsEnter"), (btn) -> {
+            if (WynnMiataUtils.isNumeric(y.getText()) && WynnMiataUtils.isNumeric(x.getText())){
+                int iy = Integer.parseInt(y.getText());
+                int ix = Integer.parseInt(x.getText());
+                if (iy > screenheight || iy < 0 || ix < 0 || ix > screenwidth){
+                    y.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudTextY()));
+                    x.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudTextX()));
+                }
+                else {
+                    WynnMiata.CONFIG.setProfessionHudTextX(ix);
+                    WynnMiata.CONFIG.setProfessionHudTextY(iy);
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();
+                }
+
+            }
+            else{
+                y.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudTextY()));
+                x.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudTextX()));
+            }
+
+        }).dimensions( leftpos + 180, toppos  + 88, 40, 15).tooltip(Tooltip.of(Text.of("Enter your Input"))).build();
+    }
 }
