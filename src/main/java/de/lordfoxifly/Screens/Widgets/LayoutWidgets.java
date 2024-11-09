@@ -1,7 +1,9 @@
 package de.lordfoxifly.Screens.Widgets;
 
+import de.lordfoxifly.Client.Config.WynnMiataConfig;
 import de.lordfoxifly.Screens.Layout.LayoutMenuScreen;
 import de.lordfoxifly.Screens.Layout.LayoutTypes;
+import de.lordfoxifly.Screens.Layout.LayoutUtils;
 import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.LayoutWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
@@ -23,8 +25,11 @@ public class LayoutWidgets {
     }
 
     public static LayoutWidget ProfessionHud() {
-
-        return new  LayoutWidget(WynnMiata.CONFIG.getProfessionHudX(), WynnMiata.CONFIG.getProfessionHudY(), 150, 32, Text.translatable("gui." + WynnMiata.CONFIG + ".layout.professionhud"),
+        int y = LayoutUtils.getY(WynnMiata.CONFIG.getProfessionHudY(), WynnMiata.CONFIG.getProfessionHudTextY());
+        int x = LayoutUtils.getX(WynnMiata.CONFIG.getProfessionHudX(), WynnMiata.CONFIG.getProfessionHudTextX());
+        int with = LayoutUtils.getWitdh(x, WynnMiata.CONFIG.getProfessionHudX(), WynnMiata.CONFIG.getProfessionHudTextX(), 150);
+        int height = LayoutUtils.getHeight(y, WynnMiata.CONFIG.getProfessionHudY(), WynnMiata.CONFIG.getProfessionHudTextY(), 32);
+        return new  LayoutWidget(x, y, with, height, Text.translatable("gui." + WynnMiata.CONFIG + ".layout.professionhud"),
                 button -> {
                     MinecraftClient.getInstance().setScreen(new LayoutMenuScreen(LayoutTypes.PROFESSIONHUD));
                 });
