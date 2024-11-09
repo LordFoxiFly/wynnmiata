@@ -57,7 +57,12 @@ public class PlayerStatsScreen extends Screen {
 
     public static void setPlayer(String username) {
         try {
-            requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ MinecraftAPI.getPlayerUUID(username)));//MinecraftClient.getInstance().getSession().getUsername()));
+            requestedPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ MinecraftAPI.getPlayerUUID(username)));
+            if (requestedPlayer.getFirstJoin() == null){
+                requestedPlayer = WynnMiata.ClientPlayer;
+                return;
+            }
+            //MinecraftClient.getInstance().getSession().getUsername()));
             Map<String, CharacterListData> characterListDataMap = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" +requestedPlayer.getUuid() +  "/characters"));
             requestedPlayer.setCharacters(characterListDataMap);
             requestedPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(characterListDataMap), requestedPlayer.getUuid(), requestedPlayer.isPublicProfile()));

@@ -17,14 +17,12 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class PlayerStatsCommand  {
+
     private static Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public static Player getPlayer(String username) throws URISyntaxException, IOException, InterruptedException {
         String uuid = MinecraftAPI.getPlayerUUID(username);
         WynnMiata.LOGGER.info(uuid);
-        String src = RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ uuid);
-        WynnMiata.LOGGER.info("https://api.wynncraft.com/v3/player/"+ uuid);
-        WynnMiata.LOGGER.info(src);
-        return PlayerAPIHelper.getPlayer(src);
+        return PlayerAPIHelper.getPlayer( RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/"+ uuid));
     }
 
 
@@ -42,8 +40,8 @@ public class PlayerStatsCommand  {
             }
             switch (raid){
                 case "TCC" ->{
-                    if (player == null){
-                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                    if (player.getGlobalData() == null){
+                        context.getSource().sendFeedback(Text.literal("§c Player not Found"));
                         break;
                     }
                     String contextS = player.getUsername() +  " has in total " + player.getGlobalData().getRaids().getList().getTheCanyonColossus() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getTccCompletion();
@@ -52,8 +50,8 @@ public class PlayerStatsCommand  {
                 }
 
                 case "NOL" -> {
-                    if (player == null){
-                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                    if (player.getGlobalData() == null){
+                        context.getSource().sendFeedback(Text.literal("§c Player not Found"));
                         break;
                     }
                     String contextS = player.getUsername() +  " has in total " + player.getGlobalData().getRaids().getList().getOrphionSNexusOfLight() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getNolCompletion();
@@ -61,16 +59,16 @@ public class PlayerStatsCommand  {
                     if (WynnMiata.CONFIG.isCopyPlayerStatsBoolean()) clipboard.setContents(new StringSelection(contextS), new StringSelection(contextS));
                 }
                 case "NOG" ->{
-                    if (player == null){
-                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                    if (player.getGlobalData() == null){
+                        context.getSource().sendFeedback(Text.literal("§c Player not Found"));
                         break;
                     }
                     String contextS  = player.getUsername() +  " has in total " + player.getGlobalData().getRaids().getList().getNestOfTheGrootslangs() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getNogCompletion();
                     context.getSource().sendFeedback(Text.literal(contextS));
                     if (WynnMiata.CONFIG.isCopyPlayerStatsBoolean()) clipboard.setContents(new StringSelection(contextS), new StringSelection(contextS));}
                 case "TNA" ->{
-                    if (player == null){
-                        context.getSource().sendFeedback(Text.literal("Player not Found"));
+                    if (player.getGlobalData() == null){
+                        context.getSource().sendFeedback(Text.literal("§c Player not Found"));
                         break;
                     }
                     String contextS = player.getUsername() + " has in total " + player.getGlobalData().getRaids().getList().getTheNamelessAnomaly() + " " + raid + " Runs. Global Ranking: " + player.getRanking().getTnaCompletion();

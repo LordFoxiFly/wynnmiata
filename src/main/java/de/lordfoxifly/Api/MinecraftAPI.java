@@ -35,6 +35,8 @@ public class MinecraftAPI {
         return fromTrimmedUUID(data.getId());
     }
 
+
+
     /**
      * Converts a trimmed UUID into a normal UUID.
      * @param trimmedUUID The trimmed UUID.
