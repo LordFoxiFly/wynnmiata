@@ -1,5 +1,6 @@
 package de.lordfoxifly.Features.Professions;
 
+import com.sun.jna.platform.win32.NTSecApi;
 import de.lordfoxifly.Features.Items.ItemUtils;
 import de.lordfoxifly.WynnMiata;
 import de.lordfoxifly.WynnMiataUtils.WynnMiataUtils;
@@ -47,7 +48,11 @@ public class ProfessionUtils {
             return false;
         }
         Pattern pattern = Pattern.compile("Gathering\\s+(\\w+)\\s+T\\d+");
-        Matcher matcher = pattern.matcher(ItemUtils.getItemLore(itemStack));
+        String lore = ItemUtils.getItemLore(itemStack);
+        if (lore == null){
+            return false;
+        }
+        Matcher matcher = pattern.matcher(lore);
         if (matcher.find()){
             return true;
         }

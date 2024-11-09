@@ -30,7 +30,11 @@ public class ItemUtils {
             }
             stringBuilder.append(Formatting.strip(Objects.requireNonNull(value.get().get(key)).asString()));
         }
-        return stringBuilder.substring(stringBuilder.indexOf("{"));
+        String output = null;
+        if (stringBuilder.indexOf("{") != -1){
+            output = stringBuilder.substring(stringBuilder.indexOf("{"));
+        }
+        return output;
     }
 
     /**

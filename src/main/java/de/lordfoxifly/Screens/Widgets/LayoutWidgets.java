@@ -2,11 +2,9 @@ package de.lordfoxifly.Screens.Widgets;
 
 import de.lordfoxifly.Screens.Layout.LayoutMenuScreen;
 import de.lordfoxifly.Screens.Layout.LayoutTypes;
-import de.lordfoxifly.Screens.Layout.LayoutUtils;
 import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.LayoutWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Element;
 import net.minecraft.text.Text;
 
 public class LayoutWidgets {
@@ -25,6 +23,7 @@ public class LayoutWidgets {
     }
 
     public static LayoutWidget ProfessionHud() {
+
         return new  LayoutWidget(WynnMiata.CONFIG.getProfessionHudX(), WynnMiata.CONFIG.getProfessionHudY(), 150, 32, Text.translatable("gui." + WynnMiata.CONFIG + ".layout.professionhud"),
                 button -> {
                     MinecraftClient.getInstance().setScreen(new LayoutMenuScreen(LayoutTypes.PROFESSIONHUD));
