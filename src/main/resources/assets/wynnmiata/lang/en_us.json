@@ -26,6 +26,7 @@
   "gui.wynnmiata.settings.Layout.Button.Open": "Layout",
   "gui.wynnmiata.settings.MISC.Button.Open": "MISC",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorDurabilityHudRendering": "Show Armor Durability",
+  "gui.wynnmiata.settings.Misc.Checkbox.ArmorDurabilityOnlyRendering": "Only Durability",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering": "Armor Hud Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.FireEntityRendering": "FireEntity Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.FireHudRendering": "Fire Hud Rendering",

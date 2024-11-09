@@ -25,6 +25,7 @@ public class ArmorDurabilityHud implements HudRenderCallback {
      */
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
+        //TODO: Needs to be cleaned up
         if (WynnMiata.CONFIG.isArmorDurabilityBoolean() && WynnMiata.CONFIG.isRenderHudElements()){
             if (MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD).isEmpty()){
                 drawContext.drawTexture(EMPTY_HELMET, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY(), 0, 0, 15, 15, 15, 15);
@@ -33,8 +34,14 @@ public class ArmorDurabilityHud implements HudRenderCallback {
             else{
                 drawContext.drawTexture(DIAMOND_HELMET, WynnMiata.CONFIG.getArmorDurabilityX(), WynnMiata.CONFIG.getArmorDurabilityY(), 0, 0, 15, 15, 15, 15);
                 if (ItemUtils.hasItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD))){
-                    drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD))  + "]",  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY(), ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
-                            true);
+                    if (!WynnMiata.CONFIG.isArmorDurabilityOnlyBoolean()){
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD))  + "]",  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY(), ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
+                    else {
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer, String.valueOf( ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.HEAD))) ,  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY(), ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
                 }
             }
             if (MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST).isEmpty()){
@@ -43,8 +50,14 @@ public class ArmorDurabilityHud implements HudRenderCallback {
             else{
                 drawContext.drawTexture(DIAMOND_CHESTPLATE, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 20, 0, 0, 15, 15, 15, 15);
                 if (ItemUtils.hasItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST))){
-                    drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST))  + "]",  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 20, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
-                            true);
+                    if (!WynnMiata.CONFIG.isArmorDurabilityOnlyBoolean()){
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST))  + "]",  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 20, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
+                    else {
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer, String.valueOf( ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.CHEST))) ,  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 20, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
                 }
             }
             if (MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS).isEmpty()){
@@ -53,8 +66,14 @@ public class ArmorDurabilityHud implements HudRenderCallback {
             else{
                 drawContext.drawTexture(DIAMOND_LEGGINGS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 40, 0, 0, 15, 15, 15, 15);
                 if (ItemUtils.hasItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS))){
-                    drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS))  + "]",  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 40, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
-                            true);
+                    if (!WynnMiata.CONFIG.isArmorDurabilityOnlyBoolean()){
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS))  + "]",  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 40, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
+                    else {
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer,  String.valueOf(ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.LEGS))) ,  WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 40, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
                 }}
 
             if (MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.FEET).isEmpty()){
@@ -63,8 +82,14 @@ public class ArmorDurabilityHud implements HudRenderCallback {
             else{
                 drawContext.drawTexture(DIAMOND_BOOTS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 60, 0, 0, 15, 15, 15, 15);
                 if (ItemUtils.hasItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.FEET))){
-                    drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.FEET)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.FEET))  + "]", WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 60, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
-                            true);
+                    if (!WynnMiata.CONFIG.isArmorDurabilityOnlyBoolean()){
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer, "[" + ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.FEET)) + "/" +ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.FEET))  + "]", WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 60, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
+                    else {
+                        drawContext.drawText(MinecraftClient.getInstance().textRenderer, String.valueOf(ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getEquippedStack(EquipmentSlot.FEET))), WynnMiata.CONFIG.getArmorDurabilityTextX() , WynnMiata.CONFIG.getArmorDurabilityTextY() + 60, ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()),
+                                true);
+                    }
                 }
             }
         }

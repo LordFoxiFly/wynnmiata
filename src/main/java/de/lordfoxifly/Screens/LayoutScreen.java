@@ -60,7 +60,10 @@ public class LayoutScreen extends Screen {
        }
        if (WynnMiata.CONFIG.isArmorDurabilityBoolean()){
            context.drawTexture(DIAMOND_HELMET, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() , 0, 0, 15, 15, 15, 15);
-           context.drawText(textRenderer, "[95/124]", WynnMiata.CONFIG.getArmorDurabilityTextX(), WynnMiata.CONFIG.getArmorDurabilityTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()), true);
+           if (!WynnMiata.CONFIG.isArmorDurabilityOnlyBoolean()){
+               context.drawText(textRenderer, "[95/124]", WynnMiata.CONFIG.getArmorDurabilityTextX(), WynnMiata.CONFIG.getArmorDurabilityTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()), true);
+           }
+           else context.drawText(textRenderer, "95", WynnMiata.CONFIG.getArmorDurabilityTextX(), WynnMiata.CONFIG.getArmorDurabilityTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()), true);
            context.drawTexture(DIAMOND_CHESTPLATE, WynnMiata.CONFIG.getArmorDurabilityX(), WynnMiata.CONFIG.getArmorDurabilityY() + 20, 0, 0, 15, 15, 15, 15);
            context.drawTexture(DIAMOND_LEGGINGS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 40, 0, 0, 15, 15, 15, 15);
            context.drawTexture(EMPTY_BOOTS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 60, 0, 0, 15, 15, 15, 15);

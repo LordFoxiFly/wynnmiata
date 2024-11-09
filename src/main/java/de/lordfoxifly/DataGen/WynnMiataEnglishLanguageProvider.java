@@ -58,5 +58,7 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.layout.Button.ProfessionHudEnter", "Enter");
         translationBuilder.add("gui.wynnmiata.layout.Button.ProfessionHudColorEnter", "Enter");
         translationBuilder.add("gui.wynnmiata.layout.Button.ProfessionHudTextCoordsEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.ArmorDurabilityOnlyRendering", "Only Durability");
+
     }
 }

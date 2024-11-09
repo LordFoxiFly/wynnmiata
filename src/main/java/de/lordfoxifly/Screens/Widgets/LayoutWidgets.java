@@ -2,6 +2,7 @@ package de.lordfoxifly.Screens.Widgets;
 
 import de.lordfoxifly.Screens.Layout.LayoutMenuScreen;
 import de.lordfoxifly.Screens.Layout.LayoutTypes;
+import de.lordfoxifly.Screens.Layout.LayoutUtils;
 import de.lordfoxifly.Screens.Widgets.WynnMiataWidgets.LayoutWidget;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;

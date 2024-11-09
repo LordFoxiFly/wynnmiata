@@ -192,6 +192,13 @@ public class WynnMiataConfigData {
     public int getProfessionHudTextY() {
         return ProfessionHudTextY;
     }
+    public boolean isArmorDurabilityOnlyBoolean() {
+        return ArmorDurabilityOnlyBoolean;
+    }
+
+    public void setArmorDurabilityOnlyBoolean(boolean armorDurabilityOnlyBoolean) {
+        ArmorDurabilityOnlyBoolean = armorDurabilityOnlyBoolean;
+    }
 
     public void setProfessionHudTextY(int professionHudTextY) {
         ProfessionHudTextY = professionHudTextY;
@@ -221,6 +228,7 @@ public class WynnMiataConfigData {
     private int showPlayerRaidx = 10;
     private String showPlayerRaidColor = "00FF00";
     private  boolean ArmorDurabilityBoolean = false;
+    private boolean ArmorDurabilityOnlyBoolean = false;
     private int ArmorDurabilityY = 0;
     private int ArmorDurabilityX = 20;
     private int ArmorDurabilityTextY = 13;

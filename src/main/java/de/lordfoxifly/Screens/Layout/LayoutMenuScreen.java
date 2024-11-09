@@ -1,6 +1,7 @@
 package de.lordfoxifly.Screens.Layout;
 
 import de.lordfoxifly.Screens.LayoutScreen;
+import de.lordfoxifly.Screens.Widgets.CheckBoxs;
 import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
@@ -90,6 +91,7 @@ public class LayoutMenuScreen extends Screen {
             addDrawableChild(colorTextFiled);
             addDrawableChild(xTextField);
             addDrawableChild(yTextField);
+            addDrawableChild(CheckBoxs.ArmorDurabilityOnly(leftpos,toppos));
             addDrawableChild(TextFields.ArmorDurabilityTextCoordsEnter(leftpos,toppos, this.width, this.height, xTextTextField, yTextTextField));
             addDrawableChild(TextFields.ArmorDurabilityCoordsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
             addDrawableChild(TextFields.ArmorDurabilityColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
