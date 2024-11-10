@@ -4,6 +4,9 @@ import com.sun.jna.platform.win32.NTSecApi;
 import de.lordfoxifly.Features.Items.ItemUtils;
 import de.lordfoxifly.WynnMiata;
 import de.lordfoxifly.WynnMiataUtils.WynnMiataUtils;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -82,6 +85,57 @@ public class ProfessionUtils {
 
         }
         return null;
+    }
+
+    public static int getAccsXPBonus() {
+        int output = 0;
+        for (int i = 9; i < 13; i++){
+            if (!MinecraftClient.getInstance().player.getInventory().getStack(i).isEmpty() &&  ItemUtils.getItemLore(MinecraftClient.getInstance().player.getInventory().getStack(i)) != null) {
+                output += ProfessionUtils.getProfXPBoost(MinecraftClient.getInstance().player.getInventory().getStack(i));
+            }
+        }
+        return output;
+    }
+
+    public static int getArmorXPBonus(){
+        int ouput = 0;
+        ClientPlayerEntity clientPlayer = MinecraftClient.getInstance().player;
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.HEAD).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.HEAD)) != null){
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.HEAD));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+
+        }
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.CHEST).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.CHEST)) != null) {
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.CHEST));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+
+        }
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.LEGS).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.LEGS)) != null){
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.LEGS));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+
+        }
+        if (!clientPlayer.getEquippedStack(EquipmentSlot.FEET).isEmpty()){
+            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.FEET)) != null){
+                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.FEET));
+                if (xp != 0){
+                    ouput += xp;
+                }
+            }
+        }
+        return ouput;
     }
 
 }

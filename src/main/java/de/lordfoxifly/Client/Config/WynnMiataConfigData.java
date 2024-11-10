@@ -195,7 +195,45 @@ public class WynnMiataConfigData {
     public boolean isArmorDurabilityOnlyBoolean() {
         return ArmorDurabilityOnlyBoolean;
     }
+    public boolean isAccessoryDurabilityOnly() {
+        return AccessoryDurabilityOnly;
+    }
 
+    public void setAccessoryDurabilityOnly(boolean accessoryDurabilityOnly) {
+        AccessoryDurabilityOnly = accessoryDurabilityOnly;
+    }
+
+    public int getAccessoryDurabilityTextX() {
+        return AccessoryDurabilityTextX;
+    }
+
+    public void setAccessoryDurabilityTextX(int accessoryDurabilityTextX) {
+        AccessoryDurabilityTextX = accessoryDurabilityTextX;
+    }
+
+    public int getAccessoryDurabilityX() {
+        return AccessoryDurabilityX;
+    }
+
+    public void setAccessoryDurabilityX(int accessoryDurabilityX) {
+        AccessoryDurabilityX = accessoryDurabilityX;
+    }
+
+    public int getAccessoryDurabilityY() {
+        return AccessoryDurabilityY;
+    }
+
+    public void setAccessoryDurabilityY(int accessoryDurabilityY) {
+        AccessoryDurabilityY = accessoryDurabilityY;
+    }
+
+    public boolean isAccessoryDurabilityBoolean() {
+        return AccessoryDurabilityBoolean;
+    }
+
+    public void setAccessoryDurabilityBoolean(boolean accessoryDurabilityBoolean) {
+        AccessoryDurabilityBoolean = accessoryDurabilityBoolean;
+    }
     public void setArmorDurabilityOnlyBoolean(boolean armorDurabilityOnlyBoolean) {
         ArmorDurabilityOnlyBoolean = armorDurabilityOnlyBoolean;
     }
@@ -210,6 +248,30 @@ public class WynnMiataConfigData {
     public void setProfessionHudTextX(int professionHudTextX) {
         ProfessionHudTextX = professionHudTextX;
     }
+
+    public String getAccessoryDurabilityTextColor() {
+        return AccessoryDurabilityTextColor;
+    }
+
+    public void setAccessoryDurabilityTextColor(String accessoryDurabilityTextColor) {
+        AccessoryDurabilityTextColor = accessoryDurabilityTextColor;
+    }
+
+    public int getAccessoryDurabilityTextY() {
+        return AccessoryDurabilityTextY;
+    }
+
+    public void setAccessoryDurabilityTextY(int accessoryDurabilityTextY) {
+        AccessoryDurabilityTextY = accessoryDurabilityTextY;
+    }
+
+    private String AccessoryDurabilityTextColor = "FFFFFF";
+    private boolean AccessoryDurabilityOnly = false;
+    private int AccessoryDurabilityTextX = 40;
+    private int AccessoryDurabilityTextY = 13;
+    private int AccessoryDurabilityX = 50;
+    private int AccessoryDurabilityY = 0;
+    private boolean AccessoryDurabilityBoolean = false;
     private int ProfessionHudTextY  = 10;
     private int ProfessionHudTextX = 125;
     private String ProfessionHudTextColor = "FFFFFF";

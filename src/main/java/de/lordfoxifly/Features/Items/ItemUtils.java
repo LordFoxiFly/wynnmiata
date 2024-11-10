@@ -99,46 +99,7 @@ public class ItemUtils {
     }
 
     //Pattern pattern
-    public static int getArmorBonus(){
-        int ouput = 0;
-        ClientPlayerEntity clientPlayer = MinecraftClient.getInstance().player;
-        if (!clientPlayer.getEquippedStack(EquipmentSlot.HEAD).isEmpty()){
-            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.HEAD)) != null){
-                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.HEAD));
-                if (xp != 0){
-                    ouput += xp;
-                }
-            }
 
-        }
-        if (!clientPlayer.getEquippedStack(EquipmentSlot.CHEST).isEmpty()){
-            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.CHEST)) != null) {
-                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.CHEST));
-                if (xp != 0){
-                    ouput += xp;
-                }
-            }
-
-        }
-        if (!clientPlayer.getEquippedStack(EquipmentSlot.LEGS).isEmpty()){
-            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.LEGS)) != null){
-                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.LEGS));
-                if (xp != 0){
-                    ouput += xp;
-                }
-            }
-
-        }
-        if (!clientPlayer.getEquippedStack(EquipmentSlot.FEET).isEmpty()){
-            if (ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.FEET)) != null){
-                int xp = ProfessionUtils.getProfXPBoost(clientPlayer.getEquippedStack(EquipmentSlot.FEET));
-                if (xp != 0){
-                    ouput += xp;
-                }
-            }
-        }
-        return ouput;
-    }
 
     public static int getPieceBonus(Pattern pattern, ItemStack itemStack){
         int output = 0;
@@ -154,13 +115,5 @@ public class ItemUtils {
         return output;
     }
 
-    public static int getAccsBonus() {
-        int output = 0;
-        for (int i = 9; i < 13; i++){
-            if (!MinecraftClient.getInstance().player.getInventory().getStack(i).isEmpty() &&  hasItemDurability(MinecraftClient.getInstance().player.getInventory().getStack(i))) {
-                output += ProfessionUtils.getProfXPBoost(MinecraftClient.getInstance().player.getInventory().getStack(i));
-            }
-        }
-        return output;
-    }
+
 }

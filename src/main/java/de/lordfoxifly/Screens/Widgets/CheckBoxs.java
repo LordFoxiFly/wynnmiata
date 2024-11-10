@@ -190,9 +190,21 @@ public class CheckBoxs {
                 .tooltip(Tooltip.of(Text.literal("Shows the Armor Durability of crafted Items on the Hud ")))
                 .build();
     }
+
+    public static CheckboxWidget AccessoryDurability(int leftpos, int toppos) {
+        return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.AcessoryDurabilityHudRendering"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos +leftBackGroundX +66,toppos + topBackGroundY + 80)
+                .checked(WynnMiata.CONFIG.isAccessoryDurabilityBoolean())
+                .callback((checkbox, checked) ->{
+                    WynnMiata.CONFIG.setAccessoryDurabilityBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Shows the Acessory Durability of crafted Items on the Hud ")))
+                .build();
+    }
     public static CheckboxWidget ProfessionHud(int leftpos, int toppos) {
         return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.ProfessionTrackingHudRendering"), MinecraftClient.getInstance().textRenderer)
-                .pos(leftpos +leftBackGroundX +66,toppos + topBackGroundY + 80)
+                .pos(leftpos +leftBackGroundX +66,toppos + topBackGroundY + 96)
                 .checked(WynnMiata.CONFIG.isProfessionHudBoolean())
                 .callback((checkbox, checked) ->{
                     WynnMiata.CONFIG.setProfessionHudBoolean(checkbox.isChecked());
@@ -208,6 +220,18 @@ public class CheckBoxs {
                 .checked(WynnMiata.CONFIG.isArmorDurabilityOnlyBoolean())
                 .callback((checkbox, checked) ->{
                     WynnMiata.CONFIG.setArmorDurabilityOnlyBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Only shows the Durability and not the Max ")))
+                .build();
+    }
+
+    public static CheckboxWidget AcessoryDurabilityOnly(int leftpos, int toppos) {
+        return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.ArmorDurabilityOnlyRendering"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos + 20,toppos + 110)
+                .checked(WynnMiata.CONFIG.isAccessoryDurabilityOnly())
+                .callback((checkbox, checked) ->{
+                    WynnMiata.CONFIG.setAccessoryDurabilityOnly(checkbox.isChecked());
                     WynnMiata.CONFIG.save();
                     WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
                 .tooltip(Tooltip.of(Text.literal("Only shows the Durability and not the Max ")))

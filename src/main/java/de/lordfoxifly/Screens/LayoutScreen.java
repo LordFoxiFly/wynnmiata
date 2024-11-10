@@ -19,6 +19,9 @@ public class LayoutScreen extends Screen {
     private static final Identifier DIAMOND_CHESTPLATE = Identifier.of(WynnMiata.MOD_ID, "textures/gui/minecraft/diamond_chestplate.png");
     private static final Identifier DIAMOND_HELMET = Identifier.of(WynnMiata.MOD_ID, "textures/gui/minecraft/diamond_helmet.png");
     private static final Identifier EMPTY_BOOTS = Identifier.of(WynnMiata.MOD_ID, "textures/gui/minecraft/empty_armor_slot_boots.png");
+    private static final Identifier ring = Identifier.of(WynnMiata.MOD_ID, "textures/gui/wynncrafttexture/ring.png");
+    private static final Identifier bracelet =Identifier.of(WynnMiata.MOD_ID, "textures/gui/wynncrafttexture/bracelet.png");
+    private static final Identifier necklace = Identifier.of(WynnMiata.MOD_ID, "textures/gui/wynncrafttexture/necklace.png");
     int leftpos,  toppos;
     public LayoutScreen() {
         super(TITLE);
@@ -41,7 +44,9 @@ public class LayoutScreen extends Screen {
         if (WynnMiata.CONFIG.isProfessionHudBoolean()){
             addDrawableChild(LayoutWidgets.ProfessionHud());
         }
-
+        if (WynnMiata.CONFIG.isAccessoryDurabilityBoolean()){
+            addDrawableChild(LayoutWidgets.AccessoryDurability());
+        }
 
     }
 
@@ -59,14 +64,14 @@ public class LayoutScreen extends Screen {
            }
        }
        if (WynnMiata.CONFIG.isArmorDurabilityBoolean()){
-           context.drawTexture(DIAMOND_HELMET, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() , 0, 0, 15, 15, 15, 15);
+           context.drawTexture(DIAMOND_HELMET, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() , 0, 0, 16, 16, 16, 16);
            if (!WynnMiata.CONFIG.isArmorDurabilityOnlyBoolean()){
                context.drawText(textRenderer, "[95/124]", WynnMiata.CONFIG.getArmorDurabilityTextX(), WynnMiata.CONFIG.getArmorDurabilityTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()), true);
            }
            else context.drawText(textRenderer, "95", WynnMiata.CONFIG.getArmorDurabilityTextX(), WynnMiata.CONFIG.getArmorDurabilityTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()), true);
-           context.drawTexture(DIAMOND_CHESTPLATE, WynnMiata.CONFIG.getArmorDurabilityX(), WynnMiata.CONFIG.getArmorDurabilityY() + 20, 0, 0, 15, 15, 15, 15);
-           context.drawTexture(DIAMOND_LEGGINGS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 40, 0, 0, 15, 15, 15, 15);
-           context.drawTexture(EMPTY_BOOTS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 60, 0, 0, 15, 15, 15, 15);
+           context.drawTexture(DIAMOND_CHESTPLATE, WynnMiata.CONFIG.getArmorDurabilityX(), WynnMiata.CONFIG.getArmorDurabilityY() + 20, 0, 0, 16, 16, 16, 16);
+           context.drawTexture(DIAMOND_LEGGINGS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 40, 0, 0, 16, 16, 16, 16);
+           context.drawTexture(EMPTY_BOOTS, WynnMiata.CONFIG.getArmorDurabilityX() , WynnMiata.CONFIG.getArmorDurabilityY() + 60, 0, 0, 16, 16, 16, 16);
        }
        if (WynnMiata.CONFIG.isProfessionHudBoolean()){
            context.drawTexture(DIAMOND_AXE, WynnMiata.CONFIG.getProfessionHudX(),WynnMiata.CONFIG.getProfessionHudY(), 0 , 0 , 32, 32, 32, 32);
@@ -76,7 +81,15 @@ public class LayoutScreen extends Screen {
            context.drawText(MinecraftClient.getInstance().textRenderer, "Gathering Speed: 275"  ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 20 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
 
        }
-
+        if (WynnMiata.CONFIG.isAccessoryDurabilityBoolean()){
+            context.drawTexture(ring, WynnMiata.CONFIG.getAccessoryDurabilityX() , WynnMiata.CONFIG.getAccessoryDurabilityY() , 0, 0, 16, 16, 16, 16);
+            if (!WynnMiata.CONFIG.isAccessoryDurabilityOnly()){
+                context.drawText(textRenderer, "[85/110]", WynnMiata.CONFIG.getAccessoryDurabilityTextX(), WynnMiata.CONFIG.getAccessoryDurabilityTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()), true);
+            }
+            else context.drawText(textRenderer, "85", WynnMiata.CONFIG.getAccessoryDurabilityTextX(), WynnMiata.CONFIG.getAccessoryDurabilityTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getArmorDurabilityTextColor()), true);
+            context.drawTexture(ring, WynnMiata.CONFIG.getAccessoryDurabilityX(), WynnMiata.CONFIG.getAccessoryDurabilityY() + 20, 0, 0, 16, 16, 16, 16);
+            context.drawTexture(necklace , WynnMiata.CONFIG.getAccessoryDurabilityX() , WynnMiata.CONFIG.getAccessoryDurabilityY() + 60, 0, 0, 16, 16, 16, 16);
+        }
     }
 
     @Override

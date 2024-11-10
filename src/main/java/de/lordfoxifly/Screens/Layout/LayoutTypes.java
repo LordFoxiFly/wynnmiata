@@ -2,7 +2,7 @@ package de.lordfoxifly.Screens.Layout;
 
 public enum LayoutTypes {
     ShowPlayerRaids,
-    ArmorDuration,
+    ArmorDurability,
     PROFESSIONHUD,
-
+    AccessoryDurability
 }

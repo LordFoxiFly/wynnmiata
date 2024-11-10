@@ -25,6 +25,7 @@
   "gui.wynnmiata.settings.Debug.Checkbox.debugRaids": "Debug Raids",
   "gui.wynnmiata.settings.Layout.Button.Open": "Layout",
   "gui.wynnmiata.settings.MISC.Button.Open": "MISC",
+  "gui.wynnmiata.settings.Misc.Checkbox.AcessoryDurabilityHudRendering": "Shows Acessory Durability ",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorDurabilityHudRendering": "Show Armor Durability",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorDurabilityOnlyRendering": "Only Durability",
   "gui.wynnmiata.settings.Misc.Checkbox.ArmorHudRendering": "Armor Hud Rendering",

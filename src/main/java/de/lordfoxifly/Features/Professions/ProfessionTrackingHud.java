@@ -64,8 +64,8 @@ public class ProfessionTrackingHud implements HudRenderCallback {
                 if (identifier != null){
                     drawContext.drawTexture(identifier, WynnMiata.CONFIG.getProfessionHudX(),WynnMiata.CONFIG.getProfessionHudY(), 0 , 0 , 32, 32, 32, 32);
                 }
-                int xpboost = ItemUtils.getArmorBonus();
-                xpboost += ItemUtils.getAccsBonus();
+                int xpboost = ProfessionUtils.getArmorXPBonus();
+                xpboost += ProfessionUtils.getAccsXPBonus();
                 drawContext.drawText(MinecraftClient.getInstance().textRenderer, "Gathering XP Boost: " + xpboost ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
                 String durability = getDurabilityString(ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getMainHandStack()), ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getMainHandStack()));
                 drawContext.drawText(MinecraftClient.getInstance().textRenderer, durability ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() +10 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );

@@ -38,6 +38,7 @@ public class MiscScreen extends Screen {
         addDrawableChild(CheckBoxs.FireHudRendering(leftpos,toppos));
         addDrawableChild(CheckBoxs.ArmorRendering(leftpos,toppos));
         addDrawableChild(CheckBoxs.ArmorDurability(leftpos, toppos));
+        addDrawableChild(CheckBoxs.AccessoryDurability(leftpos, toppos));
         addDrawableChild(CheckBoxs.ProfessionHud(leftpos,toppos));
     }
 
