@@ -40,6 +40,7 @@ public class MiscScreen extends Screen {
         addDrawableChild(CheckBoxs.ArmorDurability(leftpos, toppos));
         addDrawableChild(CheckBoxs.AccessoryDurability(leftpos, toppos));
         addDrawableChild(CheckBoxs.ProfessionHud(leftpos,toppos));
+        addDrawableChild(CheckBoxs.TradeMarketMiddleClickSell(leftpos,toppos));
     }
 
     @Override

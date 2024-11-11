@@ -237,4 +237,16 @@ public class CheckBoxs {
                 .tooltip(Tooltip.of(Text.literal("Only shows the Durability and not the Max ")))
                 .build();
     }
+
+    public static CheckboxWidget TradeMarketMiddleClickSell(int leftpos, int toppos) {
+        return CheckboxWidget.builder(Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.Misc.Checkbox.TradeMarketMiddleClickSell"), MinecraftClient.getInstance().textRenderer)
+                .pos(leftpos +leftBackGroundX +66,toppos + topBackGroundY + 112)
+                .checked(WynnMiata.CONFIG.isTradeMarketMiddleClickSellBoolean())
+                .callback((checkbox, checked) ->{
+                    WynnMiata.CONFIG.setTradeMarketMiddleClickSellBoolean(checkbox.isChecked());
+                    WynnMiata.CONFIG.save();
+                    WynnMiata.CONFIG = WynnMiataConfig.loadConfigData();})
+                .tooltip(Tooltip.of(Text.literal("Quick sell by pressing Middle Click. §cDisable Wynntils Quicksearch.")))
+                .build();
+    }
 }

@@ -33,6 +33,7 @@
   "gui.wynnmiata.settings.Misc.Checkbox.FireHudRendering": "Fire Hud Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.HeadRendering": "Head Rendering",
   "gui.wynnmiata.settings.Misc.Checkbox.ProfessionTrackingHudRendering": "Shows Profession Stats",
+  "gui.wynnmiata.settings.Misc.Checkbox.TradeMarketMiddleClickSell": "Trade Market Quick Sell",
   "gui.wynnmiata.settings.NOL.Button.Open": "NOL",
   "gui.wynnmiata.settings.RAIDS.Button.Open": "RAIDS",
   "gui.wynnmiata.settings.Raids.Checkbox.copyPlayerStats": "Copy PlayerStats",

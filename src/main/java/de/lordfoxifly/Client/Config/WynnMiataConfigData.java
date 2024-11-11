@@ -8,6 +8,8 @@ import java.io.IOException;
 public class WynnMiataConfigData {
 
 
+
+
     public boolean isHeadRenderingBoolean() {
         return HeadRenderingBoolean;
     }
@@ -265,6 +267,15 @@ public class WynnMiataConfigData {
         AccessoryDurabilityTextY = accessoryDurabilityTextY;
     }
 
+    public boolean isTradeMarketMiddleClickSellBoolean() {
+        return TradeMarketMiddleClickSellBoolean;
+    }
+
+    public void setTradeMarketMiddleClickSellBoolean(boolean tradeMarketMiddleClickSellBoolean) {
+        TradeMarketMiddleClickSellBoolean = tradeMarketMiddleClickSellBoolean;
+    }
+
+    private boolean TradeMarketMiddleClickSellBoolean = false;
     private String AccessoryDurabilityTextColor = "FFFFFF";
     private boolean AccessoryDurabilityOnly = false;
     private int AccessoryDurabilityTextX = 40;

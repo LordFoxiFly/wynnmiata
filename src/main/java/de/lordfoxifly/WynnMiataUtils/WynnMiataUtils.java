@@ -37,4 +37,11 @@ public class WynnMiataUtils {
         }
         return output;
     }
+
+    public static String getUnformattedString(String string) {
+        if (string == null){
+            return null;
+        }
+        return string.replace( "§.", "");
+    }
 }

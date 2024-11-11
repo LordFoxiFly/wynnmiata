@@ -1,6 +1,7 @@
 package de.lordfoxifly.Events;
 
 import de.lordfoxifly.Debug.Screen.DebugHud;
+import de.lordfoxifly.Events.ScreenEvents.TriggerInventoryMouseClickEvent;
 import de.lordfoxifly.Features.Items.AccessoryDurabilityHud;
 import de.lordfoxifly.Features.Items.ArmorDurabilityHud;
 import de.lordfoxifly.Features.Professions.ProfessionTrackingHud;
@@ -20,5 +21,6 @@ public abstract class WynnMiataEventLoader {
         HudRenderCallback.EVENT.register(new ArmorDurabilityHud());
         HudRenderCallback.EVENT.register(new AccessoryDurabilityHud());
         HudRenderCallback.EVENT.register(new ProfessionTrackingHud());
+        InventoryMouseClickCallback.EVENT.register(TriggerInventoryMouseClickEvent::mouseClicked);
     }
 }
