@@ -4,7 +4,6 @@ import de.lordfoxifly.Features.Items.ItemUtils;
 import de.lordfoxifly.Features.StatusEffects.WynncraftStatusEffect;
 import de.lordfoxifly.Features.StatusEffects.WynncraftStatusEffectListener;
 import de.lordfoxifly.Features.StatusEffects.WynncraftStatusEffectTypes;
-import de.lordfoxifly.WynnMiata;
 import de.lordfoxifly.WynnMiataUtils.WynnMiataUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -35,11 +34,12 @@ public class ProfessionUtils {
         if (itemStack.isEmpty()){
             return null;
         }
-        Pattern pattern = Pattern.compile("\\+\\d+%\\/\\d+%\\ Gather XP Bonus");
+        Pattern pattern = Pattern.compile("(.\\d+?%)\\/(\\d+?%) Gather XP Bonus");
         Matcher matcher = pattern.matcher(ItemUtils.getItemLore(itemStack));
         String xp = null;
         if (matcher.find()){
-            xp = matcher.group().substring(0, matcher.group().indexOf("%"));
+            xp = matcher.group(1).substring(0, matcher.group().indexOf("%"));
+                    //.substring(0, matcher.group().indexOf("%"));
         }
         if (!WynnMiataUtils.isNumeric(xp)){
             return null;

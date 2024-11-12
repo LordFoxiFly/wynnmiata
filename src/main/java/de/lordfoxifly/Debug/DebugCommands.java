@@ -58,6 +58,7 @@ public class DebugCommands {
         //context.getSource().sendFeedback(Text.literal(String.valueOf(ProfessionUtils.getGatheringToolType(MinecraftClient.getInstance().player.getMainHandStack()))));
         //context.getSource().sendFeedback(Text.literal(String.valueOf(ProfessionUtils.getGatheringToolTier(MinecraftClient.getInstance().player.getMainHandStack()))));
         context.getSource().sendFeedback(Text.literal(ItemUtils.getItemLore(MinecraftClient.getInstance().player.getInventory().getStack(9))));
+        //Devutils.appendToFile(ItemUtils.getItemLore(MinecraftClient.getInstance().player.getInventory().getStack(9)), "wynnmiatadevlog.txt");
         return 1;
     }
 
