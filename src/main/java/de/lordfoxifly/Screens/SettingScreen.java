@@ -60,11 +60,12 @@ public class SettingScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         this.renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
-        context.drawText(textRenderer, "NOLG Completions: " + NOLGPlayerComps, leftpos + 80, toppos + 28, 0xFFFFFFFF, true);
-        context.drawText(textRenderer, "TCC Completions: " + TCCPlayerComps, leftpos + 80, toppos + 38, 0xFFFFFFFF, true);
-        context.drawText(textRenderer, "NOL Completions: " + NOLPlayerComps, leftpos + 80, toppos + 48, 0xFFFFFFFF, true);
-        context.drawText(textRenderer, "TNA Completions: " + TNAPlayerComps, leftpos + 80, toppos + 58, 0xFFFFFFFF, true);
-
+        if (WynnMiata.ClientPlayer != null){
+            context.drawText(textRenderer, "NOLG Completions: " + NOLGPlayerComps, leftpos + 80, toppos + 28, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "TCC Completions: " + TCCPlayerComps, leftpos + 80, toppos + 38, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "NOL Completions: " + NOLPlayerComps, leftpos + 80, toppos + 48, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "TNA Completions: " + TNAPlayerComps, leftpos + 80, toppos + 58, 0xFFFFFFFF, true);
+        }
     }
 
     @Override

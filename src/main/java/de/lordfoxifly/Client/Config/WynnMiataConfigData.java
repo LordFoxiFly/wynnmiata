@@ -6,6 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WynnMiataConfigData {
+
+
+
+
     public boolean isHeadRenderingBoolean() {
         return HeadRenderingBoolean;
     }
@@ -125,12 +129,12 @@ public class WynnMiataConfigData {
         ArmorDurabilityX = armorDurabilityX;
     }
 
-    public String getArmorDurabilityColor() {
-        return ArmorDurabilityColor;
+    public String getArmorDurabilityTextColor() {
+        return ArmorDurabilityTextColor;
     }
 
-    public void setArmorDurabilityColor(String armorDurabilityColor) {
-        ArmorDurabilityColor = armorDurabilityColor;
+    public void setArmorDurabilityTextColor(String armorDurabilityTextColor) {
+        ArmorDurabilityTextColor = armorDurabilityTextColor;
     }
 
     public boolean isRenderHudElements() {
@@ -140,7 +144,152 @@ public class WynnMiataConfigData {
     public void setRenderHudElements(boolean renderHudElements) {
         this.renderHudElements = renderHudElements;
     }
+    public int getArmorDurabilityTextY() {
+        return ArmorDurabilityTextY;
+    }
 
+    public void setArmorDurabilityTextY(int armorDurabilityTextY) {
+        ArmorDurabilityTextY = armorDurabilityTextY;
+    }
+
+    public int getArmorDurabilityTextX() {
+        return ArmorDurabilityTextX;
+    }
+
+    public void setArmorDurabilityTextX(int armorDurabilityTextX) {
+        ArmorDurabilityTextX = armorDurabilityTextX;
+    }
+
+    public boolean isProfessionHudBoolean() {
+        return ProfessionHudBoolean;
+    }
+
+    public void setProfessionHudBoolean(boolean professionHudBoolean) {
+        ProfessionHudBoolean = professionHudBoolean;
+    }
+    public String getProfessionHudTextColor() {
+        return ProfessionHudTextColor;
+    }
+
+    public void setProfessionHudTextColor(String professionHudTextColor) {
+        ProfessionHudTextColor = professionHudTextColor;
+    }
+
+    public int getProfessionHudY() {
+        return ProfessionHudY;
+    }
+
+    public void setProfessionHudY(int professionHudY) {
+        ProfessionHudY = professionHudY;
+    }
+
+    public int getProfessionHudX() {
+        return ProfessionHudX;
+    }
+
+    public void setProfessionHudX(int professionHudX) {
+        ProfessionHudX = professionHudX;
+    }
+
+    public int getProfessionHudTextY() {
+        return ProfessionHudTextY;
+    }
+    public boolean isArmorDurabilityOnlyBoolean() {
+        return ArmorDurabilityOnlyBoolean;
+    }
+    public boolean isAccessoryDurabilityOnly() {
+        return AccessoryDurabilityOnly;
+    }
+
+    public void setAccessoryDurabilityOnly(boolean accessoryDurabilityOnly) {
+        AccessoryDurabilityOnly = accessoryDurabilityOnly;
+    }
+
+    public int getAccessoryDurabilityTextX() {
+        return AccessoryDurabilityTextX;
+    }
+
+    public void setAccessoryDurabilityTextX(int accessoryDurabilityTextX) {
+        AccessoryDurabilityTextX = accessoryDurabilityTextX;
+    }
+
+    public int getAccessoryDurabilityX() {
+        return AccessoryDurabilityX;
+    }
+
+    public void setAccessoryDurabilityX(int accessoryDurabilityX) {
+        AccessoryDurabilityX = accessoryDurabilityX;
+    }
+
+    public int getAccessoryDurabilityY() {
+        return AccessoryDurabilityY;
+    }
+
+    public void setAccessoryDurabilityY(int accessoryDurabilityY) {
+        AccessoryDurabilityY = accessoryDurabilityY;
+    }
+
+    public boolean isAccessoryDurabilityBoolean() {
+        return AccessoryDurabilityBoolean;
+    }
+
+    public void setAccessoryDurabilityBoolean(boolean accessoryDurabilityBoolean) {
+        AccessoryDurabilityBoolean = accessoryDurabilityBoolean;
+    }
+    public void setArmorDurabilityOnlyBoolean(boolean armorDurabilityOnlyBoolean) {
+        ArmorDurabilityOnlyBoolean = armorDurabilityOnlyBoolean;
+    }
+
+    public void setProfessionHudTextY(int professionHudTextY) {
+        ProfessionHudTextY = professionHudTextY;
+    }
+    public int getProfessionHudTextX() {
+        return ProfessionHudTextX;
+    }
+
+    public void setProfessionHudTextX(int professionHudTextX) {
+        ProfessionHudTextX = professionHudTextX;
+    }
+
+    public String getAccessoryDurabilityTextColor() {
+        return AccessoryDurabilityTextColor;
+    }
+
+    public void setAccessoryDurabilityTextColor(String accessoryDurabilityTextColor) {
+        AccessoryDurabilityTextColor = accessoryDurabilityTextColor;
+    }
+
+    public int getAccessoryDurabilityTextY() {
+        return AccessoryDurabilityTextY;
+    }
+
+    public void setAccessoryDurabilityTextY(int accessoryDurabilityTextY) {
+        AccessoryDurabilityTextY = accessoryDurabilityTextY;
+    }
+
+    public boolean isTradeMarketMiddleClickSellBoolean() {
+        return TradeMarketMiddleClickSellBoolean;
+    }
+
+    public void setTradeMarketMiddleClickSellBoolean(boolean tradeMarketMiddleClickSellBoolean) {
+        TradeMarketMiddleClickSellBoolean = tradeMarketMiddleClickSellBoolean;
+    }
+
+
+    private boolean TradeMarketMiddleClickSellBoolean = false;
+    private String AccessoryDurabilityTextColor = "FFFFFF";
+    private boolean AccessoryDurabilityOnly = false;
+    private int AccessoryDurabilityTextX = 40;
+    private int AccessoryDurabilityTextY = 13;
+    private int AccessoryDurabilityX = 50;
+    private int AccessoryDurabilityY = 0;
+    private boolean AccessoryDurabilityBoolean = false;
+    private int ProfessionHudTextY  = 10;
+    private int ProfessionHudTextX = 125;
+    private String ProfessionHudTextColor = "FFFFFF";
+    private int ProfessionHudY = 10;
+    private int ProfessionHudX = 90;
+    private  boolean ProfessionHudBoolean = false;
     private boolean renderHudElements = true;
     private  boolean HeadRenderingBoolean = false;
     private  boolean HighLightLavaBoolean = false;
@@ -153,9 +302,12 @@ public class WynnMiataConfigData {
     private int showPlayerRaidx = 10;
     private String showPlayerRaidColor = "00FF00";
     private  boolean ArmorDurabilityBoolean = false;
+    private boolean ArmorDurabilityOnlyBoolean = false;
     private int ArmorDurabilityY = 0;
-    private int ArmorDurabilityX = 10;
-    private String ArmorDurabilityColor = "FFFFFF";
+    private int ArmorDurabilityX = 20;
+    private int ArmorDurabilityTextY = 13;
+    private int ArmorDurabilityTextX = 10;
+    private String ArmorDurabilityTextColor = "FFFFFF";
     private boolean copyPlayerStatsBoolean= false;
     private  boolean debugHudBoolean = false;
     private boolean debugRaidsBoolean = false;

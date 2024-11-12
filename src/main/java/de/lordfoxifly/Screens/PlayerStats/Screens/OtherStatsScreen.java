@@ -37,14 +37,16 @@ public class OtherStatsScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
-        context.drawText(textRenderer, Text.literal("Deaths: " + requestedPlayer.getSelectedCharacterData().getDeaths()), leftpos + 20, toppos + 35, 0xFFFFFF, true);
-        context.drawText(textRenderer, Text.literal("Mobs Killed: " + requestedPlayer.getSelectedCharacterData().getMobsKilled()), leftpos + 20, toppos + 50, 0xFFFFFF, true);
-        context.drawText(textRenderer, Text.literal("Items Identified: " + requestedPlayer.getSelectedCharacterData().getItemsIdentified()), leftpos + 20, toppos + 65, 0xFFFFFF, true);
-        context.drawText(textRenderer, Text.literal("Blocks Walked: " + requestedPlayer.getSelectedCharacterData().getBlocksWalked()), leftpos + 20, toppos + 80, 0xFFFFFF, true);
-        context.drawText(textRenderer, Text.literal("Discoveries: " + requestedPlayer.getSelectedCharacterData().getDiscoveries()), leftpos + 20, toppos + 95, 0xFFFFFF, true);
-        context.drawText(textRenderer, Text.literal("Chests Found: " + requestedPlayer.getSelectedCharacterData().getChestsFound()), leftpos + 20, toppos + 110, 0xFFFFFF, true);
-        context.drawText(textRenderer, Text.literal("Logins: " + requestedPlayer.getSelectedCharacterData().getLogins()), leftpos + 20, toppos + 125, 0xFFFFFF, true);
+        if (requestedPlayer != null){
+            context.drawText(textRenderer, Text.literal("Deaths: " + requestedPlayer.getSelectedCharacterData().getDeaths()), leftpos + 20, toppos + 35, 0xFFFFFF, true);
+            context.drawText(textRenderer, Text.literal("Mobs Killed: " + requestedPlayer.getSelectedCharacterData().getMobsKilled()), leftpos + 20, toppos + 50, 0xFFFFFF, true);
+            context.drawText(textRenderer, Text.literal("Items Identified: " + requestedPlayer.getSelectedCharacterData().getItemsIdentified()), leftpos + 20, toppos + 65, 0xFFFFFF, true);
+            context.drawText(textRenderer, Text.literal("Blocks Walked: " + requestedPlayer.getSelectedCharacterData().getBlocksWalked()), leftpos + 20, toppos + 80, 0xFFFFFF, true);
+            context.drawText(textRenderer, Text.literal("Discoveries: " + requestedPlayer.getSelectedCharacterData().getDiscoveries()), leftpos + 20, toppos + 95, 0xFFFFFF, true);
+            context.drawText(textRenderer, Text.literal("Chests Found: " + requestedPlayer.getSelectedCharacterData().getChestsFound()), leftpos + 20, toppos + 110, 0xFFFFFF, true);
+            context.drawText(textRenderer, Text.literal("Logins: " + requestedPlayer.getSelectedCharacterData().getLogins()), leftpos + 20, toppos + 125, 0xFFFFFF, true);
 
+        }
     }
 
     @Override

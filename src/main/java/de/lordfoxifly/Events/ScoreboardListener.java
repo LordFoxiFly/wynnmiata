@@ -50,6 +50,10 @@ public class ScoreboardListener {
                     if (WynnMiata.CONFIG.isDebugRaidsBoolean()){
                     Devutils.appendToFile("Phase changed to : " + raidPhase, "wynnmiatadevlog.txt");
                     }
+                    //Intensive Testing needed
+                    if (RaidInstanceUtils.getRaidChallange(raidPhase) < WynnMiata.raidInstance.getRaidChallange()){
+                        WynnMiata.raidInstance.setRaidCompleted(true);
+                    }
                     if (!Objects.equals(WynnMiata.raidInstance.getRaidChallange(), RaidInstanceUtils.getRaidChallange(raidPhase)) && RaidInstanceUtils.getRaidChallange(raidPhase) != 7){
 
                         WynnMiata.raidInstance.setRaidChallange(RaidInstanceUtils.getRaidChallange(raidPhase));
@@ -61,7 +65,7 @@ public class ScoreboardListener {
                             }
                         }
                     }
-                WynnMiata.raidInstance.setRaidPhase(raidPhase);
+                    WynnMiata.raidInstance.setRaidPhase(raidPhase);
                 }
             }
         });

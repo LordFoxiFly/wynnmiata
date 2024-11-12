@@ -41,9 +41,12 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.settings.Customize.Button.Open", "Customize");
         translationBuilder.add("gui.wynnmiata.Customize.LavaHighlight.Open", "Lava Highlight");
         translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.ArmorDurabilityHudRendering", "Show Armor Durability");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.AcessoryDurabilityHudRendering", "Shows Acessory Durability ");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.ProfessionTrackingHudRendering", "Shows Profession Stats");
         translationBuilder.add( "gui.wynnmiata.playerstats.Button.AddFriend", "Add Friend");
         translationBuilder.add( "gui.wynnmiata.playerstats.Button.AddParty", "Party Invite");
         translationBuilder.add( "gui.wynnmiata.playerstats.Button.AddGuild", "Guild Invite");
+translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.TradeMarketMiddleClickSell", "Trade Market Quick Sell");
         //
         translationBuilder.add("gui.wynnmiata.playerstats.TextWidget.NameInput", "Input Name");
         translationBuilder.add("gui.wynnmiata.playerstats.Button.Enter", "Enter");
@@ -52,5 +55,11 @@ public class WynnMiataEnglishLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("gui.wynnmiata.layout.Button.armorDurabilityEnter", "Enter");
         translationBuilder.add("gui.wynnmiata.layout.Button.armorDurabilityColorEnter", "Enter");
         translationBuilder.add("gui.wynnmiata.layout.Button.showPlayerRaidsColorEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.layout.Button.armorDurabilityTextCoordsEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.layout.Button.ProfessionHudEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.layout.Button.ProfessionHudColorEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.layout.Button.ProfessionHudTextCoordsEnter", "Enter");
+        translationBuilder.add("gui.wynnmiata.settings.Misc.Checkbox.ArmorDurabilityOnlyRendering", "Only Durability");
+
     }
 }

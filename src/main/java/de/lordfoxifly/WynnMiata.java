@@ -17,22 +17,17 @@ import de.lordfoxifly.Events.WynnMiataEventLoader;
 import de.lordfoxifly.Features.Raids.RaidInstance;
 import de.lordfoxifly.Screens.PlayerStatsScreen;
 import de.lordfoxifly.Screens.SettingScreen;
-import de.lordfoxifly.WynnMiataUtils.ColorUtils;
-import de.lordfoxifly.render.Types.Box;
-import de.lordfoxifly.render.WorldRender;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.math.Vec3d;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.cert.TrustAnchor;
 import java.util.Map;
 
 public class WynnMiata implements ClientModInitializer {
@@ -52,15 +47,8 @@ public class WynnMiata implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		LOGGER.info("Hello Fabric world!");
         try {
-            ClientPlayer = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUuidOrNull()));
-			Map<String,CharacterListData> data = CharacterListUtils.getCharacterMap(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters"));
-			ClientPlayer.setCharacters(data);
-			ClientPlayer.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername(), ClientPlayer.isPublicProfile()));
-			ClientPlayer.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(ClientPlayer));
-			ClientPlayer.setSelectedCharacterData(ClientPlayer.getActiveCharacterData());
-			ClientPlayer.setSelectedCharacterUUID(ClientPlayer.getActiveCharacter());
+           	ClientPlayer = setClientPlayer();
 			//MinecraftClient.getInstance().getSession().getUsername()));
         } catch (URISyntaxException | IOException | InterruptedException e) {
 			LOGGER.error(e.toString());
@@ -82,11 +70,13 @@ public class WynnMiata implements ClientModInitializer {
 		});
 		CONFIG = WynnMiataConfig.loadConfigData();
 		CONFIG.setRenderHudElements(true);
+
+
 		WynnMiataEventLoader.load();
 		DevUtilsListeners.load();
 
 
-		WorldRender.addRenderable(new Box(new Vec3d(1, 60, 0), new Vec3d(2, 65, 1), ColorUtils.hexStringToRed(WynnMiata.CONFIG.getHighLightLavaColor()), ColorUtils.hexStringToGreen(WynnMiata.CONFIG.getHighLightLavaColor()) , ColorUtils.hexStringToBlue(WynnMiata.CONFIG.getHighLightLavaColor()) ,255));
+		//WorldRender.addRenderable(new Box(new Vec3d(1, 60, 0), new Vec3d(2, 65, 1), ColorUtils.hexStringToRed(WynnMiata.CONFIG.getHighLightLavaColor()), ColorUtils.hexStringToGreen(WynnMiata.CONFIG.getHighLightLavaColor()) , ColorUtils.hexStringToBlue(WynnMiata.CONFIG.getHighLightLavaColor()) ,255));
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (Keybinds.Settings.isPressed()){
 				client.setScreen(new SettingScreen());
@@ -96,5 +86,23 @@ public class WynnMiata implements ClientModInitializer {
 			}
 
 		});
+	}
+
+	public Player setClientPlayer() throws URISyntaxException, IOException, InterruptedException {
+		Player player = PlayerAPIHelper.getPlayer(RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUuidOrNull()));
+		if (player.getGlobalData() == null){
+			return  null;
+		}
+		String  charactersrc = RequestHelper.getAPIData("https://api.wynncraft.com/v3/player/" + MinecraftClient.getInstance().getSession().getUsername() +  "/characters");
+		if (CharacterListUtils.getCharacterMap(charactersrc).isEmpty() || CharacterListUtils.getCharacterMap(charactersrc) == null){
+			return null;
+		}
+		Map<String,CharacterListData> data = CharacterListUtils.getCharacterMap(charactersrc);
+		player.setCharacters(data);
+		player.setCharacterData(CharacterDataUtils.getCharacterDataFromCharacterUUIDList(CharacterListUtils.getCharacterUUID(data), MinecraftClient.getInstance().getSession().getUsername(), player.isPublicProfile()));
+		player.setActiveCharacterData(CharacterDataUtils.getActiveCharacter(player));
+		player.setSelectedCharacterData(player.getActiveCharacterData());
+		player.setSelectedCharacterUUID(player.getActiveCharacter());
+		return player;
 	}
 }

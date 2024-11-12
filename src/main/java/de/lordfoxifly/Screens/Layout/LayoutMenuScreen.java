@@ -1,6 +1,7 @@
 package de.lordfoxifly.Screens.Layout;
 
 import de.lordfoxifly.Screens.LayoutScreen;
+import de.lordfoxifly.Screens.Widgets.CheckBoxs;
 import de.lordfoxifly.Screens.Widgets.TextFields;
 import de.lordfoxifly.WynnMiata;
 import net.minecraft.client.MinecraftClient;
@@ -74,18 +75,67 @@ public class LayoutMenuScreen extends Screen {
             addDrawableChild(TextFields.ShowPlayerRaidsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
             addDrawableChild(TextFields.ShowPlayerRaidsColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
         }
-        if (layoutType == LayoutTypes.ArmorDuration){
-            TextFieldWidget xTextField = TextFields.LayoutMenuXTextField(leftpos,toppos);
+        if (layoutType == LayoutTypes.ArmorDurability){
+            TextFieldWidget xTextField = TextFields.LayoutMenuXTextField(leftpos + 20,toppos + 33);
             xTextField.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityX()));
-            TextFieldWidget yTextField = TextFields.LayoutMenuYTextField(leftpos,toppos);
+            TextFieldWidget yTextField = TextFields.LayoutMenuYTextField(leftpos + 100,toppos + 33);
             yTextField.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityY()));
             TextFieldWidget colorTextFiled = TextFields.LayoutMenuColorTextField(leftpos + 30, toppos + 60);
-            colorTextFiled.setText(WynnMiata.CONFIG.getArmorDurabilityColor());
+            colorTextFiled.setText(WynnMiata.CONFIG.getArmorDurabilityTextColor());
+            TextFieldWidget xTextTextField = TextFields.LayoutMenuXTextField(leftpos + 20,toppos + 88);
+            xTextTextField.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityTextX()));
+            TextFieldWidget yTextTextField = TextFields.LayoutMenuYTextField(leftpos + 100, toppos +88);
+            yTextTextField.setText(String.valueOf(WynnMiata.CONFIG.getArmorDurabilityTextY()));
+            addDrawableChild(xTextTextField);
+            addDrawableChild(yTextTextField);
             addDrawableChild(colorTextFiled);
             addDrawableChild(xTextField);
             addDrawableChild(yTextField);
+            addDrawableChild(CheckBoxs.ArmorDurabilityOnly(leftpos,toppos));
+            addDrawableChild(TextFields.ArmorDurabilityTextCoordsEnter(leftpos,toppos, this.width, this.height, xTextTextField, yTextTextField));
             addDrawableChild(TextFields.ArmorDurabilityCoordsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
             addDrawableChild(TextFields.ArmorDurabilityColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
+        }
+        if (layoutType == LayoutTypes.AccessoryDurability){
+            TextFieldWidget xTextField = TextFields.LayoutMenuXTextField(leftpos + 20,toppos + 33);
+            xTextField.setText(String.valueOf(WynnMiata.CONFIG.getAccessoryDurabilityX()));
+            TextFieldWidget yTextField = TextFields.LayoutMenuYTextField(leftpos + 100,toppos + 33);
+            yTextField.setText(String.valueOf(WynnMiata.CONFIG.getAccessoryDurabilityY()));
+            TextFieldWidget colorTextFiled = TextFields.LayoutMenuColorTextField(leftpos + 30, toppos + 60);
+            colorTextFiled.setText(WynnMiata.CONFIG.getAccessoryDurabilityTextColor());
+            TextFieldWidget xTextTextField = TextFields.LayoutMenuXTextField(leftpos + 20,toppos + 88);
+            xTextTextField.setText(String.valueOf(WynnMiata.CONFIG.getAccessoryDurabilityTextX()));
+            TextFieldWidget yTextTextField = TextFields.LayoutMenuYTextField(leftpos + 100, toppos +88);
+            yTextTextField.setText(String.valueOf(WynnMiata.CONFIG.getAccessoryDurabilityTextY()));
+            addDrawableChild(xTextTextField);
+            addDrawableChild(yTextTextField);
+            addDrawableChild(colorTextFiled);
+            addDrawableChild(xTextField);
+            addDrawableChild(yTextField);
+            addDrawableChild(CheckBoxs.AcessoryDurabilityOnly(leftpos,toppos));
+            addDrawableChild(TextFields.AccessoryDurabilityTextCoordsEnter(leftpos,toppos, this.width, this.height, xTextTextField, yTextTextField));
+            addDrawableChild(TextFields.AccessoryDurabilityCoordsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
+            addDrawableChild(TextFields.AccessoryDurabilityColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
+        }
+        if (layoutType == LayoutTypes.PROFESSIONHUD){
+            TextFieldWidget xTextField = TextFields.LayoutMenuXTextField(leftpos + 20,toppos + 33);
+            xTextField.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudX()));
+            TextFieldWidget yTextField = TextFields.LayoutMenuYTextField(leftpos + 100,toppos + 33);
+            yTextField.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudY()));
+            TextFieldWidget colorTextFiled = TextFields.LayoutMenuColorTextField(leftpos + 30, toppos + 60);
+            colorTextFiled.setText(WynnMiata.CONFIG.getProfessionHudTextColor());
+            TextFieldWidget xTextTextField = TextFields.LayoutMenuXTextField(leftpos + 20,toppos + 88);
+            xTextTextField.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudTextX()));
+            TextFieldWidget yTextTextField = TextFields.LayoutMenuYTextField(leftpos + 100, toppos +88);
+            yTextTextField.setText(String.valueOf(WynnMiata.CONFIG.getProfessionHudTextY()));
+            addDrawableChild(xTextTextField);
+            addDrawableChild(yTextTextField);
+            addDrawableChild(colorTextFiled);
+            addDrawableChild(xTextField);
+            addDrawableChild(yTextField);
+            addDrawableChild(TextFields.ProfessionHudTextCoordsEnter(leftpos,toppos, this.width, this.height, xTextTextField, yTextTextField));
+            addDrawableChild(TextFields.ProfessionHudCoordsEnter(leftpos,toppos,this.width, this.height,xTextField, yTextField));
+            addDrawableChild(TextFields.ProfessionHudColorEnter(leftpos + 100, toppos + 60, colorTextFiled));
         }
     }
     private void getElements(LayoutTypes layoutType, DrawContext context) {
@@ -96,12 +146,35 @@ public class LayoutMenuScreen extends Screen {
             context.drawText(textRenderer, "Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
             context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 63, 0xFFFFFF, true);
         }
-        if (layoutType == LayoutTypes.ArmorDuration){
+        if (layoutType == LayoutTypes.ArmorDurability){
             context.drawText(textRenderer, "Layout", leftpos + 8, toppos + 25, 0xFFFFFF, true);
             context.drawText(textRenderer, "X:", leftpos + 10, toppos + 35, 0xFFFFFFFF, true);
             context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 35, 0xFFFFFFFF, true);
-            context.drawText(textRenderer, "Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Text Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
             context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 63, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Text Layout:", leftpos + 8, toppos + 78, 0xFFFFFF, true);
+            context.drawText(textRenderer, "X:", leftpos + 10, toppos + 90, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 90, 0xFFFFFF, true);
+        }
+        if (layoutType == LayoutTypes.AccessoryDurability){
+            context.drawText(textRenderer, "Layout", leftpos + 8, toppos + 25, 0xFFFFFF, true);
+            context.drawText(textRenderer, "X:", leftpos + 10, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Text Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 63, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Text Layout:", leftpos + 8, toppos + 78, 0xFFFFFF, true);
+            context.drawText(textRenderer, "X:", leftpos + 10, toppos + 90, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 90, 0xFFFFFF, true);
+        }
+        if (layoutType == LayoutTypes.PROFESSIONHUD){
+            context.drawText(textRenderer, "Layout", leftpos + 8, toppos + 25, 0xFFFFFF, true);
+            context.drawText(textRenderer, "X:", leftpos + 10, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Text Color:", leftpos + 8, toppos + 50, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Hex:", leftpos + 8, toppos + 63, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Text Layout:", leftpos + 8, toppos + 78, 0xFFFFFF, true);
+            context.drawText(textRenderer, "X:", leftpos + 10, toppos + 90, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Y:", leftpos + 90, toppos + 90, 0xFFFFFF, true);
         }
     }
 

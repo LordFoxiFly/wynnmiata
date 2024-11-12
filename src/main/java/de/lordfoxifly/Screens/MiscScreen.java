@@ -1,6 +1,5 @@
 package de.lordfoxifly.Screens;
 
-import de.lordfoxifly.Features.Items.ArmorDurability;
 import de.lordfoxifly.Screens.Widgets.Buttons;
 import de.lordfoxifly.Screens.Widgets.CheckBoxs;
 import de.lordfoxifly.WynnMiata;
@@ -39,6 +38,9 @@ public class MiscScreen extends Screen {
         addDrawableChild(CheckBoxs.FireHudRendering(leftpos,toppos));
         addDrawableChild(CheckBoxs.ArmorRendering(leftpos,toppos));
         addDrawableChild(CheckBoxs.ArmorDurability(leftpos, toppos));
+        addDrawableChild(CheckBoxs.AccessoryDurability(leftpos, toppos));
+        addDrawableChild(CheckBoxs.ProfessionHud(leftpos,toppos));
+        addDrawableChild(CheckBoxs.TradeMarketMiddleClickSell(leftpos,toppos));
     }
 
     @Override
