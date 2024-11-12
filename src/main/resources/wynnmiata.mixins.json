@@ -4,16 +4,17 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ArmorFeatureRenderMixin",
+    "DisplayTextMixin",
     "HeadNotRenderMixin",
     "HideFireMixin",
     "IGHudMixin",
-    "ScoreBoardMixin",
-    "InventoryMouseClickMixin"
+    "InventoryMouseClickMixin",
+    "ScoreBoardMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "DisplayTextMixin"
+    "ChatMixin"
   ]
 }

@@ -1,5 +1,7 @@
 package de.lordfoxifly.WynnMiataUtils;
 
+import net.minecraft.util.math.Position;
+
 import java.util.ArrayList;
 
 public class WynnMiataUtils {
@@ -43,5 +45,12 @@ public class WynnMiataUtils {
             return null;
         }
         return string.replace( "§.", "");
+    }
+
+    /** Return true if the two positions is "roughly" the same, i.e. they only differ slightly
+     * in the y position.
+     */
+    public static boolean isSame(Position first, Position second) {
+        return first.getX() == second.getX() && first.getZ() == second.getZ() && Math.abs(first.getY() - second.getY()) < 1.5;
     }
 }

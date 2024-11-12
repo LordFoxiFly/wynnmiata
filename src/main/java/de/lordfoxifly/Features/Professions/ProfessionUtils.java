@@ -1,13 +1,14 @@
 package de.lordfoxifly.Features.Professions;
 
-import com.sun.jna.platform.win32.NTSecApi;
 import de.lordfoxifly.Features.Items.ItemUtils;
+import de.lordfoxifly.Features.StatusEffects.WynncraftStatusEffect;
+import de.lordfoxifly.Features.StatusEffects.WynncraftStatusEffectListener;
+import de.lordfoxifly.Features.StatusEffects.WynncraftStatusEffectTypes;
 import de.lordfoxifly.WynnMiata;
 import de.lordfoxifly.WynnMiataUtils.WynnMiataUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.regex.Matcher;
@@ -91,7 +92,9 @@ public class ProfessionUtils {
         int output = 0;
         for (int i = 9; i < 13; i++){
             if (!MinecraftClient.getInstance().player.getInventory().getStack(i).isEmpty() &&  ItemUtils.getItemLore(MinecraftClient.getInstance().player.getInventory().getStack(i)) != null) {
-                output += ProfessionUtils.getProfXPBoost(MinecraftClient.getInstance().player.getInventory().getStack(i));
+                if (ProfessionUtils.getProfXPBoost(MinecraftClient.getInstance().player.getInventory().getStack(i)) != null) {
+                    output += ProfessionUtils.getProfXPBoost(MinecraftClient.getInstance().player.getInventory().getStack(i));
+                }
             }
         }
         return output;
@@ -137,5 +140,18 @@ public class ProfessionUtils {
         }
         return ouput;
     }
+    public static int getStatusEffectBuff(){
+        if (WynncraftStatusEffectListener.activeWynncraftStatusEffects.isEmpty()){
+            return 0;
+        }
+        for (WynncraftStatusEffect statusEffect : WynncraftStatusEffectListener.activeWynncraftStatusEffects){
+            if (statusEffect.getEffectTyp() == WynncraftStatusEffectTypes.GatherXPBonus){
+                return statusEffect.getEffect();
+            }
+        }
+        return  0;
+    }
+
+
 
 }

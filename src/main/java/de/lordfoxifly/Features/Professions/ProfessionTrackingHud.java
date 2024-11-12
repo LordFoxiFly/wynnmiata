@@ -7,51 +7,60 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
-import java.util.logging.Logger;
-
 public class ProfessionTrackingHud implements HudRenderCallback {
 
-    private static Integer miningXP = 0;
-    private static Integer woodcuttingXP= 0;
-    private static Integer fishingXP = 0;
+    private static String miningXP = "Last XP: ";
+    private static String woodcuttingXP= "Last XP: ";
+    private static String fishingXP =  "Last XP: ";
+    private static boolean minesXPBonus = false;
+    public static boolean isMinesXPBonus() {
+        return minesXPBonus;
+    }
 
-    public static Integer getMiningXP() {
+    public static void setMinesXPBonus(boolean minesXPBonus) {
+        ProfessionTrackingHud.minesXPBonus = minesXPBonus;
+    }
+
+
+
+    public static String getMiningXP() {
         return miningXP;
     }
 
-    public static void setMiningXP(Integer miningXP) {
+    public static void setMiningXP(String miningXP) {
         ProfessionTrackingHud.miningXP = miningXP;
     }
 
-    public static Integer getWoodcuttingXP() {
+    public static String getWoodcuttingXP() {
         return woodcuttingXP;
     }
 
-    public static void setWoodcuttingXP(Integer woodcuttingXP) {
+    public static void setWoodcuttingXP(String woodcuttingXP) {
         ProfessionTrackingHud.woodcuttingXP = woodcuttingXP;
     }
 
-    public static Integer getFishingXP() {
+    public static String getFishingXP() {
         return fishingXP;
     }
 
-    public static void setFishingXP(Integer fishingXP) {
+    public static void setFishingXP(String fishingXP) {
         ProfessionTrackingHud.fishingXP = fishingXP;
     }
 
-    public static Integer getFarmingXP() {
+    public static String getFarmingXP() {
         return farmingXP;
     }
 
-    public static void setFarmingXP(Integer farmingXP) {
+    public static void setFarmingXP(String farmingXP) {
         ProfessionTrackingHud.farmingXP = farmingXP;
     }
 
-    private static Integer farmingXP = 0;
+    private static String farmingXP = "Last XP: ";
+
+
     /**
      * @param drawContext the {@link DrawContext} instance
      * @param tickCounter the {@link RenderTickCounter} instance
@@ -66,11 +75,19 @@ public class ProfessionTrackingHud implements HudRenderCallback {
                 }
                 int xpboost = ProfessionUtils.getArmorXPBonus();
                 xpboost += ProfessionUtils.getAccsXPBonus();
+                if (isMinesXPBonus()) xpboost += 50;
+                xpboost += ProfessionUtils.getStatusEffectBuff();
                 drawContext.drawText(MinecraftClient.getInstance().textRenderer, "Gathering XP Boost: " + xpboost ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
                 String durability = getDurabilityString(ItemUtils.getItemDurability(MinecraftClient.getInstance().player.getMainHandStack()), ItemUtils.getItemMaxDurability(MinecraftClient.getInstance().player.getMainHandStack()));
                 drawContext.drawText(MinecraftClient.getInstance().textRenderer, durability ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() +10 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
                 drawContext.drawText(MinecraftClient.getInstance().textRenderer, "Gathering Speed: " + ProfessionUtils.getMiningSpeed(MinecraftClient.getInstance().player.getMainHandStack()) ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 20 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
-
+                switch (ProfessionUtils.getGatheringToolType(MinecraftClient.getInstance().player.getMainHandStack()).toLowerCase()){
+                    case "axe" -> drawContext.drawText(MinecraftClient.getInstance().textRenderer, woodcuttingXP ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 30 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+                    case "pickaxe" ->  drawContext.drawText(MinecraftClient.getInstance().textRenderer, miningXP ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 30 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+                    case "rod" ->      drawContext.drawText(MinecraftClient.getInstance().textRenderer, fishingXP ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 30 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+                    case "scythe" ->    drawContext.drawText(MinecraftClient.getInstance().textRenderer, farmingXP ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 30 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+                    default ->   drawContext.drawText(MinecraftClient.getInstance().textRenderer, "Last XP: " ,WynnMiata.CONFIG.getProfessionHudTextX(), WynnMiata.CONFIG.getProfessionHudTextY() + 30 , ColorUtils.hexstringToInt(WynnMiata.CONFIG.getProfessionHudTextColor()), true  );
+                }
             }
         }
     }

@@ -6,10 +6,8 @@ import de.lordfoxifly.Features.Professions.ProfessionTracking;
 public class DisplayTextUpdateListener {
 
     public static void  onDisplayUpdate(){
-        DisplayTextUpdateEvent.EVENT.register( (content, pos) -> {
-            //Devutils.appendToFile(content, "wynnmiatadevlog.txt");
-            ProfessionTracking.updateProfProgress(content);
-        });
+        //Devutils.appendToFile(content, "wynnmiatadevlog.txt");
+        DisplayTextUpdateEvent.EVENT.register(ProfessionTracking::updateProfProgress);
     }
 
 }

@@ -275,6 +275,7 @@ public class WynnMiataConfigData {
         TradeMarketMiddleClickSellBoolean = tradeMarketMiddleClickSellBoolean;
     }
 
+
     private boolean TradeMarketMiddleClickSellBoolean = false;
     private String AccessoryDurabilityTextColor = "FFFFFF";
     private boolean AccessoryDurabilityOnly = false;

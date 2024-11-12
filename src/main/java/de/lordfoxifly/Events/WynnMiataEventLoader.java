@@ -12,10 +12,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 public abstract class WynnMiataEventLoader {
 
     public static void load(){
-        ChatMessageEvent.register();
+        ChatListener.register();
         ScoreboardListener.load();
         RaidInstanceUtils.loadTCCFeatures();
-        //DisplayTextUpdateListener.onDisplayUpdate();
+        TickTimer.register();
+        DisplayTextUpdateListener.onDisplayUpdate();
         HudRenderCallback.EVENT.register(new DebugHud());
         HudRenderCallback.EVENT.register(new CompletionsHud());
         HudRenderCallback.EVENT.register(new ArmorDurabilityHud());
