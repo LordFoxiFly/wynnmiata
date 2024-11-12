@@ -8,9 +8,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-
 public class RaidsScreen extends Screen {
 
    private static final  Text TITLE = Text.translatable("gui." + WynnMiata.MOD_ID + ".settings.RaidScreen");

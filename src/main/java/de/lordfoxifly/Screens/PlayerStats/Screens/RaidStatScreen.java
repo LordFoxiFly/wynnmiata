@@ -51,15 +51,17 @@ public class RaidStatScreen extends Screen {
         renderBackground(context,mouseX,mouseY,delta);
         super.render(context, mouseX, mouseY, delta);
 
-        context.drawText(MinecraftClient.getInstance().textRenderer, NOGComps , leftpos + 22, toppos + 33,0xFFFFFFFF, true  );
-        context.drawText(MinecraftClient.getInstance().textRenderer, "" + requestedPlayer.getGlobalData().getRaids().getList().getNestOfTheGrootslangs(), leftpos + 22, toppos +43, 0xFFFFFFFF, true );
-        context.drawText(MinecraftClient.getInstance().textRenderer, TCCComps , leftpos + 22, toppos + 53,0xFFFFFFFF, true  );
-        context.drawText(MinecraftClient.getInstance().textRenderer, "" + requestedPlayer.getGlobalData().getRaids().getList().getTheCanyonColossus(), leftpos + 22, toppos +63, 0xFFFFFFFF, true );
-        context.drawText(MinecraftClient.getInstance().textRenderer, NOLComps , leftpos + 22, toppos + 73,0xFFFFFFFF, true  );
-        context.drawText(MinecraftClient.getInstance().textRenderer,  "" +requestedPlayer.getGlobalData().getRaids().getList().getOrphionSNexusOfLight(), leftpos + 22, toppos +83, 0xFFFFFFFF, true );
-        context.drawText(MinecraftClient.getInstance().textRenderer, TNAComps , leftpos + 22, toppos + 93,0xFFFFFFFF, true  );
-        context.drawText(MinecraftClient.getInstance().textRenderer, "" + requestedPlayer.getGlobalData().getRaids().getList().getTheNamelessAnomaly(), leftpos + 22, toppos +103, 0xFFFFFFFF, true );
+       if (requestedPlayer != null){
+           context.drawText(MinecraftClient.getInstance().textRenderer, NOGComps , leftpos + 22, toppos + 33,0xFFFFFFFF, true  );
+           context.drawText(MinecraftClient.getInstance().textRenderer, "" + requestedPlayer.getGlobalData().getRaids().getList().getNestOfTheGrootslangs(), leftpos + 22, toppos +43, 0xFFFFFFFF, true );
+           context.drawText(MinecraftClient.getInstance().textRenderer, TCCComps , leftpos + 22, toppos + 53,0xFFFFFFFF, true  );
+           context.drawText(MinecraftClient.getInstance().textRenderer, "" + requestedPlayer.getGlobalData().getRaids().getList().getTheCanyonColossus(), leftpos + 22, toppos +63, 0xFFFFFFFF, true );
+           context.drawText(MinecraftClient.getInstance().textRenderer, NOLComps , leftpos + 22, toppos + 73,0xFFFFFFFF, true  );
+           context.drawText(MinecraftClient.getInstance().textRenderer,  "" +requestedPlayer.getGlobalData().getRaids().getList().getOrphionSNexusOfLight(), leftpos + 22, toppos +83, 0xFFFFFFFF, true );
+           context.drawText(MinecraftClient.getInstance().textRenderer, TNAComps , leftpos + 22, toppos + 93,0xFFFFFFFF, true  );
+           context.drawText(MinecraftClient.getInstance().textRenderer, "" + requestedPlayer.getGlobalData().getRaids().getList().getTheNamelessAnomaly(), leftpos + 22, toppos +103, 0xFFFFFFFF, true );
 
+       }
     }
 
 

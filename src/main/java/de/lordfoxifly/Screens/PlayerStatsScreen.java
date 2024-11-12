@@ -109,55 +109,57 @@ public class PlayerStatsScreen extends Screen {
     }
 
     private void renderPlayerStats(DrawContext context) {
-        context.drawText(textRenderer, "Stats of : " + requestedPlayer.getUsername(), leftpos + 15, toppos + 35, 0xFFFFFFFF, true);
-        context.drawText(textRenderer, "Online: ",leftpos + 15, toppos + 45, 0xFFFFFFFF, true);
-        PlayerStatsHelper.renderOnlineWool(context, requestedPlayer.isOnline(), leftpos,toppos);
-        context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
-        context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
-        //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
-        context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getActiveCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
-        context.drawText(textRenderer, "First joined: " + requestedPlayer.getFirstJoin().substring(0, requestedPlayer.getFirstJoin().indexOf("T")), leftpos + 15, toppos + 95, 0xFFFFFF, true);
-        context.drawText(textRenderer, "Last joined: " + requestedPlayer.getLastJoin().substring(0, requestedPlayer.getLastJoin().indexOf("T")), leftpos + 15, toppos + 105, 0xFFFFFF, true);
-        //Guild
-        context.drawText(textRenderer,  "Guild:", leftpos + 15 , toppos + 125, 0xFFFFFF, true);
-        if (requestedPlayer.getGuild() != null){
-            if (requestedPlayer.getGuild().getRankStars() !=null){
-                context.drawText(textRenderer,  requestedPlayer.getGuild().getRankStars() + " " +requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+        if (requestedPlayer != null){
+            context.drawText(textRenderer, "Stats of : " + requestedPlayer.getUsername(), leftpos + 15, toppos + 35, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Online: ",leftpos + 15, toppos + 45, 0xFFFFFFFF, true);
+            PlayerStatsHelper.renderOnlineWool(context, requestedPlayer.isOnline(), leftpos,toppos);
+            context.drawText(textRenderer, "Rank: " + getSupportRank(requestedPlayer), leftpos + 15, toppos + 55, 0xFFFFFFFF, true);
+            context.drawText(textRenderer, "Total Time Played : " + requestedPlayer.getPlaytime(), leftpos + 15, toppos + 65, 0xFFFFFFFF, true);
+            //context.drawText(textRenderer, "Classes: "+ requestedPlayer.getCharacters().size(), leftpos + 15, toppos + 75, 0xFFFFFFFF,  true);
+            context.drawText(textRenderer, "Active Class: "+ requestedPlayer.getActiveCharacterData().getType(), leftpos + 15, toppos + 85, 0xFFFFFFFF,  true);
+            context.drawText(textRenderer, "First joined: " + requestedPlayer.getFirstJoin().substring(0, requestedPlayer.getFirstJoin().indexOf("T")), leftpos + 15, toppos + 95, 0xFFFFFF, true);
+            context.drawText(textRenderer, "Last joined: " + requestedPlayer.getLastJoin().substring(0, requestedPlayer.getLastJoin().indexOf("T")), leftpos + 15, toppos + 105, 0xFFFFFF, true);
+            //Guild
+            context.drawText(textRenderer,  "Guild:", leftpos + 15 , toppos + 125, 0xFFFFFF, true);
+            if (requestedPlayer.getGuild() != null){
+                if (requestedPlayer.getGuild().getRankStars() !=null){
+                    context.drawText(textRenderer,  requestedPlayer.getGuild().getRankStars() + " " +requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+                }
+                else{
+                    context.drawText(textRenderer,  requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+                }
+
             }
-            else{
-                context.drawText(textRenderer,  requestedPlayer.getGuild().getRank() + " of " + requestedPlayer.getGuild().getName(), leftpos + 15 , toppos + 135, 0xFFFFFF, true);
+            else {
+                context.drawText(textRenderer,  "No Guild", leftpos + 15 , toppos + 135, 0xFFFFFF, true);
             }
 
-        }
-        else {
-            context.drawText(textRenderer,  "No Guild", leftpos + 15 , toppos + 135, 0xFFFFFF, true);
-        }
-
-        //Right Side
-        context.drawText(textRenderer, "Gamemodes:" , leftpos + 180, toppos + 35, 0xFFFFFF, true);
-        int gamemodeyOffset = 10 * requestedPlayer.getSelectedCharacterData().getGamemode().size();
-        renderGamemodes(context, 45);
+            //Right Side
+            context.drawText(textRenderer, "Gamemodes:" , leftpos + 180, toppos + 35, 0xFFFFFF, true);
+            int gamemodeyOffset = 10 * requestedPlayer.getSelectedCharacterData().getGamemode().size();
+            renderGamemodes(context, 45);
 
 
 
-        if(update){
-            remove(addFriend);
-            remove(addParty);
-            remove(addGuild);
-            for (ImageButtonWidget imageButtonWidget: classbuttons){
-                remove(imageButtonWidget);
+            if(update){
+                remove(addFriend);
+                remove(addParty);
+                remove(addGuild);
+                for (ImageButtonWidget imageButtonWidget: classbuttons){
+                    remove(imageButtonWidget);
+                }
+                addFriend = Buttons.CommandButton(leftpos + 14, toppos+ 15, 65, 18, "friend add " +requestedPlayer.getUsername() , "Sends a Friend request to the Player", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddFriend" );
+                addParty =  Buttons.CommandButton(leftpos + 79, toppos+ 15, 65, 18, "party invite " + requestedPlayer.getUsername(), "Sends a Party invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddParty" );
+                addGuild = Buttons.CommandButton(leftpos + 144, toppos+ 15, 65, 18, "guild invite " + requestedPlayer.getUsername() , "Sends a Guild Invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddGuild" );
+                classbuttons = PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer);
+                for (ImageButtonWidget imageButtonWidget: classbuttons ){
+                    addDrawableChild(imageButtonWidget);
+                }
+                addDrawableChild(addFriend);
+                addDrawableChild(addParty);
+                addDrawableChild(addGuild);
+                update = false;
             }
-            addFriend = Buttons.CommandButton(leftpos + 14, toppos+ 15, 65, 18, "friend add " +requestedPlayer.getUsername() , "Sends a Friend request to the Player", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddFriend" );
-            addParty =  Buttons.CommandButton(leftpos + 79, toppos+ 15, 65, 18, "party invite " + requestedPlayer.getUsername(), "Sends a Party invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddParty" );
-            addGuild = Buttons.CommandButton(leftpos + 144, toppos+ 15, 65, 18, "guild invite " + requestedPlayer.getUsername() , "Sends a Guild Invite", "gui." + WynnMiata.MOD_ID + ".playerstats.Button.AddGuild" );
-            classbuttons = PlayerStatsHelper.getClassWidgets(leftpos,toppos,requestedPlayer);
-            for (ImageButtonWidget imageButtonWidget: classbuttons ){
-                addDrawableChild(imageButtonWidget);
-            }
-            addDrawableChild(addFriend);
-            addDrawableChild(addParty);
-            addDrawableChild(addGuild);
-            update = false;
         }
     }
 
